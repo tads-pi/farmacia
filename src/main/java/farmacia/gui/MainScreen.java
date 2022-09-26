@@ -32,97 +32,58 @@ public class MainScreen extends javax.swing.JFrame {
         MainPanel = new javax.swing.JPanel();
         TabbedPane = new javax.swing.JTabbedPane();
         SellingsPanelParent = new javax.swing.JPanel();
-        SellingsPanel = new farmacia.gui.sellings.Sellings();
         StockPanelParent = new javax.swing.JPanel();
-        StockPanel = new farmacia.gui.stock.Stock();
         RegistersPanelParent = new javax.swing.JPanel();
-        RegisterPanel = new farmacia.gui.register.Register();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(640, 640));
         setResizable(false);
 
         MainPanel.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
-        MainPanel.setLocation(new java.awt.Point(-32641, -32641));
         MainPanel.setMaximumSize(new java.awt.Dimension(640, 640));
         MainPanel.setMinimumSize(new java.awt.Dimension(640, 640));
         MainPanel.setPreferredSize(new java.awt.Dimension(640, 640));
         MainPanel.setRequestFocusEnabled(false);
 
-        TabbedPane.setBounds(new java.awt.Rectangle(0, 0, 640, 640));
         TabbedPane.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
         TabbedPane.setMaximumSize(new java.awt.Dimension(640, 640));
         TabbedPane.setMinimumSize(new java.awt.Dimension(640, 640));
         TabbedPane.setPreferredSize(new java.awt.Dimension(640, 620));
 
-        javax.swing.GroupLayout SellingsPanelLayout = new javax.swing.GroupLayout(SellingsPanel);
-        SellingsPanel.setLayout(SellingsPanelLayout);
-        SellingsPanelLayout.setHorizontalGroup(
-            SellingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 619, Short.MAX_VALUE)
-        );
-        SellingsPanelLayout.setVerticalGroup(
-            SellingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 577, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout SellingsPanelParentLayout = new javax.swing.GroupLayout(SellingsPanelParent);
         SellingsPanelParent.setLayout(SellingsPanelParentLayout);
         SellingsPanelParentLayout.setHorizontalGroup(
             SellingsPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SellingsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 640, Short.MAX_VALUE)
         );
         SellingsPanelParentLayout.setVerticalGroup(
             SellingsPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SellingsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 587, Short.MAX_VALUE)
         );
 
         TabbedPane.addTab("Tela de Vendas", SellingsPanelParent);
-
-        javax.swing.GroupLayout StockPanelLayout = new javax.swing.GroupLayout(StockPanel);
-        StockPanel.setLayout(StockPanelLayout);
-        StockPanelLayout.setHorizontalGroup(
-            StockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 619, Short.MAX_VALUE)
-        );
-        StockPanelLayout.setVerticalGroup(
-            StockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 577, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout StockPanelParentLayout = new javax.swing.GroupLayout(StockPanelParent);
         StockPanelParent.setLayout(StockPanelParentLayout);
         StockPanelParentLayout.setHorizontalGroup(
             StockPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(StockPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 640, Short.MAX_VALUE)
         );
         StockPanelParentLayout.setVerticalGroup(
             StockPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(StockPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 587, Short.MAX_VALUE)
         );
 
         TabbedPane.addTab("Estoque", StockPanelParent);
-
-        javax.swing.GroupLayout RegisterPanelLayout = new javax.swing.GroupLayout(RegisterPanel);
-        RegisterPanel.setLayout(RegisterPanelLayout);
-        RegisterPanelLayout.setHorizontalGroup(
-            RegisterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 619, Short.MAX_VALUE)
-        );
-        RegisterPanelLayout.setVerticalGroup(
-            RegisterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 577, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout RegistersPanelParentLayout = new javax.swing.GroupLayout(RegistersPanelParent);
         RegistersPanelParent.setLayout(RegistersPanelParentLayout);
         RegistersPanelParentLayout.setHorizontalGroup(
             RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(RegisterPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 640, Short.MAX_VALUE)
         );
         RegistersPanelParentLayout.setVerticalGroup(
             RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(RegisterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 587, Short.MAX_VALUE)
         );
 
         TabbedPane.addTab("Tela de Cadastros", RegistersPanelParent);
@@ -203,11 +164,8 @@ public class MainScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainPanel;
-    private farmacia.gui.register.Register RegisterPanel;
     private javax.swing.JPanel RegistersPanelParent;
-    private farmacia.gui.sellings.Sellings SellingsPanel;
     private javax.swing.JPanel SellingsPanelParent;
-    private farmacia.gui.stock.Stock StockPanel;
     private javax.swing.JPanel StockPanelParent;
     private javax.swing.JTabbedPane TabbedPane;
     // End of variables declaration//GEN-END:variables
