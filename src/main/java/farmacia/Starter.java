@@ -12,7 +12,9 @@ import farmacia.gui.MainScreen;
  * @author kcalixto
  */
 public class Starter {
-    public static void main(String args[]){
-        new MainScreen();
+
+    public static void main(String args[]) {
+        MainScreen mainScreen = new MainScreen();
+        mainScreen.setVisible(true);
     }
 }
