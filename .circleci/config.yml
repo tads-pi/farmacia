@@ -1,0 +1,26 @@
+version: 2.1
+
+orbs:
+  java: mediarails/java@0.1.18
+
+executors:
+  java:
+    docker:
+      - image: cimg/java:1.15.2
+
+jobs:
+  build:
+    docker:
+      - image: cimg/openjdk:18.0.2
+    steps:
+      - checkout
+      - run: java --version
+
+workflows:
+  version: 2
+  pipeline:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: /.*/
