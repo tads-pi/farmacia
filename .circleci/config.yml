@@ -120,13 +120,13 @@ jobs:
           paths:
             - << parameters.build_folder >>
 
-workspace:
+workflows:
   version: 2.0
   pipeline:
     jobs:
       - build-and-test:
-        app_name: farmacia
-        
-        filters:
-          branches:
-            only: main
+          app_name: farmacia
+
+          filters:
+            branches:
+              only: main
