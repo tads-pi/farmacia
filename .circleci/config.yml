@@ -1,26 +1,132 @@
+# This code is licensed from CircleCI to the user under the MIT license.
+# See here for details: https://circleci.com/developer/orbs/licensing
 version: 2.1
 
-orbs:
-  java: mediarails/java@0.1.18
+description: |
+  Gradle based apps build helpers
 
 executors:
   java:
+    description: The docker container to use for building java services
     docker:
-      - image: cimg/java:1.15.2
+      - image: circleci/openjdk:8-jdk
+    working_directory: ~/project
+
+commands:
+  build:
+    parameters:
+        app_name:
+          description: Unique name of the app, used for persisting of caches
+          type: string
+        tasks: 
+          description: Tasks list to pass to gradle, default "clean shadowJar"
+          type: string
+          default: clean shadowJar
+    steps:
+      - restore_cache:
+          keys:
+            - &gradle_cache_key << parameters.app_name >>-dependency-gradle-{{ checksum "build.gradle" }}
+            - << parameters.app_name >>-dependency-gradle
+
+      - run:
+          name: Gradle build
+          command: ./gradlew << parameters.tasks >>
+
+      - save_cache:
+          key: *gradle_cache_key
+          paths:
+            - ~/.gradle
+  test:
+    steps:
+      - run:
+          name: Run tests
+          command: ./gradlew test --info
+
+      - store_test_results:
+          path: build/test-results/test
+
+      - store_artifacts:
+          path: build/reports/tests/test
+          destination: test-reports
 
 jobs:
-  build:
-    docker:
-      - image: cimg/openjdk:18.0.2
+  build-and-test:
+    parameters:
+      executor:
+        description: Pass here custom executor, e.g. java-with-kafka, if needed
+        type: executor
+        default: java
+      app_name:
+        description: Unique name of the app, used for persisting of caches
+        type: string
+        default: farmacia
+      tasks: 
+        description: Tasks list to pass to gradle, default "clean shadowJar"
+        type: string
+        default: clean shadowJar
+      build_folder: 
+        description: Name of the folder to persist to workspace, default "build"
+        type: string
+        default: build
+      after_checkout:
+        description: Optional steps to run after checking out the code.
+        type: steps
+        default: []
+      after_build:
+        description: Optional steps to run after building the code.
+        type: steps
+        default: []
+      custom_tests:
+        description: Optional steps for testing built code, by default gradle test task will be used.
+        type: steps
+        default: []
+      after_test:
+        description: Optional steps to run after testing the code.
+        type: steps
+        default: []
+      checkout_path:
+        description: Path where sources will be checked out. 
+        type: string
+        default: "~/project"
+    executor: << parameters.executor >>
     steps:
-      - checkout
-      - run: java --version
+      - checkout:
+          path: << parameters.checkout_path >> 
+      # - when:
+      #     name: Run after_checkout lifecycle hook steps.
+      #     condition: << parameters.after_checkout >>
+      #     steps: << parameters.after_checkout >> 
+      - build:
+          app_name: << parameters.app_name >>
+          tasks: << parameters.tasks >>
 
-workflows:
-  version: 2
+      # - when:
+      #     name: Run after_build lifecycle hook steps.
+      #     condition: << parameters.after_build >>
+      #     steps: << parameters.after_build >> 
+      # - when:
+      #     condition: << parameters.custom_tests >>
+      #     steps: << parameters.custom_tests >>
+      # - unless:
+      #     condition: << parameters.custom_tests >>
+      #     steps:
+      #       - test
+      # - when:
+      #     name: Run after_test lifecycle hook steps.
+      #     condition: << parameters.after_test >>
+      #     steps: << parameters.after_test >> 
+      - persist_to_workspace:
+          root: << parameters.checkout_path >> 
+          paths:
+            - << parameters.build_folder >>
+
+workspace:
+  version: 2.0
   pipeline:
     jobs:
-      - build:
-          filters:
-            branches:
-              only: /.*/
+      - build-and-test:
+        app_name: farmacia
+        
+        filters:
+          branches:
+            only: main
