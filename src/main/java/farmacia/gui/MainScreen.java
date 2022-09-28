@@ -5,7 +5,7 @@
  */
 package farmacia.gui;
 
-import farmacia.gui.sellings.Sellins;
+import farmacia.gui.sellings.Sellings;
 
 /**
  *
