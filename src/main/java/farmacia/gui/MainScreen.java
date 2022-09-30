@@ -6,6 +6,7 @@
 package farmacia.gui;
 
 import farmacia.gui.sellings.Sellings;
+import java.awt.Color;
 
 /**
  *
@@ -19,7 +20,7 @@ public class MainScreen extends javax.swing.JFrame {
     public MainScreen() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,6 +34,7 @@ public class MainScreen extends javax.swing.JFrame {
         TabbedPane = new javax.swing.JTabbedPane();
         SellingsPanelParent = new javax.swing.JPanel();
         sellings1 = new farmacia.gui.sellings.Sellings();
+        sellings3 = new farmacia.gui.sellings.Sellings();
         StockPanelParent = new javax.swing.JPanel();
         stock1 = new farmacia.gui.stock.Stock();
         RegistersPanelParent = new javax.swing.JPanel();
@@ -52,15 +54,21 @@ public class MainScreen extends javax.swing.JFrame {
         TabbedPane.setMinimumSize(new java.awt.Dimension(640, 640));
         TabbedPane.setPreferredSize(new java.awt.Dimension(640, 620));
 
+        sellings1.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout sellings1Layout = new javax.swing.GroupLayout(sellings1);
         sellings1.setLayout(sellings1Layout);
         sellings1Layout.setHorizontalGroup(
             sellings1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGroup(sellings1Layout.createSequentialGroup()
+                .addComponent(sellings3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         sellings1Layout.setVerticalGroup(
             sellings1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 607, Short.MAX_VALUE)
+            .addGroup(sellings1Layout.createSequentialGroup()
+                .addComponent(sellings3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout SellingsPanelParentLayout = new javax.swing.GroupLayout(SellingsPanelParent);
@@ -130,13 +138,13 @@ public class MainScreen extends javax.swing.JFrame {
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 640, Short.MAX_VALUE)
             .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(TabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(TabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE))
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 640, Short.MAX_VALUE)
             .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(TabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE))
+                .addComponent(TabbedPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -202,6 +210,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JTabbedPane TabbedPane;
     private farmacia.gui.register.Register register1;
     private farmacia.gui.sellings.Sellings sellings1;
+    private farmacia.gui.sellings.Sellings sellings3;
     private farmacia.gui.stock.Stock stock1;
     // End of variables declaration//GEN-END:variables
 }
