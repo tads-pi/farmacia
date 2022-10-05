@@ -53,6 +53,8 @@ public class MainScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         MainPanel = new javax.swing.JPanel();
         TabbedPane = new javax.swing.JTabbedPane();
         SellingsPanelParent = new javax.swing.JPanel();
@@ -76,6 +78,13 @@ public class MainScreen extends javax.swing.JFrame {
         CPFInput = new javax.swing.JFormattedTextField();
         StockPanelParent = new javax.swing.JPanel();
         RegistersPanelParent = new javax.swing.JPanel();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -108,13 +117,11 @@ public class MainScreen extends javax.swing.JFrame {
 
         searchPanel.setVerifyInputWhenFocusTarget(false);
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
         jButton3.setForeground(new java.awt.Color(41, 41, 41));
         jButton3.setText("ADICIONAR");
         jButton3.setMaximumSize(new java.awt.Dimension(86, 23));
         jButton3.setMinimumSize(new java.awt.Dimension(86, 23));
-        jButton3.setOpaque(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -152,7 +159,6 @@ public class MainScreen extends javax.swing.JFrame {
 
         AddCountButton.setFont(new java.awt.Font("Monospaced", 0, 8)); // NOI18N
         AddCountButton.setText("+");
-        AddCountButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         AddCountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddCountButtonActionPerformed(evt);
@@ -164,14 +170,11 @@ public class MainScreen extends javax.swing.JFrame {
         countLabel.setText("0");
         countLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        SubtrackCountButton.setBackground(new java.awt.Color(255, 255, 255));
         SubtrackCountButton.setFont(new java.awt.Font("Monospaced", 0, 8)); // NOI18N
         SubtrackCountButton.setForeground(new java.awt.Color(41, 41, 41));
         SubtrackCountButton.setText("-");
-        SubtrackCountButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         SubtrackCountButton.setMaximumSize(new java.awt.Dimension(86, 23));
         SubtrackCountButton.setMinimumSize(new java.awt.Dimension(86, 23));
-        SubtrackCountButton.setOpaque(false);
         SubtrackCountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SubtrackCountButtonActionPerformed(evt);
@@ -234,12 +237,10 @@ public class MainScreen extends javax.swing.JFrame {
         TotalPanel.setBackground(new java.awt.Color(127, 188, 210));
 
         totalLabel.setFont(new java.awt.Font("Monospaced", 0, 40)); // NOI18N
-        totalLabel.setForeground(new java.awt.Color(0, 0, 0));
         totalLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalLabel.setText("105,66");
 
         jLabel2.setFont(new java.awt.Font("Monospaced", 0, 20)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("R$");
 
         javax.swing.GroupLayout TotalPanelLayout = new javax.swing.GroupLayout(TotalPanel);
@@ -275,13 +276,11 @@ public class MainScreen extends javax.swing.JFrame {
             .addGap(0, 334, Short.MAX_VALUE)
         );
 
-        ConfirmButton.setBackground(new java.awt.Color(255, 255, 255));
         ConfirmButton.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
         ConfirmButton.setForeground(new java.awt.Color(41, 41, 41));
         ConfirmButton.setText("CONFIRMAR");
         ConfirmButton.setMaximumSize(new java.awt.Dimension(86, 23));
         ConfirmButton.setMinimumSize(new java.awt.Dimension(86, 23));
-        ConfirmButton.setOpaque(false);
         ConfirmButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ConfirmButtonActionPerformed(evt);
@@ -357,17 +356,80 @@ public class MainScreen extends javax.swing.JFrame {
 
         TabbedPane.addTab("Estoque", StockPanelParent);
 
-        RegistersPanelParent.setBackground(new java.awt.Color(0, 255, 51));
+        RegistersPanelParent.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("jButton2");
+
+        jButton4.setText("jButton4");
+
+        jButton5.setText("jButton5");
+
+        jButton6.setText("jButton6");
+
+        jButton7.setText("jButton7");
+
+        jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jButton5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jButton6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jButton7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton7)
+                    .addComponent(jButton6)
+                    .addComponent(jButton5)
+                    .addComponent(jButton4)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addContainerGap(530, Short.MAX_VALUE))
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(jButton1)
+                .addGap(31, 31, 31)
+                .addComponent(jButton2)
+                .addGap(70, 70, 70)
+                .addComponent(jButton4)
+                .addGap(26, 26, 26)
+                .addComponent(jButton5)
+                .addGap(85, 85, 85)
+                .addComponent(jButton6)
+                .addGap(18, 18, 18)
+                .addComponent(jButton7)
+                .addContainerGap(133, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout RegistersPanelParentLayout = new javax.swing.GroupLayout(RegistersPanelParent);
         RegistersPanelParent.setLayout(RegistersPanelParentLayout);
         RegistersPanelParentLayout.setHorizontalGroup(
             RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 638, Short.MAX_VALUE)
+            .addGroup(RegistersPanelParentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jDesktopPane1)
+                .addContainerGap())
         );
         RegistersPanelParentLayout.setVerticalGroup(
             RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 617, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistersPanelParentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jDesktopPane1)
+                .addContainerGap())
         );
 
         TabbedPane.addTab("Tela de Cadastros", RegistersPanelParent);
@@ -427,6 +489,10 @@ public class MainScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -484,8 +550,17 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JButton SubtrackCountButton;
     private javax.swing.JTabbedPane TabbedPane;
     private javax.swing.JPanel TotalPanel;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel countLabel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel3;
