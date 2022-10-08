@@ -5,14 +5,18 @@
  */
 package farmacia.view;
 
-import farmacia.view.items.ItemsInternalFrame;
-import farmacia.view.sellings.SellingsInternalFrame;
+import farmacia.view.screens.ItemsInternalFrame;
+import farmacia.view.screens.LoginPanel;
+import farmacia.view.screens.SellingsInternalFrame;
+import farmacia.view.interfaces.ILoginListener;
 
 /**
  *
  * @author kcalixto
  */
-public class MainFrame extends javax.swing.JFrame {
+public class MainFrame extends javax.swing.JFrame implements ILoginListener {
+
+    private LoginPanel loginPanel = new LoginPanel();
 
     private SellingsInternalFrame sellingsInternalFrame = new SellingsInternalFrame();
     private ItemsInternalFrame itemsInternalFrame = new ItemsInternalFrame();
@@ -22,20 +26,48 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        StartSellingsFrame();
-        StartItemsFrame();
+        LoginPanel();
     }
 
+    @Override
+    public void login() {
+        loginPanel.setVisible(false);
+        desktopFrame.setVisible(true);
+        menuBar.setVisible(true);
+        StartSellingsFrame();
+        StartItemsFrame();
+
+        System.out.println("recieved login action!");
+    }
+
+    @Override
+    public void logout() {
+        loginPanel.setVisible(true);
+        desktopFrame.setVisible(false);
+        menuBar.setVisible(false);
+        
+        System.out.println("recieved logout action!");
+    }
+    
     public void StartSellingsFrame() {
-        DesktopFrame.add(sellingsInternalFrame);
+        desktopFrame.add(sellingsInternalFrame);
         sellingsInternalFrame.show();
         sellingsInternalFrame.setVisible(true);
     }
 
     public void StartItemsFrame() {
-        DesktopFrame.add(itemsInternalFrame);
+        desktopFrame.add(itemsInternalFrame);
         itemsInternalFrame.show();
         itemsInternalFrame.setVisible(false);
+    }
+    
+    public void LoginPanel(){
+        this.add(loginPanel);
+        loginPanel.setVisible(true);
+        loginPanel.addListener(this);
+        
+        desktopFrame.setVisible(false);
+        menuBar.setVisible(false);
     }
 
     /**
@@ -48,10 +80,10 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        DesktopFrame = new javax.swing.JDesktopPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        SellingsMenuItem = new javax.swing.JMenu();
-        ItemsMenuItem = new javax.swing.JMenu();
+        desktopFrame = new javax.swing.JDesktopPane();
+        menuBar = new javax.swing.JMenuBar();
+        sellingsMenuItem = new javax.swing.JMenu();
+        itemsMenuItem = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -60,67 +92,67 @@ public class MainFrame extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(650, 690));
         setResizable(false);
 
-        DesktopFrame.setBackground(new java.awt.Color(255, 255, 255));
-        DesktopFrame.setMaximumSize(new java.awt.Dimension(640, 640));
-        DesktopFrame.setMinimumSize(new java.awt.Dimension(640, 640));
-        DesktopFrame.setPreferredSize(new java.awt.Dimension(640, 640));
-        DesktopFrame.setSize(new java.awt.Dimension(640, 640));
+        desktopFrame.setBackground(new java.awt.Color(255, 255, 255));
+        desktopFrame.setMaximumSize(new java.awt.Dimension(640, 640));
+        desktopFrame.setMinimumSize(new java.awt.Dimension(640, 640));
+        desktopFrame.setPreferredSize(new java.awt.Dimension(640, 640));
+        desktopFrame.setSize(new java.awt.Dimension(640, 640));
 
-        SellingsMenuItem.setText("Tela de Vendas");
-        SellingsMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
+        sellingsMenuItem.setText("Tela de Vendas");
+        sellingsMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SellingsMenuItemMouseClicked(evt);
+                sellingsMenuItemMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                SellingsMenuItemMouseExited(evt);
+                sellingsMenuItemMouseExited(evt);
             }
         });
-        jMenuBar1.add(SellingsMenuItem);
+        menuBar.add(sellingsMenuItem);
 
-        ItemsMenuItem.setText("Tela de Cadastro/Consulta de Items");
-        ItemsMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
+        itemsMenuItem.setText("Tela de Cadastro/Consulta de Items");
+        itemsMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ItemsMenuItemMouseClicked(evt);
+                itemsMenuItemMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                ItemsMenuItemMouseExited(evt);
+                itemsMenuItemMouseExited(evt);
             }
         });
-        jMenuBar1.add(ItemsMenuItem);
+        menuBar.add(itemsMenuItem);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(DesktopFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+            .addComponent(desktopFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(DesktopFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
+            .addComponent(desktopFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SellingsMenuItemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SellingsMenuItemMouseExited
-        SellingsMenuItem.setSelected(false);
-    }//GEN-LAST:event_SellingsMenuItemMouseExited
+    private void sellingsMenuItemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sellingsMenuItemMouseExited
+        sellingsMenuItem.setSelected(false);
+    }//GEN-LAST:event_sellingsMenuItemMouseExited
 
-    private void ItemsMenuItemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemsMenuItemMouseExited
-        ItemsMenuItem.setSelected(false);
-    }//GEN-LAST:event_ItemsMenuItemMouseExited
+    private void itemsMenuItemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemsMenuItemMouseExited
+        itemsMenuItem.setSelected(false);
+    }//GEN-LAST:event_itemsMenuItemMouseExited
 
-    private void SellingsMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SellingsMenuItemMouseClicked
+    private void sellingsMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sellingsMenuItemMouseClicked
         itemsInternalFrame.setVisible(false);
         sellingsInternalFrame.setVisible(true);
-    }//GEN-LAST:event_SellingsMenuItemMouseClicked
+    }//GEN-LAST:event_sellingsMenuItemMouseClicked
 
-    private void ItemsMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemsMenuItemMouseClicked
+    private void itemsMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemsMenuItemMouseClicked
         itemsInternalFrame.setVisible(true);
         sellingsInternalFrame.setVisible(false);
-    }//GEN-LAST:event_ItemsMenuItemMouseClicked
+    }//GEN-LAST:event_itemsMenuItemMouseClicked
 
     /**
      * @param args the command line arguments
@@ -162,9 +194,10 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane DesktopFrame;
-    private javax.swing.JMenu ItemsMenuItem;
-    private javax.swing.JMenu SellingsMenuItem;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JDesktopPane desktopFrame;
+    private javax.swing.JMenu itemsMenuItem;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu sellingsMenuItem;
     // End of variables declaration//GEN-END:variables
+
 }
