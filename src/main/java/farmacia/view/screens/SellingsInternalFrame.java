@@ -6,8 +6,11 @@
 package farmacia.view.screens;
 
 import farmacia.view.interfaces.ILoginListener;
+
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import farmacia.view.interfaces.ISellingsPanel;
+import farmacia.view.libs.StepsTrace;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,8 +19,9 @@ import javax.swing.JOptionPane;
  */
 public class SellingsInternalFrame extends javax.swing.JInternalFrame implements ILoginListener, ISellingsPanel {
     
-    private byte STEP = STEP_GET_CPF;
+    private int STEP = STEP_GET_CPF;
     
+    private StepsTrace stepsTrace = new StepsTrace();
     private ArrayList<ILoginListener> listeners = new ArrayList<ILoginListener>();
     
     /**
@@ -39,7 +43,6 @@ public class SellingsInternalFrame extends javax.swing.JInternalFrame implements
         getCPFPanel.addSellingsListener(this);
         showCPFPanel.addSellingsListener(this);
         registerCPFPanel.addSellingsListener(this);
-        confirmCPFPanel.addSellingsListener(this);
         sellingsPanel.addSellingsListener(this);
         confirmSelling.addSellingsListener(this);
         
@@ -61,7 +64,6 @@ public class SellingsInternalFrame extends javax.swing.JInternalFrame implements
         getCPFPanel = new farmacia.view.screens.sellingsPanels.GetCPFPanel();
         showCPFPanel = new farmacia.view.screens.sellingsPanels.ShowCPFPanel();
         registerCPFPanel = new farmacia.view.screens.sellingsPanels.RegisterCPFPanel();
-        confirmCPFPanel = new farmacia.view.screens.sellingsPanels.ConfirmCPFPanel();
         sellingsPanel = new farmacia.view.screens.sellingsPanels.SellingsPanel();
         confirmSelling = new farmacia.view.screens.sellingsPanels.ConfirmSelling();
 
@@ -76,7 +78,6 @@ public class SellingsInternalFrame extends javax.swing.JInternalFrame implements
         jPanel1.add(getCPFPanel, "card2");
         jPanel1.add(showCPFPanel, "card3");
         jPanel1.add(registerCPFPanel, "card4");
-        jPanel1.add(confirmCPFPanel, "card7");
         jPanel1.add(sellingsPanel, "card5");
         jPanel1.add(confirmSelling, "card6");
 
@@ -96,7 +97,6 @@ public class SellingsInternalFrame extends javax.swing.JInternalFrame implements
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private farmacia.view.screens.sellingsPanels.ConfirmCPFPanel confirmCPFPanel;
     private farmacia.view.screens.sellingsPanels.ConfirmSelling confirmSelling;
     private farmacia.view.screens.sellingsPanels.GetCPFPanel getCPFPanel;
     private javax.swing.JPanel jPanel1;
@@ -112,26 +112,27 @@ public class SellingsInternalFrame extends javax.swing.JInternalFrame implements
 
     @Override
     public void logout() {
-        System.out.println("called logout action");
-
-        // Notify everybody that may be interested.
         for (ILoginListener ll : listeners) {
             ll.logout();
         }
         this.setVisible(false);
+        
+        clearFields();
     }
     
     @Override
-    public void confirmPressed(byte newStep) {
+    public void confirmPressed(int newStep) {
         handleSteps(newStep);
     }
     
     @Override
-    public void cancelPressed(byte newStep) {
+    public void cancelPressed(int newStep) {
         handleSteps(newStep);
     }
     
-    private void handleSteps(byte newStep){
+    private void handleSteps(int newStep){
+        stepsTrace.add(STEP);
+        
         int YES = 0;
         int NO = 1;
         int CANCEL = 2;
@@ -139,70 +140,70 @@ public class SellingsInternalFrame extends javax.swing.JInternalFrame implements
         this.STEP = newStep;
         switch(STEP){
             case STEP_GET_CPF:
-                System.out.println("step getCpf");
                 clearPanel();
                 getCPFPanel.setVisible(true);
                 
                 break;
             case STEP_SHOW_CPF:
-                System.out.println("step cpfData");
                 clearPanel();
                 showCPFPanel.setVisible(true);
+                showCPFPanel.LoadUserInfo();
                 
                 break;
             case STEP_CPF_REGISTER:
-                System.out.println("step registerCpf");
                 clearPanel();
                 registerCPFPanel.setVisible(true);
-                
-                break;
-            case STEP_CONFIRM_CPF_DATA:
-                System.out.println("step confirmCPFData");
-                clearPanel();
-                confirmCPFPanel.setVisible(true);
-                
+                registerCPFPanel.LoadUserInfo();
                 break;
             case STEP_SELLINGS:
-                System.out.println("step sellings");
                 clearPanel();
                 sellingsPanel.setVisible(true);
                 
                 break;
             case STEP_CONFIRM_SELLING:
-                System.out.println("step confirmSelling");
                 int confirm = JOptionPane.showConfirmDialog(this, "Confirmar Compra?");
                 
                 if(confirm == YES) {
                     clearPanel();
                     confirmSelling.setVisible(true);
+                    //clear all cached data after completition
+                    clearFields();
                 } else {
                     // Do Nothing
                 }
                 
                 break;
             case STEP_CANCEL_SELLING:
-                System.out.println("step cancelSelling");
                 int cancel = JOptionPane.showConfirmDialog(this, "Cancelar Compra?");
 
                 if(cancel == YES) {
                     clearPanel();
                     getCPFPanel.setVisible(true);
+                    //clear all cached data after completition
+                    clearFields();
                 } else {
                     // Do Nothing
                 }
                 
                 break;
-            default:
-                System.out.println("unknown step: " + STEP);
+            case LAST_STEP:
+                handleSteps(stepsTrace.getLastStep());
+                
                 break;
+            default:
+                throw new InvalidParameterException("invalid step");
         }
+    }
+    
+    private void clearFields(){
+        getCPFPanel.clearFields();
+        registerCPFPanel.clearFields();
     }
     
     private void clearPanel(){
         getCPFPanel.setVisible(false);
         showCPFPanel.setVisible(false);
         registerCPFPanel.setVisible(false);
-        confirmCPFPanel.setVisible(false);
         sellingsPanel.setVisible(false);
         confirmSelling.setVisible(false);
     }

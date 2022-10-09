@@ -40,10 +40,8 @@
                   <Component id="loginLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="passwordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="passwordInput" alignment="2" min="-2" pref="220" max="-2" attributes="0"/>
-                  <Group type="103" alignment="2" groupAlignment="2" attributes="0">
-                      <Component id="confirmButton" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="errorLabel" alignment="2" min="-2" pref="177" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="confirmButton" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="errorLabel" alignment="2" min="-2" pref="177" max="-2" attributes="0"/>
                   <Component id="imageLabel" alignment="2" min="-2" pref="124" max="-2" attributes="0"/>
                   <Component id="loginInput" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>

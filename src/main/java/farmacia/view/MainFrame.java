@@ -34,12 +34,10 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
     @Override
     public void login() {
         LoggedInAction();
-        System.out.println("recieved login action!");
     }
     @Override
     public void logout() {
         LoggedOutAction();
-        System.out.println("recieved logout action!");
     }
     
     private void LoggedInAction(){

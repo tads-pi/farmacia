@@ -5,6 +5,8 @@
  */
 package farmacia.view.libs;
 
+import farmacia.view.entities.User;
+
 /**
  *
  * @author kcalixto
@@ -15,18 +17,10 @@ public class Validators {
     }
     
     public boolean isValidCpf(String cpf){
-        if(cpf.equals("1")){   
-            return false;
-        }else{
-            return true;
-        }
+        return true;
     }
     
-    public boolean isRegisteredCPF(String cpf){
-        if(cpf.equals("2")){   
-            return false;
-        }else{
-            return true;
-        }
+    public boolean isValidUser(User user){
+        return true;
     }
 }

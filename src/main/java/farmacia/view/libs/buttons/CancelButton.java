@@ -6,14 +6,12 @@
 package farmacia.view.libs.buttons;
 
 import farmacia.view.libs.FarmaciaColors;
-import java.awt.event.MouseEvent;
 
 /**
  *
  * @author kcalixto
  */
 public class CancelButton extends javax.swing.JButton{
-
     public CancelButton(String text){
         defaut();
         setText(text.toUpperCase());
@@ -38,11 +36,10 @@ public class CancelButton extends javax.swing.JButton{
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 setBackground(FarmaciaColors.cancelDarkRed);
-
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 setBackground(FarmaciaColors.cancelRed);
             }
-    });
+        });
     }
 }

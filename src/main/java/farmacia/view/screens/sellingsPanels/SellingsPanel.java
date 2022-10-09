@@ -30,7 +30,6 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel 
 
     public void loadLogo() {
         try {
-            System.out.println("working!");
             ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/farmacia/view/resources/logo.jpg"));
             Image modifiedImage = imageIcon.getImage().getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(),
                     Image.SCALE_SMOOTH);
@@ -38,7 +37,7 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel 
 
             imageLabel.setIcon(imageIcon);
         } catch (Exception e) {
-            System.out.println("err: " + e);
+            throw e;
         }
     }
 
@@ -84,6 +83,11 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel 
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
+            }
+        });
+        cancelButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cancelButtonKeyPressed(evt);
             }
         });
 
@@ -138,8 +142,6 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel 
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-        System.out.println("called confirm button action");
-
         // Notify everybody that may be interested.
         for (ISellingsPanel ll : sellingsisteners) {
             ll.confirmPressed(STEP_CONFIRM_SELLING);
@@ -148,11 +150,16 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel 
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        System.out.println("called cancel button action");
         for (ISellingsPanel ll : sellingsisteners) {
             ll.cancelPressed(STEP_CANCEL_SELLING);
         }
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void cancelButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cancelButtonKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ESCAPE) {
+            cancelButton.doClick();
+        }
+    }//GEN-LAST:event_cancelButtonKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -164,11 +171,11 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel 
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void confirmPressed(byte newStep) {
+    public void confirmPressed(int newStep) {
 
     }
 
     @Override
-    public void cancelPressed(byte newStep) {
+    public void  cancelPressed(int newStep) {
     }
 }

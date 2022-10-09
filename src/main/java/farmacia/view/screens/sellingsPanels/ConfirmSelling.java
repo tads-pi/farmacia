@@ -30,7 +30,6 @@ public class ConfirmSelling extends javax.swing.JPanel implements ISellingsPanel
 
     public void loadLogo() {
         try {
-            System.out.println("working!");
             ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/farmacia/view/resources/logo.jpg"));
             Image modifiedImage = imageIcon.getImage().getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(),
                     Image.SCALE_SMOOTH);
@@ -38,7 +37,7 @@ public class ConfirmSelling extends javax.swing.JPanel implements ISellingsPanel
 
             imageLabel.setIcon(imageIcon);
         } catch (Exception e) {
-            System.out.println("err: " + e);
+            throw new Error(e);
         }
     }
 
@@ -85,6 +84,11 @@ public class ConfirmSelling extends javax.swing.JPanel implements ISellingsPanel
                 confirmButtonActionPerformed(evt);
             }
         });
+        confirmButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                confirmButtonKeyPressed(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -95,13 +99,6 @@ public class ConfirmSelling extends javax.swing.JPanel implements ISellingsPanel
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(490, Short.MAX_VALUE)
-                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(201, 201, 201)
@@ -109,7 +106,14 @@ public class ConfirmSelling extends javax.swing.JPanel implements ISellingsPanel
                     .addGroup(layout.createSequentialGroup()
                         .addGap(257, 257, 257)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(244, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(confirmButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,14 +131,16 @@ public class ConfirmSelling extends javax.swing.JPanel implements ISellingsPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-        System.out.println("called confirm button action");
-
-        // Notify everybody that may be interested.
         for (ISellingsPanel ll : sellingsisteners) {
             ll.confirmPressed(STEP_GET_CPF);
         }
-
     }//GEN-LAST:event_confirmButtonActionPerformed
+
+    private void confirmButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_confirmButtonKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            confirmButton.doClick();
+        }
+    }//GEN-LAST:event_confirmButtonKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -145,11 +151,11 @@ public class ConfirmSelling extends javax.swing.JPanel implements ISellingsPanel
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void confirmPressed(byte newStep) {
+    public void confirmPressed(int newStep) {
 
     }
 
     @Override
-    public void cancelPressed(byte newStep) {
+    public void  cancelPressed(int newStep) {
     }
 }

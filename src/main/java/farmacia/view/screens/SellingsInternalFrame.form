@@ -74,13 +74,6 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="farmacia.view.screens.sellingsPanels.ConfirmCPFPanel" name="confirmCPFPanel">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card7"/>
-            </Constraint>
-          </Constraints>
-        </Component>
         <Component class="farmacia.view.screens.sellingsPanels.SellingsPanel" name="sellingsPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">

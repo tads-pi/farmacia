@@ -8,6 +8,7 @@ package farmacia.view.screens.sellingsPanels;
 import farmacia.view.constants;
 import farmacia.view.interfaces.ILoginListener;
 import farmacia.view.interfaces.ISellingsPanel;
+import farmacia.view.interfaces.UserData;
 import farmacia.view.libs.Validators;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import javax.swing.ImageIcon;
  *
  * @author kcalixto
  */
-public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, ISellingsPanel {
+public class GetCPFPanel extends UserData implements ILoginListener, ISellingsPanel {
 
     private ArrayList<ILoginListener> loginListeners = new ArrayList<ILoginListener>();
     private ArrayList<ISellingsPanel> sellingsisteners = new ArrayList<ISellingsPanel>();
@@ -33,7 +34,6 @@ public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, I
 
     public void loadLogo() {
         try {
-            System.out.println("working!");
             ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/farmacia/view/resources/logo.jpg"));
             Image modifiedImage = imageIcon.getImage().getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(),
                     Image.SCALE_SMOOTH);
@@ -41,7 +41,7 @@ public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, I
 
             imageLabel.setIcon(imageIcon);
         } catch (Exception e) {
-            System.out.println("err: " + e);
+            throw new Error(e);
         }
     }
 
@@ -62,29 +62,19 @@ public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, I
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cpfInput = new javax.swing.JTextField();
         cpfLabel = new javax.swing.JLabel();
         imageLabel = new javax.swing.JLabel();
         confirmButton = new farmacia.view.libs.buttons.ConfirmButton();
         errorLabel = new javax.swing.JLabel();
         logoutButton = new farmacia.view.libs.buttons.CancelButton();
+        cpfInput = new javax.swing.JFormattedTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
-
-        cpfInput.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        cpfInput.setMaximumSize(new java.awt.Dimension(217, 24));
-        cpfInput.setMinimumSize(new java.awt.Dimension(217, 24));
-        cpfInput.setPreferredSize(new java.awt.Dimension(217, 24));
-        cpfInput.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cpfInputKeyPressed(evt);
-            }
-        });
 
         cpfLabel.setBackground(new java.awt.Color(65, 65, 65));
         cpfLabel.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
         cpfLabel.setForeground(new java.awt.Color(65, 65, 65));
-        cpfLabel.setText("CPF do cliente");
+        cpfLabel.setText("CPF de cliente");
 
         imageLabel.setMaximumSize(new java.awt.Dimension(124, 31));
         imageLabel.setMinimumSize(new java.awt.Dimension(124, 31));
@@ -107,6 +97,22 @@ public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, I
                 logoutButtonActionPerformed(evt);
             }
         });
+        logoutButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                logoutButtonKeyPressed(evt);
+            }
+        });
+
+        try {
+            cpfInput.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        cpfInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cpfInputKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -117,13 +123,14 @@ public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, I
                 .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(216, Short.MAX_VALUE)
+                .addContainerGap(210, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cpfLabel)
                     .addComponent(imageLabel, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cpfInput, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(confirmButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(errorLabel, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cpfInput, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(205, 205, 205))
         );
         layout.setVerticalGroup(
@@ -133,40 +140,32 @@ public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, I
                 .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
                 .addComponent(cpfLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(4, 4, 4)
                 .addComponent(cpfInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(56, 56, 56)
                 .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cpfInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cpfInputKeyPressed
-        if (!cpfInput.getText().isEmpty()
-                && evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            confirmButton.doClick();
-        }
-    }//GEN-LAST:event_cpfInputKeyPressed
-
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
         if (v.isValidCpf(cpfInput.getText())) {
-            if (v.isRegisteredCPF(cpfInput.getText())) {
-                System.out.println("called confirm button action");
+            if (UserData.searchUser(this.cpfInput.getText().toString())) {
                 errorLabel.setText("");
-
                 // Notify everybody that may be interested.
                 for (ISellingsPanel ll : sellingsisteners) {
                     ll.confirmPressed(STEP_SHOW_CPF);
                 }
             } else {
+                UserData.saveCpf(this.cpfInput.getText());
+
                 for (ISellingsPanel ll : sellingsisteners) {
                     ll.confirmPressed(STEP_CPF_REGISTER);
                 }
-
             }
         } else
             errorLabel.setText(constants.INVALID_CPF);
@@ -176,10 +175,25 @@ public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, I
         logout();
     }//GEN-LAST:event_logoutButtonActionPerformed
 
+    private void logoutButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_logoutButtonKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ESCAPE) {
+            logoutButton.doClick();
+        }
+    }//GEN-LAST:event_logoutButtonKeyPressed
+
+    private void cpfInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cpfInputKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            confirmButton.doClick();
+        }
+    }//GEN-LAST:event_cpfInputKeyPressed
+
+    public void clearFields(){
+        cpfInput.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private farmacia.view.libs.buttons.ConfirmButton confirmButton;
-    private javax.swing.JTextField cpfInput;
+    private javax.swing.JFormattedTextField cpfInput;
     private javax.swing.JLabel cpfLabel;
     private javax.swing.JLabel errorLabel;
     private javax.swing.JLabel imageLabel;
@@ -187,11 +201,11 @@ public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, I
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void confirmPressed(byte newStep) {
+    public void confirmPressed(int newStep) {
     }
 
     @Override
-    public void cancelPressed(byte newStep) {
+    public void  cancelPressed(int newStep) {
     }
 
     @Override
@@ -200,5 +214,8 @@ public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, I
 
     @Override
     public void logout() {
+        for(ILoginListener ll:loginListeners){
+            ll.logout();
+        }
     }
 }

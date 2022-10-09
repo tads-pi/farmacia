@@ -5,9 +5,9 @@
  */
 package farmacia.view.screens.sellingsPanels;
 
-import farmacia.view.constants;
-import farmacia.view.interfaces.ILoginListener;
+import farmacia.view.entities.User;
 import farmacia.view.interfaces.ISellingsPanel;
+import farmacia.view.interfaces.UserData;
 import farmacia.view.libs.Validators;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -32,7 +32,6 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
 
     public void loadLogo() {
         try {
-            System.out.println("working!");
             ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/farmacia/view/resources/logo.jpg"));
             Image modifiedImage = imageIcon.getImage().getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(),
                     Image.SCALE_SMOOTH);
@@ -40,7 +39,7 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
 
             imageLabel.setIcon(imageIcon);
         } catch (Exception e) {
-            System.out.println("err: " + e);
+            throw e;
         }
     }
 
@@ -48,6 +47,15 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
         sellingsisteners.add(toAdd);
     }
 
+    public void LoadUserInfo(){
+        User u = UserData.getUser();
+        this.nameField.setText(u.getName());
+        this.emailField.setText(u.getEmail());
+        this.cpfField.setText(u.getCpf());
+        this.birthDateField.setText(u.getBirthDateString());
+        this.contactNumberField.setText(u.getContactNumber());
+        this.genderField.setText(u.getGender());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,9 +66,21 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
     private void initComponents() {
 
         imageLabel = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
         cancelButton = new farmacia.view.libs.buttons.CancelButton();
         confirmButton = new farmacia.view.libs.buttons.ConfirmButton();
+        title = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        nameField = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
+        emailField = new javax.swing.JLabel();
+        cpfLabel = new javax.swing.JLabel();
+        cpfField = new javax.swing.JLabel();
+        birthDateLabel = new javax.swing.JLabel();
+        birthDateField = new javax.swing.JLabel();
+        contactNumberLabel = new javax.swing.JLabel();
+        contactNumberField = new javax.swing.JLabel();
+        genderLabel = new javax.swing.JLabel();
+        genderField = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -69,20 +89,14 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
         imageLabel.setPreferredSize(new java.awt.Dimension(124, 31));
         imageLabel.setSize(new java.awt.Dimension(124, 31));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
+            }
+        });
+        cancelButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cancelButtonKeyPressed(evt);
             }
         });
 
@@ -92,32 +106,138 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
             }
         });
 
+        title.setBackground(new java.awt.Color(0, 0, 0));
+        title.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        title.setForeground(new java.awt.Color(0, 0, 0));
+        title.setText("Dados de Cliente");
+
+        nameLabel.setBackground(new java.awt.Color(58, 58, 58));
+        nameLabel.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
+        nameLabel.setForeground(new java.awt.Color(58, 58, 58));
+        nameLabel.setText("Nome Completo");
+
+        nameField.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        nameField.setForeground(new java.awt.Color(0, 0, 0));
+        nameField.setText("Kauã Chaves Calixto");
+
+        emailLabel.setBackground(new java.awt.Color(58, 58, 58));
+        emailLabel.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
+        emailLabel.setForeground(new java.awt.Color(58, 58, 58));
+        emailLabel.setText("Melhor Email");
+
+        emailField.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        emailField.setForeground(new java.awt.Color(0, 0, 0));
+        emailField.setText("kauacalixtocontato@gmail.com");
+
+        cpfLabel.setBackground(new java.awt.Color(58, 58, 58));
+        cpfLabel.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
+        cpfLabel.setForeground(new java.awt.Color(58, 58, 58));
+        cpfLabel.setText("CPF");
+
+        cpfField.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        cpfField.setForeground(new java.awt.Color(0, 0, 0));
+        cpfField.setText("537.470.718-30");
+
+        birthDateLabel.setBackground(new java.awt.Color(58, 58, 58));
+        birthDateLabel.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
+        birthDateLabel.setForeground(new java.awt.Color(58, 58, 58));
+        birthDateLabel.setText("Data de Nascimento");
+
+        birthDateField.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        birthDateField.setForeground(new java.awt.Color(0, 0, 0));
+        birthDateField.setText("12/11/2003");
+
+        contactNumberLabel.setBackground(new java.awt.Color(58, 58, 58));
+        contactNumberLabel.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
+        contactNumberLabel.setForeground(new java.awt.Color(58, 58, 58));
+        contactNumberLabel.setText("Telefone de Contato");
+
+        contactNumberField.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        contactNumberField.setForeground(new java.awt.Color(0, 0, 0));
+        contactNumberField.setText("(11) 93393-8090");
+
+        genderLabel.setBackground(new java.awt.Color(58, 58, 58));
+        genderLabel.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
+        genderLabel.setForeground(new java.awt.Color(58, 58, 58));
+        genderLabel.setText("Gênero");
+
+        genderField.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        genderField.setForeground(new java.awt.Color(0, 0, 0));
+        genderField.setText("M");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(title)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(emailLabel)
+                            .addComponent(nameLabel)
+                            .addComponent(emailField)
+                            .addComponent(nameField)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cpfLabel)
+                                    .addComponent(cpfField))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(birthDateLabel)
+                                    .addComponent(birthDateField)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(contactNumberLabel)
+                                    .addComponent(contactNumberField))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(genderLabel)
+                                    .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
+                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 460, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 420, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(title)
+                        .addGap(31, 31, 31)
+                        .addComponent(nameLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nameField)
+                        .addGap(18, 18, 18)
+                        .addComponent(emailLabel)
+                        .addGap(10, 10, 10)
+                        .addComponent(emailField)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(birthDateLabel)
+                            .addComponent(cpfLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cpfField)
+                            .addComponent(birthDateField))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(contactNumberLabel)
+                            .addComponent(genderLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(contactNumberField)
+                            .addComponent(genderField))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 307, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -126,8 +246,6 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-        System.out.println("called confirm button action");
-
         // Notify everybody that may be interested.
         for (ISellingsPanel ll : sellingsisteners) {
             ll.confirmPressed(STEP_SELLINGS);
@@ -136,26 +254,43 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        System.out.println("called cancel button action");
         for (ISellingsPanel ll : sellingsisteners) {
-            ll.cancelPressed(STEP_GET_CPF);
+            ll.cancelPressed(LAST_STEP);
         }
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    private void cancelButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cancelButtonKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ESCAPE) {
+            cancelButton.doClick();
+        }
+    }//GEN-LAST:event_cancelButtonKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel birthDateField;
+    private javax.swing.JLabel birthDateLabel;
     private farmacia.view.libs.buttons.CancelButton cancelButton;
     private farmacia.view.libs.buttons.ConfirmButton confirmButton;
+    private javax.swing.JLabel contactNumberField;
+    private javax.swing.JLabel contactNumberLabel;
+    private javax.swing.JLabel cpfField;
+    private javax.swing.JLabel cpfLabel;
+    private javax.swing.JLabel emailField;
+    private javax.swing.JLabel emailLabel;
+    private javax.swing.JLabel genderField;
+    private javax.swing.JLabel genderLabel;
     private javax.swing.JLabel imageLabel;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel nameField;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void confirmPressed(byte newStep) {
+    public void confirmPressed(int newStep) {
 
     }
 
     @Override
-    public void cancelPressed(byte newStep) {
+    public void  cancelPressed(int newStep) {
     }
 }
