@@ -18,7 +18,7 @@ import javax.swing.ImageIcon;
  *
  * @author kcalixto
  */
-public class GetCPFPanel extends UserData implements ILoginListener, ISellingsPanel {
+public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, ISellingsPanel {
 
     private ArrayList<ILoginListener> loginListeners = new ArrayList<ILoginListener>();
     private ArrayList<ISellingsPanel> sellingsisteners = new ArrayList<ISellingsPanel>();

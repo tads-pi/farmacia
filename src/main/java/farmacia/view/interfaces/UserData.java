@@ -12,7 +12,7 @@ import farmacia.view.libs.connection.Connection;
  *
  * @author kcalixto
  */
-public class UserData extends javax.swing.JPanel {
+public class UserData {
     public static User user = new User();
     
     public static void setUser(User user){
