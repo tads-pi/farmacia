@@ -26,33 +26,39 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
      */
     public MainFrame() {
         initComponents();
+        StartSellingsFrame();
+        StartItemsFrame();
         LoginPanel();
     }
 
     @Override
     public void login() {
+        LoggedInAction();
+    }
+    @Override
+    public void logout() {
+        LoggedOutAction();
+    }
+    
+    private void LoggedInAction(){
         loginPanel.setVisible(false);
         desktopFrame.setVisible(true);
         menuBar.setVisible(true);
-        StartSellingsFrame();
-        StartItemsFrame();
-
-        System.out.println("recieved login action!");
+        sellingsInternalFrame.setVisible(true);
+        //set visible
     }
-
-    @Override
-    public void logout() {
+    
+    private void LoggedOutAction(){
         loginPanel.setVisible(true);
         desktopFrame.setVisible(false);
         menuBar.setVisible(false);
-        
-        System.out.println("recieved logout action!");
     }
     
     public void StartSellingsFrame() {
         desktopFrame.add(sellingsInternalFrame);
         sellingsInternalFrame.show();
-        sellingsInternalFrame.setVisible(true);
+        sellingsInternalFrame.addListener(this);
+        sellingsInternalFrame.setVisible(false);        
     }
 
     public void StartItemsFrame() {

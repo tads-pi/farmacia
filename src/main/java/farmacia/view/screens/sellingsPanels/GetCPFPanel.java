@@ -5,17 +5,52 @@
  */
 package farmacia.view.screens.sellingsPanels;
 
+import farmacia.view.constants;
+import farmacia.view.interfaces.ILoginListener;
+import farmacia.view.interfaces.ISellingsPanel;
+import farmacia.view.interfaces.UserData;
+import farmacia.view.libs.Validators;
+import java.awt.Image;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author kcalixto
  */
-public class GetCPFPanel extends javax.swing.JPanel {
+public class GetCPFPanel extends UserData implements ILoginListener, ISellingsPanel {
+
+    private ArrayList<ILoginListener> loginListeners = new ArrayList<ILoginListener>();
+    private ArrayList<ISellingsPanel> sellingsisteners = new ArrayList<ISellingsPanel>();
+    private Validators v = new Validators();
 
     /**
      * Creates new form GetCPFPanel
      */
     public GetCPFPanel() {
         initComponents();
+        loadLogo();
+    }
+
+    public void loadLogo() {
+        try {
+            ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/farmacia/view/resources/logo.jpg"));
+            Image modifiedImage = imageIcon.getImage().getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(),
+                    Image.SCALE_SMOOTH);
+            imageIcon = new ImageIcon(modifiedImage);
+
+            imageLabel.setIcon(imageIcon);
+        } catch (Exception e) {
+            throw new Error(e);
+        }
+    }
+
+    public void addLoginListener(ILoginListener toAdd) {
+        loginListeners.add(toAdd);
+    }
+
+    public void addSellingsListener(ISellingsPanel toAdd) {
+        sellingsisteners.add(toAdd);
     }
 
     /**
@@ -27,45 +62,160 @@ public class GetCPFPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        cpfLabel = new javax.swing.JLabel();
+        imageLabel = new javax.swing.JLabel();
+        confirmButton = new farmacia.view.libs.buttons.ConfirmButton();
+        errorLabel = new javax.swing.JLabel();
+        logoutButton = new farmacia.view.libs.buttons.CancelButton();
+        cpfInput = new javax.swing.JFormattedTextField();
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 638, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 617, Short.MAX_VALUE)
-        );
+        cpfLabel.setBackground(new java.awt.Color(65, 65, 65));
+        cpfLabel.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
+        cpfLabel.setForeground(new java.awt.Color(65, 65, 65));
+        cpfLabel.setText("CPF de cliente");
+
+        imageLabel.setMaximumSize(new java.awt.Dimension(124, 31));
+        imageLabel.setMinimumSize(new java.awt.Dimension(124, 31));
+        imageLabel.setPreferredSize(new java.awt.Dimension(124, 31));
+        imageLabel.setSize(new java.awt.Dimension(124, 31));
+
+        confirmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmButtonActionPerformed(evt);
+            }
+        });
+
+        errorLabel.setFont(new java.awt.Font("Monospaced", 1, 10)); // NOI18N
+        errorLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        logoutButton.setText("LOGOUT");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
+        logoutButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                logoutButtonKeyPressed(evt);
+            }
+        });
+
+        try {
+            cpfInput.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        cpfInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cpfInputKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 638, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(210, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cpfLabel)
+                    .addComponent(imageLabel, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(confirmButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cpfInput, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(205, 205, 205))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 617, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(cpfLabel)
+                .addGap(4, 4, 4)
+                .addComponent(cpfInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+        if (v.isValidCpf(cpfInput.getText())) {
+            if (UserData.searchUser(this.cpfInput.getText().toString())) {
+                errorLabel.setText("");
+                // Notify everybody that may be interested.
+                for (ISellingsPanel ll : sellingsisteners) {
+                    ll.confirmPressed(STEP_SHOW_CPF);
+                }
+            } else {
+                UserData.saveCpf(this.cpfInput.getText());
+
+                for (ISellingsPanel ll : sellingsisteners) {
+                    ll.confirmPressed(STEP_CPF_REGISTER);
+                }
+            }
+        } else
+            errorLabel.setText(constants.INVALID_CPF);
+    }//GEN-LAST:event_confirmButtonActionPerformed
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        logout();
+    }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void logoutButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_logoutButtonKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ESCAPE) {
+            logoutButton.doClick();
+        }
+    }//GEN-LAST:event_logoutButtonKeyPressed
+
+    private void cpfInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cpfInputKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            confirmButton.doClick();
+        }
+    }//GEN-LAST:event_cpfInputKeyPressed
+
+    public void clearFields(){
+        cpfInput.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private farmacia.view.libs.buttons.ConfirmButton confirmButton;
+    private javax.swing.JFormattedTextField cpfInput;
+    private javax.swing.JLabel cpfLabel;
+    private javax.swing.JLabel errorLabel;
+    private javax.swing.JLabel imageLabel;
+    private farmacia.view.libs.buttons.CancelButton logoutButton;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void confirmPressed(int newStep) {
+    }
+
+    @Override
+    public void  cancelPressed(int newStep) {
+    }
+
+    @Override
+    public void login() {
+    }
+
+    @Override
+    public void logout() {
+        for(ILoginListener ll:loginListeners){
+            ll.logout();
+        }
+    }
 }

@@ -34,8 +34,8 @@ public class LoginPanel extends javax.swing.JPanel {
     }
 
     public void login() {
-        System.out.println("called login action");
 
+        clearFields();
         // Notify everybody that may be interested.
         for (ILoginListener ll : listeners) {
             ll.login();
@@ -44,7 +44,6 @@ public class LoginPanel extends javax.swing.JPanel {
 
     public void loadLogo() {
         try {
-            System.out.println("working!");
             ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/farmacia/view/resources/logo.jpg"));
             Image modifiedImage = imageIcon.getImage().getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(),
                     Image.SCALE_SMOOTH);
@@ -52,7 +51,7 @@ public class LoginPanel extends javax.swing.JPanel {
 
             imageLabel.setIcon(imageIcon);
         } catch (Exception e) {
-            System.out.println("err: " + e);
+            throw e;
         }
     }
 
@@ -180,7 +179,12 @@ public class LoginPanel extends javax.swing.JPanel {
             confirmButton.doClick();
         }
     }//GEN-LAST:event_passwordInputKeyReleased
-
+    
+    private void clearFields(){
+        loginInput.setText("");
+        passwordInput.setText("");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private farmacia.view.libs.buttons.ConfirmButton confirmButton;
     private javax.swing.JLabel errorLabel;
