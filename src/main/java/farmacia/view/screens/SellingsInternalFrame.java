@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class SellingsInternalFrame extends javax.swing.JInternalFrame implements ILoginListener, ISellingsPanel {
     
-    private int STEP = STEP_GET_CPF;
+    private int STEP = STEP_CONFIRM_SELLING;
     
     private StepsTrace stepsTrace = new StepsTrace();
     private ArrayList<ILoginListener> listeners = new ArrayList<ILoginListener>();
@@ -48,7 +48,7 @@ public class SellingsInternalFrame extends javax.swing.JInternalFrame implements
         
         //Starting screen with first Step
         this.clearPanel();
-        getCPFPanel.setVisible(true);
+        handleSteps(STEP);
     }
 
     /**
