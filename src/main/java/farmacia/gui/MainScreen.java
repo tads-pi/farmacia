@@ -36,7 +36,7 @@ public class MainScreen extends javax.swing.JFrame {
 
             jLabel1.setIcon(imageIcon);
         } catch (Exception e) {
-            System.out.println("err: " + e);
+            throw e;
         }
     }
 
