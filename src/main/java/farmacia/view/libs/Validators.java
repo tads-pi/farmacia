@@ -21,10 +21,6 @@ public class Validators {
         return true;
     }
 
-    public boolean isValidCpf(String cpf) {
-        return true;
-    }
-
     public boolean isValidUser(User user) {
         return true;
     }
@@ -62,7 +58,7 @@ public class Validators {
         if (emailInput.isEmpty() || emailInput.contains(" ") || !emailInput.contains("@") || !emailInput.contains(".")) {
             invalidFields.add("Melhor Email");
         }
-        if (cpfInput.isEmpty() || cpfInput.equals("   .   .   -  ") || cpfInput.charAt(0) == ' ') {
+        if (!isValidCpf(cpfInput)) {
             invalidFields.add("CPF");
         }
         if (birthDateInput.isEmpty() || birthDateInput.equals("  /  /    ") || birthDateInput.charAt(0) == ' ' || !isValidDate(birthDateInput)) {
@@ -76,5 +72,12 @@ public class Validators {
         }
 
         return invalidFields;
+    }
+    
+    public boolean isValidCpf(String cpfInput) {
+        if (cpfInput.isEmpty() || cpfInput.equals("   .   .   -  ") || cpfInput.charAt(0) == ' ') {
+            return false;
+        }
+        return true;
     }
 }

@@ -154,8 +154,8 @@ public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, I
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
         if (v.isValidCpf(cpfInput.getText())) {
+            errorLabel.setText("");
             if (UserData.searchUser(this.cpfInput.getText().toString())) {
-                errorLabel.setText("");
                 // Notify everybody that may be interested.
                 for (ISellingsPanel ll : sellingsisteners) {
                     ll.confirmPressed(STEP_SHOW_CPF);
