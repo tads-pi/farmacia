@@ -5,7 +5,7 @@
  */
 package farmacia;
 
-import farmacia.gui.MainScreen;
+import farmacia.view.MainFrame;
 
 /**
  *
@@ -14,7 +14,7 @@ import farmacia.gui.MainScreen;
 public class Starter {
 
     public static void main(String args[]) {
-        MainScreen mainScreen = new MainScreen();
-        mainScreen.setVisible(true);
+        MainFrame main = new MainFrame();
+        main.setVisible(true);
     }
 }

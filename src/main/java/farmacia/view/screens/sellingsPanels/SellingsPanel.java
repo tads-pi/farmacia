@@ -7,9 +7,7 @@ package farmacia.view.screens.sellingsPanels;
 
 import farmacia.view.interfaces.ISellingsPanel;
 import farmacia.view.libs.Validators;
-import java.awt.Image;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -25,19 +23,6 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel 
      */
     public SellingsPanel() {
         initComponents();
-    }
-
-    public void loadLogo() {
-        try {
-            ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/farmacia/view/resources/logo.jpg"));
-            Image modifiedImage = imageIcon.getImage().getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(),
-                    Image.SCALE_SMOOTH);
-            imageIcon = new ImageIcon(modifiedImage);
-
-            imageLabel.setIcon(imageIcon);
-        } catch (Exception e) {
-            throw e;
-        }
     }
 
     public void addSellingsListener(ISellingsPanel toAdd) {
@@ -75,23 +60,6 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel 
         imageLabel.setMaximumSize(new java.awt.Dimension(124, 31));
         imageLabel.setMinimumSize(new java.awt.Dimension(124, 31));
         imageLabel.setPreferredSize(new java.awt.Dimension(124, 31));
-
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
-            }
-        });
-        cancelButton.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cancelButtonKeyPressed(evt);
-            }
-        });
-
-        confirmButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmButtonActionPerformed(evt);
-            }
-        });
 
         jScrollPane2.setViewportView(jList1);
 
@@ -227,26 +195,6 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel 
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-        // Notify everybody that may be interested.
-        for (ISellingsPanel ll : sellingsisteners) {
-            ll.confirmPressed(STEP_CONFIRM_SELLING);
-        }
-
-    }//GEN-LAST:event_confirmButtonActionPerformed
-
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        for (ISellingsPanel ll : sellingsisteners) {
-            ll.cancelPressed(STEP_CANCEL_SELLING);
-        }
-    }//GEN-LAST:event_cancelButtonActionPerformed
-
-    private void cancelButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cancelButtonKeyPressed
-        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ESCAPE) {
-            cancelButton.doClick();
-        }
-    }//GEN-LAST:event_cancelButtonKeyPressed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:

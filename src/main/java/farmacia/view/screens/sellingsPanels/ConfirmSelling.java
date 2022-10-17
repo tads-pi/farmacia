@@ -7,9 +7,7 @@ package farmacia.view.screens.sellingsPanels;
 
 import farmacia.view.interfaces.ISellingsPanel;
 import farmacia.view.libs.Validators;
-import java.awt.Image;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -25,26 +23,6 @@ public class ConfirmSelling extends javax.swing.JPanel implements ISellingsPanel
      */
     public ConfirmSelling() {
         initComponents();
-        loadImages();
-    }
-
-    public void loadImages() {
-        try {
-            ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/farmacia/view/resources/logo.jpg"));
-            Image modifiedImage = imageIcon.getImage().getScaledInstance(confirmImageLabel.getWidth(), confirmImageLabel.getHeight(),
-                    Image.SCALE_SMOOTH);
-            imageIcon = new ImageIcon(modifiedImage);
-            
-            ImageIcon confirmIcon = new javax.swing.ImageIcon(getClass().getResource("/farmacia/view/resources/confirm.png"));
-            Image modifiedConfirmIcon = imageIcon.getImage().getScaledInstance(confirmImageLabel.getWidth(), confirmImageLabel.getHeight(),
-                    Image.SCALE_SMOOTH);
-            confirmIcon = new ImageIcon(modifiedConfirmIcon);
-
-            confirmImageLabel.setIcon(confirmIcon);
-            imageLabel.setIcon(imageIcon);
-        } catch (Exception e) {
-            throw new Error(e);
-        }
     }
 
     public void addSellingsListener(ISellingsPanel toAdd) {
@@ -60,18 +38,12 @@ public class ConfirmSelling extends javax.swing.JPanel implements ISellingsPanel
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        confirmImageLabel = new javax.swing.JLabel();
         confirmButton = new farmacia.view.libs.buttons.ConfirmButton();
         confirmLabel = new javax.swing.JLabel();
-        imageLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        logo1 = new farmacia.view.libs.Logo();
 
         setBackground(new java.awt.Color(255, 255, 255));
-
-        confirmImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/farmacia/gui/resources/complete.png"))); // NOI18N
-        confirmImageLabel.setMaximumSize(new java.awt.Dimension(124, 31));
-        confirmImageLabel.setMinimumSize(new java.awt.Dimension(124, 31));
-        confirmImageLabel.setPreferredSize(new java.awt.Dimension(124, 31));
-        confirmImageLabel.setSize(new java.awt.Dimension(124, 31));
 
         confirmButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,45 +61,37 @@ public class ConfirmSelling extends javax.swing.JPanel implements ISellingsPanel
         confirmLabel.setForeground(new java.awt.Color(0, 0, 0));
         confirmLabel.setText("Compra efetuada com sucesso!");
 
-        imageLabel.setMaximumSize(new java.awt.Dimension(124, 31));
-        imageLabel.setMinimumSize(new java.awt.Dimension(124, 31));
-        imageLabel.setPreferredSize(new java.awt.Dimension(124, 31));
-        imageLabel.setSize(new java.awt.Dimension(124, 31));
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 256)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 255, 51));
+        jLabel1.setText("✓");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(163, 163, 163)
+                .addComponent(confirmLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(confirmImageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(confirmLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 172, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(502, Short.MAX_VALUE)
-                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(14, 14, 14)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(confirmButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(217, 217, 217))
+                    .addComponent(logo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
                 .addComponent(confirmLabel)
-                .addGap(83, 83, 83)
-                .addComponent(confirmImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                 .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(35, 35, 35)
-                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(551, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -146,9 +110,9 @@ public class ConfirmSelling extends javax.swing.JPanel implements ISellingsPanel
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private farmacia.view.libs.buttons.ConfirmButton confirmButton;
-    private javax.swing.JLabel confirmImageLabel;
     private javax.swing.JLabel confirmLabel;
-    private javax.swing.JLabel imageLabel;
+    private javax.swing.JLabel jLabel1;
+    private farmacia.view.libs.Logo logo1;
     // End of variables declaration//GEN-END:variables
 
     @Override

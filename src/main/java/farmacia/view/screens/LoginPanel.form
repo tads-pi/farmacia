@@ -6,16 +6,16 @@
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
     <Property name="bounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
-      <Rectangle value="[0, 0, 650, 660]"/>
+      <Rectangle value="[0, 0, 650, 735]"/>
     </Property>
     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[650, 660]"/>
+      <Dimension value="[650, 735]"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[650, 660]"/>
+      <Dimension value="[650, 735]"/>
     </Property>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[650, 660]"/>
+      <Dimension value="[650, 735]"/>
     </Property>
     <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
   </Properties>
@@ -34,39 +34,49 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="214" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="loginInput" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="loginLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="passwordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="passwordInput" alignment="2" min="-2" pref="220" max="-2" attributes="0"/>
-                  <Component id="confirmButton" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="errorLabel" alignment="2" min="-2" pref="177" max="-2" attributes="0"/>
-                  <Component id="imageLabel" alignment="2" min="-2" pref="124" max="-2" attributes="0"/>
-                  <Component id="loginInput" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="logo2" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="2" groupAlignment="2" attributes="0">
+                      <Component id="errorLabel" alignment="2" min="-2" pref="177" max="-2" attributes="0"/>
+                      <Group type="103" alignment="2" groupAlignment="0" attributes="0">
+                          <Component id="passwordInput" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
+                          <Component id="passwordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="confirmButton" alignment="2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace pref="216" max="32767" attributes="0"/>
+              <EmptySpace pref="220" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="211" max="-2" attributes="0"/>
-              <Component id="imageLabel" min="-2" pref="31" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
+              <Component id="logo2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="loginLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="loginInput" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="passwordLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="passwordInput" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-              <Component id="confirmButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="errorLabel" min="-2" pref="66" max="-2" attributes="0"/>
-              <EmptySpace pref="171" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+                      <Component id="errorLabel" min="-2" pref="66" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="passwordLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="passwordInput" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                      <Component id="confirmButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="244" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -117,22 +127,6 @@
         <Property name="text" type="java.lang.String" value="senha"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="imageLabel">
-      <Properties>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[124, 31]"/>
-        </Property>
-        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[124, 31]"/>
-        </Property>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[124, 31]"/>
-        </Property>
-        <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[124, 31]"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="farmacia.view.libs.buttons.ConfirmButton" name="confirmButton">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmButtonActionPerformed"/>
@@ -151,6 +145,8 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
+    </Component>
+    <Component class="farmacia.view.libs.Logo" name="logo2">
     </Component>
   </SubComponents>
 </Form>

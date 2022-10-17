@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class SellingsInternalFrame extends javax.swing.JInternalFrame implements ILoginListener, ISellingsPanel {
     
-    private int STEP = STEP_CONFIRM_SELLING;
+    private int STEP = STEP_GET_CPF;
     
     private StepsTrace stepsTrace = new StepsTrace();
     private ArrayList<ILoginListener> listeners = new ArrayList<ILoginListener>();
