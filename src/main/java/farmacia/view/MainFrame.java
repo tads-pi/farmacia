@@ -35,43 +35,54 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
     public void login() {
         LoggedInAction();
     }
+
     @Override
     public void logout() {
         LoggedOutAction();
     }
-    
-    private void LoggedInAction(){
+
+    private void LoggedInAction() {
         loginPanel.setVisible(false);
         desktopFrame.setVisible(true);
         menuBar.setVisible(true);
         sellingsInternalFrame.setVisible(true);
         //set visible
     }
-    
-    private void LoggedOutAction(){
+
+    private void LoggedOutAction() {
         loginPanel.setVisible(true);
         desktopFrame.setVisible(false);
         menuBar.setVisible(false);
     }
-    
+
     public void StartSellingsFrame() {
-        desktopFrame.add(sellingsInternalFrame);
-        sellingsInternalFrame.show();
-        sellingsInternalFrame.addListener(this);
-        sellingsInternalFrame.setVisible(false);        
+        try {
+            desktopFrame.add(sellingsInternalFrame);
+            sellingsInternalFrame.show();
+            sellingsInternalFrame.addListener(this);
+            sellingsInternalFrame.setVisible(false);
+            sellingsInternalFrame.setMaximum(true);
+        } catch (Exception e) {
+            System.out.println("error: " + e);
+        }
     }
 
     public void StartItemsFrame() {
-        desktopFrame.add(itemsInternalFrame);
-        itemsInternalFrame.show();
-        itemsInternalFrame.setVisible(false);
+        try {
+            desktopFrame.add(itemsInternalFrame);
+            itemsInternalFrame.show();
+            itemsInternalFrame.setVisible(false);
+            itemsInternalFrame.setMaximum(true);
+        } catch (Exception e) {
+            System.out.println("error: " + e);
+        }
     }
-    
-    public void LoginPanel(){
+
+    public void LoginPanel() {
         this.add(loginPanel);
         loginPanel.setVisible(true);
         loginPanel.addListener(this);
-        
+
         desktopFrame.setVisible(false);
         menuBar.setVisible(false);
     }
@@ -93,10 +104,9 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(650, 690));
-        setMinimumSize(new java.awt.Dimension(650, 690));
-        setPreferredSize(new java.awt.Dimension(650, 690));
-        setResizable(false);
+        setBounds(new java.awt.Rectangle(0, 25, 650, 735));
+        setMinimumSize(new java.awt.Dimension(650, 735));
+        setPreferredSize(new java.awt.Dimension(650, 735));
 
         desktopFrame.setBackground(new java.awt.Color(255, 255, 255));
         desktopFrame.setMaximumSize(new java.awt.Dimension(640, 640));
@@ -136,7 +146,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
+            .addComponent(desktopFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
 
         pack();
