@@ -9,9 +9,7 @@ import farmacia.view.entities.User;
 import farmacia.view.interfaces.ISellingsPanel;
 import farmacia.view.interfaces.UserData;
 import farmacia.view.libs.Validators;
-import java.awt.Image;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -27,20 +25,6 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
      */
     public ShowCPFPanel() {
         initComponents();
-        loadLogo();
-    }
-
-    public void loadLogo() {
-        try {
-            ImageIcon imageIcon = new javax.swing.ImageIcon(getClass().getResource("/farmacia/view/resources/logo.jpg"));
-            Image modifiedImage = imageIcon.getImage().getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(),
-                    Image.SCALE_SMOOTH);
-            imageIcon = new ImageIcon(modifiedImage);
-
-            imageLabel.setIcon(imageIcon);
-        } catch (Exception e) {
-            throw e;
-        }
     }
 
     public void addSellingsListener(ISellingsPanel toAdd) {
@@ -65,7 +49,6 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        imageLabel = new javax.swing.JLabel();
         cancelButton = new farmacia.view.libs.buttons.CancelButton();
         confirmButton = new farmacia.view.libs.buttons.ConfirmButton();
         title = new javax.swing.JLabel();
@@ -81,13 +64,9 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
         contactNumberField = new javax.swing.JLabel();
         genderLabel = new javax.swing.JLabel();
         genderField = new javax.swing.JLabel();
+        logo1 = new farmacia.view.libs.Logo();
 
         setBackground(new java.awt.Color(255, 255, 255));
-
-        imageLabel.setMaximumSize(new java.awt.Dimension(124, 31));
-        imageLabel.setMinimumSize(new java.awt.Dimension(124, 31));
-        imageLabel.setPreferredSize(new java.awt.Dimension(124, 31));
-        imageLabel.setSize(new java.awt.Dimension(124, 31));
 
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,10 +148,9 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(title)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,10 +173,12 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(genderLabel)
-                                    .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
-                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                                    .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(24, 383, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(title)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -208,35 +188,35 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(title)
-                        .addGap(31, 31, 31)
-                        .addComponent(nameLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nameField)
-                        .addGap(18, 18, 18)
-                        .addComponent(emailLabel)
-                        .addGap(10, 10, 10)
-                        .addComponent(emailField)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(birthDateLabel)
-                            .addComponent(cpfLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cpfField)
-                            .addComponent(birthDateField))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(contactNumberLabel)
-                            .addComponent(genderLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(contactNumberField)
-                            .addComponent(genderField))))
+                        .addGap(25, 25, 25)
+                        .addComponent(title))
+                    .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addComponent(nameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nameField)
+                .addGap(18, 18, 18)
+                .addComponent(emailLabel)
+                .addGap(10, 10, 10)
+                .addComponent(emailField)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(birthDateLabel)
+                    .addComponent(cpfLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cpfField)
+                    .addComponent(birthDateField))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(contactNumberLabel)
+                    .addComponent(genderLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(contactNumberField)
+                    .addComponent(genderField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 307, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,7 +259,7 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel genderField;
     private javax.swing.JLabel genderLabel;
-    private javax.swing.JLabel imageLabel;
+    private farmacia.view.libs.Logo logo1;
     private javax.swing.JLabel nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel title;

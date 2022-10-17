@@ -28,22 +28,6 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
      */
     public RegisterCPFPanel() {
         initComponents();
-        loadLogo();
-
-    }
-
-    public void loadLogo() {
-        try {
-            ImageIcon imageIcon = new javax.swing.ImageIcon(
-                    getClass().getResource("/farmacia/view/resources/logo.jpg"));
-            Image modifiedImage = imageIcon.getImage().getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(),
-                    Image.SCALE_SMOOTH);
-            imageIcon = new ImageIcon(modifiedImage);
-
-            imageLabel.setIcon(imageIcon);
-        } catch (Exception e) {
-            throw e;
-        }
     }
 
     public void LoadUserInfo() {
@@ -65,7 +49,6 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        imageLabel = new javax.swing.JLabel();
         cancelButton = new farmacia.view.libs.buttons.CancelButton();
         confirmButton = new farmacia.view.libs.buttons.ConfirmButton();
         title = new javax.swing.JLabel();
@@ -81,13 +64,9 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
         contactNumberInput = new javax.swing.JFormattedTextField();
         genderLabel = new javax.swing.JLabel();
         genderInput = new javax.swing.JComboBox<>();
+        logo1 = new farmacia.view.libs.Logo();
 
         setBackground(new java.awt.Color(255, 255, 255));
-
-        imageLabel.setMaximumSize(new java.awt.Dimension(124, 31));
-        imageLabel.setMinimumSize(new java.awt.Dimension(124, 31));
-        imageLabel.setPreferredSize(new java.awt.Dimension(124, 31));
-        imageLabel.setSize(new java.awt.Dimension(124, 31));
 
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,7 +196,6 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(title)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,19 +225,22 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
                                 .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(genderLabel)
-                                    .addComponent(genderInput, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                                    .addComponent(genderInput, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(24, 351, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(title)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(title))
-                .addGap(31, 31, 31)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(title))
+                    .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addComponent(nameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -402,7 +383,7 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
     private javax.swing.JLabel emailLabel;
     private javax.swing.JComboBox<String> genderInput;
     private javax.swing.JLabel genderLabel;
-    private javax.swing.JLabel imageLabel;
+    private farmacia.view.libs.Logo logo1;
     private javax.swing.JTextField nameInput;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel title;

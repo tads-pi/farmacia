@@ -17,4 +17,8 @@ public class FarmaciaColors {
     
     public static final Color cancelRed = new Color(0xFBB4B0);
     public static final Color cancelDarkRed = new Color(0xF96262);
+    
+    public static final Color logoBlue = new Color(0x0065FF);
+    public static final Color logoDarkBlue = new Color(0x016195);
+    public static final Color logoGreen = new Color(0x05A894);
 }
