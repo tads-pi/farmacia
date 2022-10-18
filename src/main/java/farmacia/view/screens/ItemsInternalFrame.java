@@ -5,6 +5,7 @@
  */
 package farmacia.view.screens;
 
+import farmacia.view.Sizes;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -54,8 +55,11 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximizable(true);
-        setMaximumSize(new java.awt.Dimension(640, 640));
-        setMinimumSize(new java.awt.Dimension(640, 640));
+        setMaximumSize(Sizes.INTERNAL_FRAME_SIZE);
+        setMinimumSize(Sizes.INTERNAL_FRAME_SIZE);
+        setNormalBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        setPreferredSize(Sizes.INTERNAL_FRAME_SIZE);
+        setSize(Sizes.INTERNAL_FRAME_SIZE);
 
         RegistersPanelParent.setBackground(new java.awt.Color(255, 255, 255));
 

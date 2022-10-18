@@ -12,4 +12,5 @@ package farmacia.view;
 public class constants {
     public static final String INVALID_LOGIN_OR_PASSWORD = "Login ou Senha inválidos";
     public static final String INVALID_CPF = "CPF inválido";
+    
 }

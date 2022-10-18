@@ -5,18 +5,18 @@
  */
 package farmacia.view.screens;
 
-import javax.swing.table.DefaultTableModel;
+import farmacia.view.Sizes;
 
 /**
  *
  * @author kcalixto
  */
-public class historyInternalFrame extends javax.swing.JInternalFrame {
+public class HistoryInternalFrame extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form SellingsInternalFrame
      */
-    public historyInternalFrame() {
+    public HistoryInternalFrame() {
         initComponents();
     }
 
@@ -30,11 +30,26 @@ public class historyInternalFrame extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         logo1 = new farmacia.view.libs.Logo();
+        jPanel1 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximizable(true);
-        setMaximumSize(new java.awt.Dimension(640, 640));
-        setMinimumSize(new java.awt.Dimension(640, 640));
+        setMaximumSize(Sizes.INTERNAL_FRAME_SIZE);
+        setMinimumSize(Sizes.INTERNAL_FRAME_SIZE);
+        setPreferredSize(Sizes.INTERNAL_FRAME_SIZE);
+
+        jPanel1.setBackground(new java.awt.Color(153, 51, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -43,12 +58,18 @@ public class historyInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 481, Short.MAX_VALUE)
                 .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(245, 245, 245)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 557, Short.MAX_VALUE))
+                .addGap(154, 154, 154)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 303, Short.MAX_VALUE))
         );
 
         pack();
@@ -56,6 +77,7 @@ public class historyInternalFrame extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private farmacia.view.libs.Logo logo1;
     // End of variables declaration//GEN-END:variables
 }

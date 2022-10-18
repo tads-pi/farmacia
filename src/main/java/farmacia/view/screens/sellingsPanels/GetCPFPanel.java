@@ -9,7 +9,7 @@ import farmacia.view.constants;
 import farmacia.view.interfaces.ILoginListener;
 import farmacia.view.interfaces.ISellingsPanel;
 import farmacia.view.interfaces.UserData;
-import farmacia.view.libs.Validators;
+import farmacia.view.libs.validators.Validators;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -128,7 +128,7 @@ public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, I
                 .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );

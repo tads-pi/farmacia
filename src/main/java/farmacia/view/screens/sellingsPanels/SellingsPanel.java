@@ -6,7 +6,7 @@
 package farmacia.view.screens.sellingsPanels;
 
 import farmacia.view.interfaces.ISellingsPanel;
-import farmacia.view.libs.Validators;
+import farmacia.view.libs.validators.Validators;
 import java.util.ArrayList;
 
 /**

@@ -5,12 +5,12 @@
  */
 package farmacia.view.screens;
 
+import farmacia.view.Sizes;
 import farmacia.view.constants;
-import farmacia.view.libs.Validators;
-import java.awt.Image;
+import farmacia.view.libs.validators.Validators;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import farmacia.view.interfaces.ILoginListener;
+import farmacia.view.libs.validators.InvalidResponseBody;
 
 /**
  *
@@ -59,10 +59,10 @@ public class LoginPanel extends javax.swing.JPanel {
         logo2 = new farmacia.view.libs.Logo();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setBounds(new java.awt.Rectangle(0, 0, 650, 735));
-        setMaximumSize(new java.awt.Dimension(650, 735));
-        setMinimumSize(new java.awt.Dimension(650, 735));
-        setPreferredSize(new java.awt.Dimension(650, 735));
+        setMaximumSize(Sizes.FRAME_SIZE);
+        setMinimumSize(Sizes.FRAME_SIZE);
+        setPreferredSize(Sizes.INTERNAL_FRAME_SIZE);
+        setSize(Sizes.FRAME_SIZE);
         setVerifyInputWhenFocusTarget(false);
 
         loginInput.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -111,13 +111,13 @@ public class LoginPanel extends javax.swing.JPanel {
                     .addComponent(loginInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loginLabel)
                     .addComponent(logo2, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordLabel)
-                            .addComponent(confirmButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(220, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(passwordLabel)
+                        .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,26 +128,25 @@ public class LoginPanel extends javax.swing.JPanel {
                 .addComponent(loginLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(loginInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(passwordLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(passwordLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(125, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-        if (v.isValidLogin(loginInput.getText(), passwordInput.getPassword())) {
+        InvalidResponseBody loginResponse = v.isValidLogin(loginInput.getText(), passwordInput.getPassword());
+        
+        if (!loginResponse.haveErrors()) {
             login();
         }else{
-            errorLabel.setText(constants.INVALID_LOGIN_OR_PASSWORD);
+            errorLabel.setText(loginResponse.getLabeledErrorFields());
         }
     }//GEN-LAST:event_confirmButtonActionPerformed
 

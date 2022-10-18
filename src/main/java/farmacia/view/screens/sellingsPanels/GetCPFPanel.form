@@ -58,7 +58,7 @@
               <Component id="confirmButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               <Component id="errorLabel" min="-2" pref="66" max="-2" attributes="0"/>
-              <EmptySpace pref="153" max="32767" attributes="0"/>
+              <EmptySpace pref="150" max="32767" attributes="0"/>
               <Component id="logoutButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>

@@ -8,7 +8,7 @@ package farmacia.view.screens.sellingsPanels;
 import farmacia.view.entities.User;
 import farmacia.view.interfaces.ISellingsPanel;
 import farmacia.view.interfaces.UserData;
-import farmacia.view.libs.Validators;
+import farmacia.view.libs.validators.Validators;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;

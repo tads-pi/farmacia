@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package farmacia.view.libs;
+package farmacia.view.libs.validators;
 
 import farmacia.view.entities.User;
 import java.text.ParseException;
@@ -17,8 +17,17 @@ import java.util.Date;
  */
 public class Validators {
 
-    public boolean isValidLogin(String login, char[] password) {
-        return true;
+    public InvalidResponseBody isValidLogin(String login, char[] password) {
+        InvalidResponseBody response = new InvalidResponseBody();
+        
+         if (login.isEmpty()) {
+            response.addErrorField("login");
+        }
+        if (password.length == 0) {
+            response.addErrorField("senha");
+        }
+        
+        return response;
     }
 
     public boolean isValidUser(User user) {

@@ -9,6 +9,7 @@ import farmacia.view.screens.ItemsInternalFrame;
 import farmacia.view.screens.LoginPanel;
 import farmacia.view.screens.SellingsInternalFrame;
 import farmacia.view.interfaces.ILoginListener;
+import farmacia.view.screens.HistoryInternalFrame;
 
 /**
  *
@@ -20,6 +21,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
 
     private SellingsInternalFrame sellingsInternalFrame = new SellingsInternalFrame();
     private ItemsInternalFrame itemsInternalFrame = new ItemsInternalFrame();
+    private HistoryInternalFrame historyInternalFrame = new HistoryInternalFrame();
 
     /**
      * Creates new form MainFrame
@@ -28,6 +30,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         initComponents();
         StartSellingsFrame();
         StartItemsFrame();
+        StartHistoryFrame();
         LoginPanel();
     }
 
@@ -78,6 +81,17 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         }
     }
 
+    public void StartHistoryFrame() {
+        try {
+            desktopFrame.add(historyInternalFrame);
+            historyInternalFrame.show();
+            historyInternalFrame.setVisible(false);
+            historyInternalFrame.setMaximum(true);
+        } catch (Exception e) {
+            System.out.println("error: " + e);
+        }
+    }
+
     public void LoginPanel() {
         this.add(loginPanel);
         loginPanel.setVisible(true);
@@ -101,19 +115,21 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         menuBar = new javax.swing.JMenuBar();
         sellingsMenuItem = new javax.swing.JMenu();
         itemsMenuItem = new javax.swing.JMenu();
+        historyMenuItem = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMinimumSize(new java.awt.Dimension(650, 690));
+        setMinimumSize(Sizes.FRAME_SIZE);
         setName("DrugStore"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(800, 800));
-        setSize(new java.awt.Dimension(650, 690));
+        setPreferredSize(Sizes.FRAME_SIZE);
+        setSize(new java.awt.Dimension(650, 1000));
 
         desktopFrame.setBackground(new java.awt.Color(255, 255, 255));
-        desktopFrame.setMaximumSize(new java.awt.Dimension(640, 640));
-        desktopFrame.setMinimumSize(new java.awt.Dimension(640, 640));
+        desktopFrame.setMinimumSize(Sizes.INTERNAL_FRAME_SIZE);
+        desktopFrame.setPreferredSize(Sizes.INTERNAL_FRAME_SIZE);
+        desktopFrame.setLayout(null);
 
         menuBar.setMaximumSize(new java.awt.Dimension(640, 25));
         menuBar.setMinimumSize(new java.awt.Dimension(640, 25));
@@ -141,17 +157,25 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         });
         menuBar.add(itemsMenuItem);
 
+        historyMenuItem.setText("Histórico de Vendas");
+        historyMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                historyMenuItemMouseClicked(evt);
+            }
+        });
+        menuBar.add(historyMenuItem);
+
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(desktopFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(desktopFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -166,14 +190,26 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
     }//GEN-LAST:event_itemsMenuItemMouseExited
 
     private void sellingsMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sellingsMenuItemMouseClicked
-        itemsInternalFrame.setVisible(false);
+        clearScreen();
         sellingsInternalFrame.setVisible(true);
     }//GEN-LAST:event_sellingsMenuItemMouseClicked
 
     private void itemsMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemsMenuItemMouseClicked
+        clearScreen();
         itemsInternalFrame.setVisible(true);
-        sellingsInternalFrame.setVisible(false);
     }//GEN-LAST:event_itemsMenuItemMouseClicked
+
+    private void historyMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historyMenuItemMouseClicked
+        clearScreen();
+        historyInternalFrame.setVisible(true);
+    }//GEN-LAST:event_historyMenuItemMouseClicked
+
+    private void clearScreen() {
+        historyInternalFrame.setVisible(false);
+        itemsInternalFrame.setVisible(false);
+        sellingsInternalFrame.setVisible(false);
+
+    }
 
     /**
      * @param args the command line arguments
@@ -216,6 +252,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopFrame;
+    private javax.swing.JMenu historyMenuItem;
     private javax.swing.JMenu itemsMenuItem;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu sellingsMenuItem;

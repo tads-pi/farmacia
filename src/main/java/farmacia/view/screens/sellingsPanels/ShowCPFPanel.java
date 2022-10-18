@@ -8,7 +8,7 @@ package farmacia.view.screens.sellingsPanels;
 import farmacia.view.entities.User;
 import farmacia.view.interfaces.ISellingsPanel;
 import farmacia.view.interfaces.UserData;
-import farmacia.view.libs.Validators;
+import farmacia.view.libs.validators.Validators;
 import java.util.ArrayList;
 
 /**
@@ -212,7 +212,7 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(contactNumberField)
                     .addComponent(genderField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 330, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))

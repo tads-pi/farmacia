@@ -5,6 +5,7 @@
  */
 package farmacia.view.screens;
 
+import farmacia.view.Sizes;
 import farmacia.view.interfaces.ILoginListener;
 
 import java.security.InvalidParameterException;
@@ -70,34 +71,22 @@ public class SellingsInternalFrame extends javax.swing.JInternalFrame implements
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
         setMaximizable(true);
-        setMaximumSize(new java.awt.Dimension(640, 640));
-        setMinimumSize(new java.awt.Dimension(640, 640));
+        setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        setMaximumSize(Sizes.INTERNAL_FRAME_SIZE);
+        setMinimumSize(Sizes.INTERNAL_FRAME_SIZE);
+        setPreferredSize(Sizes.INTERNAL_FRAME_SIZE);
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel1.setMinimumSize(Sizes.INTERNAL_FRAME_SIZE);
+        jPanel1.setPreferredSize(Sizes.INTERNAL_FRAME_SIZE);
+        jPanel1.setSize(Sizes.INTERNAL_FRAME_SIZE);
         jPanel1.setLayout(new java.awt.CardLayout());
-
-        getCPFPanel.setMaximumSize(new java.awt.Dimension(640, 640));
-        getCPFPanel.setMinimumSize(new java.awt.Dimension(640, 640));
-        getCPFPanel.setPreferredSize(new java.awt.Dimension(640, 640));
         jPanel1.add(getCPFPanel, "card2");
-
-        showCPFPanel.setMaximumSize(new java.awt.Dimension(640, 640));
-        showCPFPanel.setMinimumSize(new java.awt.Dimension(640, 640));
-        showCPFPanel.setPreferredSize(new java.awt.Dimension(640, 640));
         jPanel1.add(showCPFPanel, "card3");
 
-        registerCPFPanel.setMaximumSize(new java.awt.Dimension(640, 640));
-        registerCPFPanel.setMinimumSize(new java.awt.Dimension(640, 640));
         registerCPFPanel.setPreferredSize(new java.awt.Dimension(640, 640));
         jPanel1.add(registerCPFPanel, "card4");
-
-        sellingsPanel.setMaximumSize(new java.awt.Dimension(640, 640));
-        sellingsPanel.setMinimumSize(new java.awt.Dimension(640, 640));
         jPanel1.add(sellingsPanel, "card5");
-
-        confirmSelling.setMaximumSize(new java.awt.Dimension(640, 640));
-        confirmSelling.setMinimumSize(new java.awt.Dimension(640, 640));
-        confirmSelling.setPreferredSize(new java.awt.Dimension(640, 640));
         jPanel1.add(confirmSelling, "card6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
