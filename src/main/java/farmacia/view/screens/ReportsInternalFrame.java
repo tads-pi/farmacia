@@ -11,12 +11,12 @@ import farmacia.view.Sizes;
  *
  * @author kcalixto
  */
-public class HistoryInternalFrame extends javax.swing.JInternalFrame {
+public class ReportsInternalFrame extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form SellingsInternalFrame
+     * Creates new form ReportsInternalFrame
      */
-    public HistoryInternalFrame() {
+    public ReportsInternalFrame() {
         initComponents();
     }
 
@@ -43,11 +43,11 @@ public class HistoryInternalFrame extends javax.swing.JInternalFrame {
         endDateLabel = new javax.swing.JFormattedTextField();
         dateLabel = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-        setMaximizable(true);
         setMaximumSize(Sizes.INTERNAL_FRAME_SIZE);
         setMinimumSize(Sizes.INTERNAL_FRAME_SIZE);
+        setMixingCutoutShape(null);
         setPreferredSize(Sizes.INTERNAL_FRAME_SIZE);
+        setSize(Sizes.INTERNAL_FRAME_SIZE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
