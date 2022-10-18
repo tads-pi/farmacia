@@ -104,15 +104,20 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setBounds(new java.awt.Rectangle(0, 25, 650, 735));
-        setMinimumSize(new java.awt.Dimension(650, 735));
-        setPreferredSize(new java.awt.Dimension(650, 735));
+        setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMinimumSize(new java.awt.Dimension(650, 690));
+        setName("DrugStore"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(800, 800));
+        setSize(new java.awt.Dimension(650, 690));
 
         desktopFrame.setBackground(new java.awt.Color(255, 255, 255));
         desktopFrame.setMaximumSize(new java.awt.Dimension(640, 640));
         desktopFrame.setMinimumSize(new java.awt.Dimension(640, 640));
-        desktopFrame.setPreferredSize(new java.awt.Dimension(640, 640));
-        desktopFrame.setSize(new java.awt.Dimension(640, 640));
+
+        menuBar.setMaximumSize(new java.awt.Dimension(640, 25));
+        menuBar.setMinimumSize(new java.awt.Dimension(640, 25));
+        menuBar.setPreferredSize(new java.awt.Dimension(640, 25));
 
         sellingsMenuItem.setText("Tela de Vendas");
         sellingsMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -142,11 +147,11 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+            .addComponent(desktopFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(desktopFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

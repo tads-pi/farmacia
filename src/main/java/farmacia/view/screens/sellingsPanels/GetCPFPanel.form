@@ -5,6 +5,12 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
+    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[640, 640]"/>
+    </Property>
+    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[640, 640]"/>
+    </Property>
   </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -27,15 +33,13 @@
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="210" max="32767" attributes="0"/>
+              <EmptySpace pref="212" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="cpfLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="confirmButton" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="errorLabel" alignment="2" min="-2" pref="177" max="-2" attributes="0"/>
-                  <Group type="103" alignment="2" groupAlignment="2" attributes="0">
-                      <Component id="cpfInput" alignment="2" min="-2" pref="223" max="-2" attributes="0"/>
-                      <Component id="logo1" alignment="2" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="cpfInput" alignment="2" min="-2" pref="223" max="-2" attributes="0"/>
+                  <Component id="logo1" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="205" max="-2" attributes="0"/>
           </Group>
@@ -54,7 +58,7 @@
               <Component id="confirmButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               <Component id="errorLabel" min="-2" pref="66" max="-2" attributes="0"/>
-              <EmptySpace pref="127" max="32767" attributes="0"/>
+              <EmptySpace pref="153" max="32767" attributes="0"/>
               <Component id="logoutButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>

@@ -5,6 +5,12 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
+    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[640, 640]"/>
+    </Property>
+    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[640, 640]"/>
+    </Property>
   </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -24,7 +30,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="460" max="32767" attributes="0"/>
+              <EmptySpace pref="462" max="32767" attributes="0"/>
               <Component id="confirmButton" min="-2" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
@@ -72,7 +78,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="24" pref="351" max="32767" attributes="0"/>
+                      <EmptySpace min="24" pref="353" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="title" min="-2" max="-2" attributes="0"/>
@@ -125,7 +131,7 @@
                   <Component id="genderInput" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="contactNumberInput" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="291" max="32767" attributes="0"/>
+              <EmptySpace pref="313" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cancelButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="confirmButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -154,9 +160,6 @@
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Monospaced" size="18" style="0"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cadastrar Cliente"/>
       </Properties>

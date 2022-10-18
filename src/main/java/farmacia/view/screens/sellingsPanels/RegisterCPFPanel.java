@@ -67,6 +67,8 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
         logo1 = new farmacia.view.libs.Logo();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(640, 640));
+        setMinimumSize(new java.awt.Dimension(640, 640));
 
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,7 +89,6 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
 
         title.setBackground(new java.awt.Color(0, 0, 0));
         title.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        title.setForeground(new java.awt.Color(0, 0, 0));
         title.setText("Cadastrar Cliente");
 
         nameLabel.setBackground(new java.awt.Color(58, 58, 58));
@@ -191,7 +192,7 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 460, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 462, Short.MAX_VALUE)
                 .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
@@ -226,7 +227,7 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(genderLabel)
                                     .addComponent(genderInput, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(24, 351, Short.MAX_VALUE))
+                        .addGap(24, 353, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(title)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -266,7 +267,7 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(genderInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(contactNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 291, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 313, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))

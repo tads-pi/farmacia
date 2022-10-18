@@ -44,6 +44,9 @@ public class ConfirmSelling extends javax.swing.JPanel implements ISellingsPanel
         logo1 = new farmacia.view.libs.Logo();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(640, 640));
+        setMinimumSize(new java.awt.Dimension(640, 640));
+        setPreferredSize(new java.awt.Dimension(640, 640));
 
         confirmButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,7 +61,6 @@ public class ConfirmSelling extends javax.swing.JPanel implements ISellingsPanel
 
         confirmLabel.setBackground(new java.awt.Color(0, 0, 0));
         confirmLabel.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        confirmLabel.setForeground(new java.awt.Color(0, 0, 0));
         confirmLabel.setText("Compra efetuada com sucesso!");
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 256)); // NOI18N
