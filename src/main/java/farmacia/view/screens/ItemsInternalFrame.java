@@ -52,6 +52,7 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame {
         Editpreco = new javax.swing.JFormattedTextField();
         jLabel11 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        logo1 = new farmacia.view.libs.Logo();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximizable(true);
@@ -159,9 +160,6 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(RegistersPanelParentLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(RegistersPanelParentLayout.createSequentialGroup()
                         .addGroup(RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(RegistersPanelParentLayout.createSequentialGroup()
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,17 +188,24 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame {
                                 .addGap(64, 64, 64))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistersPanelParentLayout.createSequentialGroup()
                                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(135, 135, 135))))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistersPanelParentLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addContainerGap())
+                                .addGap(135, 135, 135))))
+                    .addGroup(RegistersPanelParentLayout.createSequentialGroup()
+                        .addGroup(RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistersPanelParentLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton4))
+                            .addGroup(RegistersPanelParentLayout.createSequentialGroup()
+                                .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         RegistersPanelParentLayout.setVerticalGroup(
             RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RegistersPanelParentLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
@@ -316,6 +321,7 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
+    private farmacia.view.libs.Logo logo1;
     private javax.swing.JTextArea nomeCadastroTxt;
     private javax.swing.JFormattedTextField qntcadastroTxt;
     // End of variables declaration//GEN-END:variables
