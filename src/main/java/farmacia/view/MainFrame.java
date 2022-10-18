@@ -9,7 +9,7 @@ import farmacia.view.screens.ItemsInternalFrame;
 import farmacia.view.screens.LoginPanel;
 import farmacia.view.screens.SellingsInternalFrame;
 import farmacia.view.interfaces.ILoginListener;
-import farmacia.view.screens.HistoryInternalFrame;
+import farmacia.view.screens.ReportsInternalFrame;
 
 /**
  *
@@ -21,7 +21,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
 
     private SellingsInternalFrame sellingsInternalFrame = new SellingsInternalFrame();
     private ItemsInternalFrame itemsInternalFrame = new ItemsInternalFrame();
-    private HistoryInternalFrame historyInternalFrame = new HistoryInternalFrame();
+    private ReportsInternalFrame reportsInternalFrame = new ReportsInternalFrame();
 
     /**
      * Creates new form MainFrame
@@ -83,10 +83,10 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
 
     public void StartHistoryFrame() {
         try {
-            desktopFrame.add(historyInternalFrame);
-            historyInternalFrame.show();
-            historyInternalFrame.setVisible(false);
-            historyInternalFrame.setMaximum(true);
+            desktopFrame.add(reportsInternalFrame);
+            reportsInternalFrame.show();
+            reportsInternalFrame.setVisible(false);
+            reportsInternalFrame.setMaximum(true);
         } catch (Exception e) {
             System.out.println("error: " + e);
         }
@@ -203,11 +203,11 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
 
     private void historyMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historyMenuItemMouseClicked
         clearScreen();
-        historyInternalFrame.setVisible(true);
+        reportsInternalFrame.setVisible(true);
     }//GEN-LAST:event_historyMenuItemMouseClicked
 
     private void clearScreen() {
-        historyInternalFrame.setVisible(false);
+        reportsInternalFrame.setVisible(false);
         itemsInternalFrame.setVisible(false);
         sellingsInternalFrame.setVisible(false);
 
