@@ -11,5 +11,5 @@ package farmacia.view;
  */
 public class Sizes {
     public static java.awt.Dimension FRAME_SIZE = new java.awt.Dimension(665,730);
-    // eh isso memo
+    // eh isso memo, flw?
 }
