@@ -84,7 +84,7 @@ public class Validators {
     }
     
     public boolean isValidCpf(String cpfInput) {
-        if (cpfInput.isEmpty() || cpfInput.equals("   .   .   -  ") || cpfInput.charAt(0) == ' ') {
+        if (cpfInput.isEmpty() || cpfInput.equals("   .   .   -  ") || cpfInput.charAt(0) == ' ' || cpfInput.length() < (11 + 3)) {
             return false;
         }
         return true;

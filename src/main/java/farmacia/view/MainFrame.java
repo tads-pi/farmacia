@@ -28,6 +28,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
      */
     public MainFrame() {
         initComponents();
+        setLocationRelativeTo(null);
         StartSellingsFrame();
         StartItemsFrame();
         StartHistoryFrame();
