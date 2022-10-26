@@ -130,7 +130,6 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         desktopFrame.setBackground(new java.awt.Color(255, 255, 255));
         desktopFrame.setMinimumSize(Sizes.INTERNAL_FRAME_SIZE);
         desktopFrame.setPreferredSize(Sizes.INTERNAL_FRAME_SIZE);
-        desktopFrame.setLayout(null);
 
         menuBar.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
         menuBar.setMargin(new java.awt.Insets(0, 15, 0, 0));
