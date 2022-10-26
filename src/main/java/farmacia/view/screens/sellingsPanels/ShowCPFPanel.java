@@ -7,7 +7,7 @@ package farmacia.view.screens.sellingsPanels;
 
 import farmacia.view.entities.User;
 import farmacia.view.interfaces.ISellingsPanel;
-import farmacia.view.interfaces.UserData;
+import farmacia.view.libs.mysql.dao.UserDAO;
 import farmacia.view.libs.validators.Validators;
 import java.util.ArrayList;
 
@@ -32,13 +32,14 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
     }
 
     public void LoadUserInfo(){
-        User u = UserData.getUser();
-        this.nameField.setText(u.getName());
-        this.emailField.setText(u.getEmail());
-        this.cpfField.setText(u.getCpf());
-        this.birthDateField.setText(u.getBirthDateString());
-        this.contactNumberField.setText(u.getContactNumber());
-        this.genderField.setText(u.getGender());
+        this.nameField.setText(currentUser.getName());
+        this.emailField.setText(currentUser.getEmail());
+        this.cpfField.setText(currentUser.getCpf());
+        this.birthDateField.setText(currentUser.getBirthDateString());
+        this.contactNumberField.setText(currentUser.getContactNumber());
+        this.genderField.setText(currentUser.getGender());
+        this.addressField.setText(currentUser.getAddress());
+        this.maritalField.setText(currentUser.getMaritalStatus());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,6 +66,10 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
         genderLabel = new javax.swing.JLabel();
         genderField = new javax.swing.JLabel();
         logo1 = new farmacia.view.libs.Logo();
+        addressLabel = new javax.swing.JLabel();
+        addressField = new javax.swing.JLabel();
+        maritalLabel = new javax.swing.JLabel();
+        maritalField = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(640, 640));
@@ -97,7 +102,7 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
         nameLabel.setText("Nome Completo");
 
         nameField.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
-        nameField.setText("Kauã Chaves Calixto");
+        nameField.setText("Teste teste");
 
         emailLabel.setBackground(new java.awt.Color(58, 58, 58));
         emailLabel.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
@@ -105,7 +110,7 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
         emailLabel.setText("Melhor Email");
 
         emailField.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
-        emailField.setText("kauacalixtocontato@gmail.com");
+        emailField.setText("teste@teste.com");
 
         cpfLabel.setBackground(new java.awt.Color(58, 58, 58));
         cpfLabel.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
@@ -113,7 +118,7 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
         cpfLabel.setText("CPF");
 
         cpfField.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
-        cpfField.setText("537.470.718-30");
+        cpfField.setText("012.345.678-90");
 
         birthDateLabel.setBackground(new java.awt.Color(58, 58, 58));
         birthDateLabel.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
@@ -121,7 +126,7 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
         birthDateLabel.setText("Data de Nascimento");
 
         birthDateField.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
-        birthDateField.setText("12/11/2003");
+        birthDateField.setText("01/01/2000");
 
         contactNumberLabel.setBackground(new java.awt.Color(58, 58, 58));
         contactNumberLabel.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
@@ -129,7 +134,7 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
         contactNumberLabel.setText("Telefone de Contato");
 
         contactNumberField.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
-        contactNumberField.setText("(11) 93393-8090");
+        contactNumberField.setText("(11) 91234-5678");
 
         genderLabel.setBackground(new java.awt.Color(58, 58, 58));
         genderLabel.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
@@ -137,7 +142,23 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
         genderLabel.setText("Gênero");
 
         genderField.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
-        genderField.setText("M");
+        genderField.setText("NB");
+
+        addressLabel.setBackground(new java.awt.Color(58, 58, 58));
+        addressLabel.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
+        addressLabel.setForeground(new java.awt.Color(58, 58, 58));
+        addressLabel.setText("Endereço");
+
+        addressField.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        addressField.setText("Rua de teste 123 - Nº 2");
+
+        maritalLabel.setBackground(new java.awt.Color(58, 58, 58));
+        maritalLabel.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
+        maritalLabel.setForeground(new java.awt.Color(58, 58, 58));
+        maritalLabel.setText("Estado Civíl");
+
+        maritalField.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        maritalField.setText("Solteiro (a)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -168,7 +189,11 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(genderLabel)
-                                    .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(addressLabel)
+                            .addComponent(addressField)
+                            .addComponent(maritalLabel)
+                            .addComponent(maritalField))
                         .addGap(24, 384, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(title)
@@ -197,6 +222,14 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
                 .addGap(10, 10, 10)
                 .addComponent(emailField)
                 .addGap(18, 18, 18)
+                .addComponent(addressLabel)
+                .addGap(10, 10, 10)
+                .addComponent(addressField)
+                .addGap(18, 18, 18)
+                .addComponent(maritalLabel)
+                .addGap(10, 10, 10)
+                .addComponent(maritalField)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(birthDateLabel)
                     .addComponent(cpfLabel))
@@ -212,7 +245,7 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(contactNumberField)
                     .addComponent(genderField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 330, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -221,7 +254,10 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-        // Notify everybody that may be interested.
+        if(userDAO.findByCpf(currentUser.getCpf()).isEmpty()){
+            userDAO.execute(currentUser, UserDAO.INSERT);
+        }
+        
         for (ISellingsPanel ll : sellingsisteners) {
             ll.confirmPressed(STEP_SELLINGS);
         }
@@ -242,6 +278,8 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel addressField;
+    private javax.swing.JLabel addressLabel;
     private javax.swing.JLabel birthDateField;
     private javax.swing.JLabel birthDateLabel;
     private farmacia.view.libs.buttons.CancelButton cancelButton;
@@ -255,6 +293,8 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
     private javax.swing.JLabel genderField;
     private javax.swing.JLabel genderLabel;
     private farmacia.view.libs.Logo logo1;
+    private javax.swing.JLabel maritalField;
+    private javax.swing.JLabel maritalLabel;
     private javax.swing.JLabel nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel title;

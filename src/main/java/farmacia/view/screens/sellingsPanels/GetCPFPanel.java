@@ -6,13 +6,11 @@
 package farmacia.view.screens.sellingsPanels;
 
 import farmacia.view.constants;
+import farmacia.view.entities.User;
 import farmacia.view.interfaces.ILoginListener;
 import farmacia.view.interfaces.ISellingsPanel;
-import farmacia.view.interfaces.UserData;
 import farmacia.view.libs.validators.Validators;
-import java.awt.Image;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -137,14 +135,17 @@ public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, I
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
         if (v.isValidCpf(cpfInput.getText())) {
             errorLabel.setText("");
-            if (UserData.searchUser(this.cpfInput.getText().toString())) {
+            
+            currentUser.set(userDAO.findByCpf(this.cpfInput.getText().toString()));
+            
+            if (!currentUser.isEmpty()) {
                 // Notify everybody that may be interested.
                 for (ISellingsPanel ll : sellingsisteners) {
                     ll.confirmPressed(STEP_SHOW_CPF);
                 }
             } else {
-                UserData.saveCpf(this.cpfInput.getText());
-
+                currentUser.setCpf(this.cpfInput.getText());
+                
                 for (ISellingsPanel ll : sellingsisteners) {
                     ll.confirmPressed(STEP_CPF_REGISTER);
                 }

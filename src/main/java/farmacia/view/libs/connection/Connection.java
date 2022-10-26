@@ -21,7 +21,9 @@ public class Connection {
                     cpf,
                     "01/01/2000",
                     "(11)93393-8090",
-                    "-"
+                    "-",
+                    "-",
+                    "Solteiro (a)"
             );
         }
 

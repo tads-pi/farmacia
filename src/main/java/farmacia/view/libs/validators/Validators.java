@@ -57,7 +57,9 @@ public class Validators {
             String cpfInput,
             String birthDateInput,
             String contactNumberInput,
-            String genderInput
+            String genderInput,
+            String addressInput,
+            String maritalStatusInput
     ) {
         ArrayList<String> invalidFields = new ArrayList<String>();
 
@@ -79,14 +81,27 @@ public class Validators {
         if (genderInput.isEmpty() || genderInput.equals(" ")) {
             invalidFields.add("Gênero");
         }
+        if (addressInput.isEmpty() || addressInput.equals(" ") || addressInput.charAt(0) == ' ') {
+            invalidFields.add("Endereço");
+        }
+        if (maritalStatusInput.isEmpty() || maritalStatusInput.equals(" ")  || maritalStatusInput.charAt(0) == ' ') {
+            invalidFields.add("Estado Civíl");
+        }
 
         return invalidFields;
     }
     
     public boolean isValidCpf(String cpfInput) {
-        if (cpfInput.isEmpty() || cpfInput.equals("   .   .   -  ") || cpfInput.charAt(0) == ' ' || cpfInput.length() < (11 + 3)) {
+        if (cpfInput.isEmpty() || cpfInput.equals("   .   .   -  ") || cpfInput.charAt(0) == ' ') {
             return false;
         }
+        
+        for(int i = 0; i < cpfInput.length(); i++){
+            if(cpfInput.charAt(i) == ' '){
+                return false;
+            }
+        }
+        
         return true;
     }
 }

@@ -27,12 +27,12 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
      * Creates new form MainFrame
      */
     public MainFrame() {
-        initComponents();
-        setLocationRelativeTo(null);
-        StartSellingsFrame();
-        StartItemsFrame();
-        StartHistoryFrame();
-        LoginPanel();
+       initComponents();
+       setLocationRelativeTo(null);
+       StartSellingsFrame();
+       StartItemsFrame();
+       StartHistoryFrame();
+       LoginPanel();
     }
 
     @Override

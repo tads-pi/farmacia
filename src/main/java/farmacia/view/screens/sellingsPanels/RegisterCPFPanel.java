@@ -7,11 +7,8 @@ package farmacia.view.screens.sellingsPanels;
 
 import farmacia.view.entities.User;
 import farmacia.view.interfaces.ISellingsPanel;
-import farmacia.view.interfaces.UserData;
 import farmacia.view.libs.validators.Validators;
-import java.awt.Image;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,8 +28,7 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
     }
 
     public void LoadUserInfo() {
-        User u = UserData.getUser();
-        this.cpfInput.setText(u.getCpf());
+        this.cpfInput.setText(currentUser.getCpf());
     }
 
     public void addSellingsListener(ISellingsPanel toAdd) {
@@ -65,6 +61,10 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
         genderLabel = new javax.swing.JLabel();
         genderInput = new javax.swing.JComboBox<>();
         logo1 = new farmacia.view.libs.Logo();
+        addressInput = new javax.swing.JTextField();
+        addressLabel = new javax.swing.JLabel();
+        maritalLabel = new javax.swing.JLabel();
+        maritalComboBox = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(640, 640));
@@ -117,6 +117,11 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
         emailInput.setMaximumSize(new java.awt.Dimension(217, 24));
         emailInput.setMinimumSize(new java.awt.Dimension(217, 24));
         emailInput.setPreferredSize(new java.awt.Dimension(217, 24));
+        emailInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailInputActionPerformed(evt);
+            }
+        });
         emailInput.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 emailInputKeyPressed(evt);
@@ -185,6 +190,29 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
             }
         });
 
+        addressInput.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        addressInput.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        addressInput.setMaximumSize(new java.awt.Dimension(217, 24));
+        addressInput.setMinimumSize(new java.awt.Dimension(217, 24));
+        addressInput.setPreferredSize(new java.awt.Dimension(217, 24));
+        addressInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                addressInputKeyPressed(evt);
+            }
+        });
+
+        addressLabel.setBackground(new java.awt.Color(58, 58, 58));
+        addressLabel.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
+        addressLabel.setForeground(new java.awt.Color(58, 58, 58));
+        addressLabel.setText("Endereço");
+
+        maritalLabel.setBackground(new java.awt.Color(58, 58, 58));
+        maritalLabel.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
+        maritalLabel.setForeground(new java.awt.Color(58, 58, 58));
+        maritalLabel.setText("Estado Civil");
+
+        maritalComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solteiro (a)", "Casado (a)", "Divorciado (a)", "Viúvo (a)", "Separado (a) Judicialmente" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -198,40 +226,40 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(title)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(emailInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(nameInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(emailLabel)
-                                        .addComponent(nameLabel))
-                                    .addGap(12, 12, 12))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(cpfLabel)
-                                            .addGap(114, 114, 114))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(cpfInput, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(birthDateLabel)
-                                        .addComponent(birthDateInput, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))))
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(addressInput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                            .addComponent(addressLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(emailInput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                            .addComponent(nameInput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(cpfLabel)
+                                        .addGap(114, 114, 114))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(cpfInput, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(birthDateLabel)
+                                    .addComponent(birthDateInput, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)))
+                            .addComponent(emailLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(contactNumberLabel)
                                     .addComponent(contactNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(genderLabel)
-                                    .addComponent(genderInput, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(24, 353, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(title)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(genderInput, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(maritalLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(maritalComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(24, 353, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,10 +276,19 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
                 .addGap(18, 18, 18)
                 .addComponent(emailLabel)
                 .addGap(6, 6, 6)
+                .addComponent(emailInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(addressLabel)
+                .addGap(6, 6, 6)
+                .addComponent(addressInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(maritalLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(maritalComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(emailInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(2, 2, 2)
                         .addComponent(cpfLabel)
                         .addGap(30, 30, 30))
                     .addGroup(layout.createSequentialGroup()
@@ -260,20 +297,32 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cpfInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(birthDateInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(contactNumberLabel)
-                    .addComponent(genderLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(genderLabel)
+                    .addComponent(contactNumberLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(genderInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(contactNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 313, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void emailInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailInputActionPerformed
+
+    private void addressInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addressInputKeyPressed
+        if (!addressInput.getText().isEmpty()
+                && evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            maritalComboBox.requestFocus();
+        }
+    }//GEN-LAST:event_addressInputKeyPressed
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_confirmButtonActionPerformed
         ArrayList<String> invalidFields = v.isValidRegister(
@@ -282,7 +331,9 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
                 this.cpfInput.getText().toString(),
                 this.birthDateInput.getText().toString(),
                 this.contactNumberInput.getText().toString(),
-                this.genderInput.getSelectedItem().toString()
+                this.genderInput.getSelectedItem().toString(),
+                this.addressInput.getText().toString(),
+                this.maritalComboBox.getSelectedItem().toString()
         );
         String invalidFieldsMessage = "Verifique os campos de\n";
 
@@ -293,19 +344,25 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
             JOptionPane.showMessageDialog(this, invalidFieldsMessage);
         } else {
 
-            UserData.setUser(new User(
-                    this.nameInput.getText().toString(),
-                    this.emailInput.getText().toString(),
-                    this.cpfInput.getText().toString(),
-                    this.birthDateInput.getText().toString(),
-                    this.contactNumberInput.getText().toString(),
-                    this.genderInput.getSelectedItem().toString()));
+            currentUser.set(new User(
+                    this.nameInput.getText(),
+                    this.emailInput.getText(),
+                    this.cpfInput.getText(),
+                    this.birthDateInput.getText(),
+                    this.contactNumberInput.getText(),
+                    this.genderInput.getSelectedItem().toString(),
+                    this.addressInput.getText(),
+                    this.maritalComboBox.getSelectedItem().toString()
+            ));
 
-            if (v.isValidUser(UserData.getUser())) {
+            if (!currentUser.isEmpty()) {
                 // Notify everybody that may be interested.
                 for (ISellingsPanel ll : sellingsisteners) {
                     ll.confirmPressed(STEP_SHOW_CPF);
                 }
+            }else{
+                JOptionPane.showMessageDialog(this, "Ocorreu um erro, tente novamente.");
+                System.out.println("currentUser may be empty at RegisterCpf.java");
             }
         }
 
@@ -369,9 +426,13 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
         birthDateInput.setText("");
         contactNumberInput.setText("");
         genderInput.setSelectedIndex(0);
+        addressInput.setText("");
+        maritalComboBox.setSelectedIndex(0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField addressInput;
+    private javax.swing.JLabel addressLabel;
     private javax.swing.JFormattedTextField birthDateInput;
     private javax.swing.JLabel birthDateLabel;
     private farmacia.view.libs.buttons.CancelButton cancelButton;
@@ -385,6 +446,8 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
     private javax.swing.JComboBox<String> genderInput;
     private javax.swing.JLabel genderLabel;
     private farmacia.view.libs.Logo logo1;
+    private javax.swing.JComboBox<String> maritalComboBox;
+    private javax.swing.JLabel maritalLabel;
     private javax.swing.JTextField nameInput;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel title;

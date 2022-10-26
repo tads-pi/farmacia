@@ -5,6 +5,9 @@
  */
 package farmacia.view.interfaces;
 
+import farmacia.view.entities.User;
+import farmacia.view.libs.mysql.dao.UserDAO;
+
 /**
  *
  * @author kcalixto
@@ -18,6 +21,9 @@ public interface ISellingsPanel {
     public static final int STEP_CANCEL_SELLING = 5;
     
     public static final int LAST_STEP = 9;
+    
+    public User currentUser = new User();
+    public UserDAO userDAO = new UserDAO();
     
     void confirmPressed(int newStep);
     void cancelPressed(int newStep);
