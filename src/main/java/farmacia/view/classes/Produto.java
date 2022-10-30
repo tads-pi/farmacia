@@ -10,21 +10,21 @@ import java.util.Date;
  *
  * @author kaua.ccalixto
  */
-public class Produto extends ProductTypes{
+public class Produto extends TiposDeProdutos{
     private int id;
-    private String name;
-    private double value;
-    private String productType;
-    private Date createdAt;
-    private boolean active;
+    private String nome;
+    private double valorUnitario;
+    private String tipoDeProduto;
+    private Date data;
+    private boolean ativo;
 
-    public Produto(int id, String name, double value, String productType, Date createdAt, boolean active) {
+    public Produto(int id, String nome, double valorUnitario, String tipoDeProduto, Date data, boolean ativo) {
         this.id = id;
-        this.name = name;
-        this.value = value;
-        this.productType = productType;
-        this.createdAt = createdAt;
-        this.active = active;
+        this.nome = nome;
+        this.valorUnitario = valorUnitario;
+        this.tipoDeProduto = tipoDeProduto;
+        this.data = data;
+        this.ativo = ativo;
     }
 
     public int getId() {
@@ -35,43 +35,43 @@ public class Produto extends ProductTypes{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public double getValue() {
-        return value;
+    public double getValorUnitario() {
+        return valorUnitario;
     }
 
-    public void setValue(double value) {
-        this.value = value;
+    public void setValorUnitario(double valorUnitario) {
+        this.valorUnitario = valorUnitario;
     }
 
-    public String getProductType() {
-        return productType;
+    public String getTipoDeProduto() {
+        return tipoDeProduto;
     }
 
-    public void setProductType(String productType) {
-        this.productType = productType;
+    public void setTipoDeProduto(String tipoDeProduto) {
+        this.tipoDeProduto = tipoDeProduto;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Date getData() {
+        return data;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setData(Date data) {
+        this.data = data;
     }
 
-    public boolean isActive() {
-        return active;
+    public boolean isAtivo() {
+        return ativo;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 }

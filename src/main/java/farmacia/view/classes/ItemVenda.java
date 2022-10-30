@@ -4,7 +4,6 @@
  */
 package farmacia.view.classes;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -13,19 +12,19 @@ import java.util.Date;
  */
 public class ItemVenda {
     private int id;
-    private Produto product;
-    private double amount;
-    private double unitValue;
-    private double totalValue;
-    private Date date;
+    private Produto produto;
+    private double quantidade;
+    private double valorUnitario;
+    private double valorTotal;
+    private Date data;
 
-    public ItemVenda(int id, Produto product, double amount, double unitValue, double totalValue, Date date) {
+    public ItemVenda(int id, Produto produto, double quantidade, double valorUnitario, double valorTotal, Date data) {
         this.id = id;
-        this.product = product;
-        this.amount = amount;
-        this.unitValue = unitValue;
-        this.totalValue = totalValue;
-        this.date = date;
+        this.produto = produto;
+        this.quantidade = quantidade;
+        this.valorUnitario = valorUnitario;
+        this.valorTotal = valorTotal;
+        this.data = data;
     }
 
     public int getId() {
@@ -36,44 +35,44 @@ public class ItemVenda {
         this.id = id;
     }
 
-    public Produto getProduct() {
-        return product;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setProduct(Produto product) {
-        this.product = product;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
-    public double getAmount() {
-        return amount;
+    public double getQuantidade() {
+        return quantidade;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setQuantidade(double quantidade) {
+        this.quantidade = quantidade;
     }
 
-    public double getUnitValue() {
-        return unitValue;
+    public double getValorUnitario() {
+        return valorUnitario;
     }
 
-    public void setUnitValue(double unitValue) {
-        this.unitValue = unitValue;
+    public void setValorUnitario(double valorUnitario) {
+        this.valorUnitario = valorUnitario;
     }
 
-    public double getTotalValue() {
-        return totalValue;
+    public double getValorTotal() {
+        return valorTotal;
     }
 
-    public void setTotalValue(double totalValue) {
-        this.totalValue = totalValue;
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getData() {
+        return data;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setData(Date data) {
+        this.data = data;
     }
     
 }

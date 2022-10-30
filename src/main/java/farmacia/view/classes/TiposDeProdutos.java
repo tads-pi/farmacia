@@ -8,7 +8,7 @@ package farmacia.view.classes;
  *
  * @author kaua.ccalixto
  */
-public class ProductTypes {
+public class TiposDeProdutos {
     public static final String ml = "ml";    
     public static final String gramas = "grama(s)";
     public static final String comprimidos = "comprimido(s)";

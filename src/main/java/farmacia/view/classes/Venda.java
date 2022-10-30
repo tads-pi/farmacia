@@ -13,19 +13,19 @@ import java.util.Date;
  */
 public class Venda {
     private int id;
-    private Cliente client;
-    private ArrayList<ItemVenda> cart;
+    private Cliente cliente;
+    private ArrayList<ItemVenda> carrinho;
     private double total;
-    private Date date;
-    private boolean active;
+    private Date data;
+    private boolean ativo;
 
-    public Venda(int id, Cliente client, ArrayList<ItemVenda> cart, double total, Date date, boolean active) {
+    public Venda(int id, Cliente cliente, ArrayList<ItemVenda> carrinho, double total, Date data, boolean ativo) {
         this.id = id;
-        this.client = client;
-        this.cart = cart;
+        this.cliente = cliente;
+        this.carrinho = carrinho;
         this.total = total;
-        this.date = date;
-        this.active = active;
+        this.data = data;
+        this.ativo = ativo;
     }
 
     public int getId() {
@@ -36,20 +36,20 @@ public class Venda {
         this.id = id;
     }
 
-    public Cliente getClient() {
-        return client;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setClient(Cliente client) {
-        this.client = client;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public ArrayList<ItemVenda> getCart() {
-        return cart;
+    public ArrayList<ItemVenda> getCarrinho() {
+        return carrinho;
     }
 
-    public void setCart(ArrayList<ItemVenda> cart) {
-        this.cart = cart;
+    public void setCarrinho(ArrayList<ItemVenda> carrinho) {
+        this.carrinho = carrinho;
     }
 
     public double getTotal() {
@@ -60,19 +60,19 @@ public class Venda {
         this.total = total;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getData() {
+        return data;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setData(Date data) {
+        this.data = data;
     }
 
-    public boolean isActive() {
-        return active;
+    public boolean isAtivo() {
+        return ativo;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 }
