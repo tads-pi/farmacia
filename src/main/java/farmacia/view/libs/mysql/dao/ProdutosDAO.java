@@ -26,7 +26,7 @@ public class ProdutosDAO implements IDao {
     private ResultSet rs;
     private String sql;
 
-    private static final String TABLE_NAME = "tb_produto";
+    public static final String TABLE_NAME = "tb_produto";
 
     public ProdutosDAO() {
         bd = new BD();

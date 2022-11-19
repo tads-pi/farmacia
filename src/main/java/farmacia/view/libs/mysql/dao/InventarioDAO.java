@@ -58,6 +58,49 @@ public class InventarioDAO implements IDao {
         }
     }
 
+    public ArrayList<Inventario> search(String search) {
+        ArrayList<Inventario> response = new ArrayList<>();
+        sql = "SELECT * FROM " + TABLE_NAME + " i INNER JOIN " + ProdutosDAO.TABLE_NAME
+                + " p USING(id_produto) WHERE i.ativo AND p.ativo AND p.nome LIKE ?;";
+        System.err.println(sql);
+        try {
+            if (bd.getConnection()) {
+                st = bd.c.prepareStatement(sql);
+
+                st.setString(1, "%" + search + "%");
+
+                rs = st.executeQuery();
+                while (rs.next()) {
+                    Produto produto = new Produto(
+                            rs.getInt("id_produto"),
+                            rs.getString("nome"),
+                            rs.getDouble("valor_unitario"),
+                            rs.getString("tipo_de_produto"),
+                            rs.getDate("p.criado_em"),
+                            rs.getDate("p.atualizado_em"),
+                            rs.getBoolean("p.ativo"));
+
+                    Inventario i = new Inventario(
+                            rs.getInt("id_inventario"),
+                            produto,
+                            rs.getDouble("quantidade"),
+                            rs.getDate("criado_em"),
+                            rs.getDate("atualizado_em"),
+                            rs.getBoolean("ativo"));
+                    response.add(i);
+                }
+                ;
+
+                return response;
+            }
+            return response;
+        } catch (SQLException erro) {
+            System.out.println("error: " + erro.getMessage());
+            bd.close();
+            return response;
+        }
+    }
+
     public Inventario findById(int id) {
         Inventario inventario = new Inventario();
         sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo AND id_inventario = ?;";
