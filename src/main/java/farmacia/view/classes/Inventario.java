@@ -4,19 +4,36 @@
  */
 package farmacia.view.classes;
 
+import java.sql.Date;
+
 /**
  *
  * @author kaua.ccalixto
  */
 public class Inventario {
     private int id;
-    private int id_produto;
+    private Produto produto;
     private double quantidade;
+    private Date criadoEm;
+    private Date atualizadoEm;
+    private boolean ativo;
 
-    public Inventario(int id, int id_produto, double quantidade) {
+    public Inventario(int id, Produto produto, double quantidade, Date criadoEm, Date atualizadoEm,
+            boolean ativo) {
         this.id = id;
-        this.id_produto = id_produto;
+        this.produto = produto;
         this.quantidade = quantidade;
+        this.criadoEm = criadoEm;
+        this.atualizadoEm = atualizadoEm;
+        this.ativo = ativo;
+    }
+
+    public Inventario(Produto produto, double quantidade) {
+        this.produto = produto;
+        this.quantidade = quantidade;
+    }
+
+    public Inventario() {
     }
 
     public int getId() {
@@ -27,12 +44,12 @@ public class Inventario {
         this.id = id;
     }
 
-    public int getId_produto() {
-        return id_produto;
+    public Produto getProduto() {
+        return this.produto;
     }
 
-    public void setId_produto(int id_produto) {
-        this.id_produto = id_produto;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public double getQuantidade() {
@@ -42,5 +59,28 @@ public class Inventario {
     public void setQuantidade(double quantidade) {
         this.quantidade = quantidade;
     }
-    
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public Date getCriadoEm() {
+        return this.criadoEm;
+    }
+
+    public void setCriadoEm(Date criadoEm) {
+        this.criadoEm = criadoEm;
+    }
+
+    public Date getAtualizadoEm() {
+        return this.atualizadoEm;
+    }
+
+    public void setAtualizadoEm(Date atualizadoEm) {
+        this.atualizadoEm = atualizadoEm;
+    }
 }

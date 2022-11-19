@@ -33,3 +33,14 @@ VALUES
         49.99,
         "mg"
     );
+
+INSERT INTO
+    tb_inventario(
+        id_produto,
+        quantidade
+    )
+VALUES
+    (
+        1,
+        10.00
+    );

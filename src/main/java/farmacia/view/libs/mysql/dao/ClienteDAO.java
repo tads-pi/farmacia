@@ -63,7 +63,7 @@ public class ClienteDAO implements IDao{
 
     public Cliente findByCpf(String cpf) {
         Cliente cliente = new Cliente();
-        sql = "select * from " + TABLE_NAME + " where cpf = ?;";
+        sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo AND cpf = ?;";
         try {
             if (bd.getConnection()) {
                 st = bd.c.prepareStatement(sql);
@@ -131,7 +131,7 @@ public class ClienteDAO implements IDao{
                     st.setInt(9, c.getId());
 
                 } else if (op == DELETE) {
-                    sql = "DELETE FROM " + TABLE_NAME + " where id_cliente = ?";
+                    sql = "UPDATE " + TABLE_NAME + " SET ativo = 0 WHERE id_cliente = ?";
                     st = bd.c.prepareStatement(sql);
                     st.setInt(1, c.getId());
                 }

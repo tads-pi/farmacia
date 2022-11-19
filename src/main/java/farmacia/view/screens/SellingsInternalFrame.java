@@ -12,6 +12,8 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import farmacia.view.interfaces.ISellingsPanel;
 import farmacia.view.libs.StepsTrace;
+import farmacia.view.screens.sellingsPanels.SellingsPanel;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -20,7 +22,7 @@ import javax.swing.JOptionPane;
  */
 public class SellingsInternalFrame extends javax.swing.JInternalFrame implements ILoginListener, ISellingsPanel {
     
-    private int STEP = STEP_GET_CPF;
+    private int STEP = STEP_SELLINGS;
     
     private StepsTrace stepsTrace = new StepsTrace();
     private ArrayList<ILoginListener> listeners = new ArrayList<ILoginListener>();
@@ -214,5 +216,9 @@ public class SellingsInternalFrame extends javax.swing.JInternalFrame implements
         registerCPFPanel.setVisible(false);
         sellingsPanel.setVisible(false);
         confirmSelling.setVisible(false);
+    }
+
+    public SellingsPanel getSellingsPanel(){
+        return this.sellingsPanel;
     }
 }

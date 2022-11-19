@@ -66,6 +66,8 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
             sellingsInternalFrame.addListener(this);
             sellingsInternalFrame.setVisible(false);
             sellingsInternalFrame.setMaximum(true);
+            
+            itemsInternalFrame.addReloadListener(sellingsInternalFrame.getSellingsPanel());
         } catch (Exception e) {
             System.out.println("error: " + e);
         }
