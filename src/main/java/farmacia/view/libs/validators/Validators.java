@@ -5,7 +5,7 @@
  */
 package farmacia.view.libs.validators;
 
-import farmacia.view.entities.User;
+import farmacia.view.classes.Cliente;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class Validators {
         return response;
     }
 
-    public boolean isValidUser(User user) {
+    public boolean isValidCliente(Cliente c) {
         return true;
     }
 
@@ -92,7 +92,7 @@ public class Validators {
     }
     
     public boolean isValidCpf(String cpfInput) {
-        if (cpfInput.isEmpty() || cpfInput.equals("   .   .   -  ") || cpfInput.charAt(0) == ' ') {
+        if (cpfInput.isEmpty() || cpfInput.equals("   .   .   -  ") || cpfInput.charAt(0) == ' ' || cpfInput.charAt(cpfInput.length() - 1) == ' ') {
             return false;
         }
         

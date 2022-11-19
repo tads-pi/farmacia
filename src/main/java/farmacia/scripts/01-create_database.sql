@@ -1,20 +1,79 @@
 DROP SCHEMA IF EXISTS db_farmacia;
-
 CREATE DATABASE IF NOT EXISTS db_farmacia;
 
-DROP TABLE IF EXISTS db_farmacia.tb_users;
-CREATE TABLE IF NOT EXISTS db_farmacia.tb_users(
-    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    name VARCHAR(45) NOT NULL,
+USE db_farmacia;
+
+DROP TABLE IF EXISTS db_farmacia.tb_cliente;
+
+CREATE TABLE IF NOT EXISTS db_farmacia.tb_cliente(
+    id_cliente INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    --
+    nome VARCHAR(45) NOT NULL,
     email VARCHAR(45) NOT NULL,
     cpf VARCHAR(20) NOT NULL,
-    address VARCHAR(45) NOT NULL,
-    contact_number VARCHAR(45) NOT NULL,
-    gender VARCHAR(5) NOT NULL,
-    marital_status VARCHAR(45) NOT NULL,
-    birth_date DATE NOT NULL,
+    endereco VARCHAR(45) NOT NULL,
+    numero_de_telefone VARCHAR(45) NOT NULL,
+    genero VARCHAR(5) NOT NULL,
+    estado_civil VARCHAR(45) NOT NULL,
+    data_de_nascimento DATE NOT NULL,
+    --
+    criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    atualizado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    ativo BOOLEAN NOT NULL DEFAULT TRUE
+);
 
-    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    active BOOLEAN NOT NULL DEFAULT TRUE
+DROP TABLE IF EXISTS db_farmacia.tb_produto;
+
+CREATE TABLE IF NOT EXISTS db_farmacia.tb_produto(
+    id_produto INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    --
+    nome VARCHAR(45) NOT NULL,
+    valor_unitario DECIMAL(10, 2) NOT NULL,
+    tipo_de_produto VARCHAR(10) NOT NULL,
+    --
+    criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    atualizado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    ativo BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+DROP TABLE IF EXISTS db_farmacia.tb_inventario;
+
+CREATE TABLE IF NOT EXISTS db_farmacia.tb_inventario(
+    id_inventario INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    --
+    id_produto INT NOT NULL,
+    quantidade DECIMAL(10, 2) NOT NULL,
+    --
+    criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    atualizado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    ativo BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+DROP TABLE IF EXISTS db_farmacia.tb_venda;
+
+CREATE TABLE IF NOT EXISTS db_farmacia.tb_venda(
+    id_venda INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    --
+    id_cliente INT NOT NULL,
+    total DECIMAL(10, 2) NOT NULL,
+    --
+    criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    atualizado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    ativo BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+DROP TABLE IF EXISTS db_farmacia.tb_item_venda;
+
+CREATE TABLE IF NOT EXISTS db_farmacia.tb_item_venda(
+    id_item_venda INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    --
+    id_produto INT NOT NULL,
+    id_venda INT NOT NULL,
+    quantidade DECIMAL(10, 2) NOT NULL,
+    valor_unitario DECIMAL(10, 2) NOT NULL,
+    valor_total DECIMAL(10, 2) NOT NULL,
+    --
+    criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    atualizado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    ativo BOOLEAN NOT NULL DEFAULT TRUE
 );

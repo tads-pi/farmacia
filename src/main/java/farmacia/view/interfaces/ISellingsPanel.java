@@ -5,9 +5,9 @@
  */
 package farmacia.view.interfaces;
 
-import farmacia.view.entities.User;
-import farmacia.view.libs.mysql.dao.UserDAO;
-
+import farmacia.view.classes.Cliente;
+import farmacia.view.libs.mysql.BD;
+import farmacia.view.libs.mysql.dao.ClienteDAO;
 /**
  *
  * @author kcalixto
@@ -22,9 +22,11 @@ public interface ISellingsPanel {
     
     public static final int LAST_STEP = 9;
     
-    public User currentUser = new User();
-    public UserDAO userDAO = new UserDAO();
-    
+    public Cliente currentUser = new Cliente();
+    public ClienteDAO clienteDAO = new ClienteDAO();
+
+    public BD bd = new BD();
+
     void confirmPressed(int newStep);
     void cancelPressed(int newStep);
 }

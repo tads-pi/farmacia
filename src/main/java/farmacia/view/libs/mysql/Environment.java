@@ -11,50 +11,16 @@ package farmacia.view.libs.mysql;
  */
 public class Environment {
 
-    private String ip = "52.67.74.131";
+    private String ip = "127.0.0.1";
     private String database = "db_farmacia";
+    private String user = "root";
+    private String password = "secret";
+    private String port = "3306";
 
-    public static final String DEVELOPMENT = "dev";
-    public static final String PRODUCTION = "prod";
+    public Environment() {}
 
-    private Config cfg;
-
-    public Environment(String env) {
-        loadEnv(env);
-    }
-
-    public Environment() {
-        // boolean isProduction = System.getenv("ENV") != null;
-        // if (isProduction) {
-            loadEnv(Environment.PRODUCTION);
-        // } else {
-        //     loadEnv(Environment.DEVELOPMENT);
-        // }
-    }
-
-    public void loadEnv(String env) {
-        try {
-            Config c = new Config();
-            if (env.equals(DEVELOPMENT)) {
-                c = new Config(
-                        "dev",
-                        "password",
-                        "3307"
-                );
-            }
-
-            this.cfg = c;
-        } catch (Exception e) {
-            System.out.println("error at config env: " + e);
-        }
-    }
-
-    public String getIp() {
-        return ip + ":" + getCfg().getPort();
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
+    public String getRoute() {
+        return ip + ":" + port;
     }
 
     public String getDatabase() {
@@ -65,7 +31,27 @@ public class Environment {
         this.database = database;
     }
 
-    public Config getCfg() {
-        return cfg;
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
     }
 }

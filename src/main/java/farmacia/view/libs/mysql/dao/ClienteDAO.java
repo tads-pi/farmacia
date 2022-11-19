@@ -1,0 +1,154 @@
+package farmacia.view.libs.mysql.dao;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import farmacia.view.classes.Cliente;
+import farmacia.view.interfaces.IDao;
+import farmacia.view.libs.mysql.BD;
+
+public class ClienteDAO implements IDao{
+
+    public Cliente cliente;
+    public BD bd;
+    private PreparedStatement st;
+    private ResultSet rs;
+    private String sql;
+
+    private static final String TABLE_NAME = "tb_cliente";
+
+    public ClienteDAO() {
+        bd = new BD();
+        cliente = new Cliente();
+    }
+
+    public ArrayList<Cliente> findAll() {
+        ArrayList<Cliente> response = new ArrayList<>();
+        sql = "select * from " + TABLE_NAME + ";";
+        try {
+            if (bd.getConnection()) {
+                st = bd.c.prepareStatement(sql);
+
+                rs = st.executeQuery();
+                while (rs.next()) {
+                    Cliente c = new Cliente(
+                            rs.getInt("id_cliente"),
+                            rs.getString("nome"),
+                            rs.getString("cpf"),
+                            rs.getString("endereco"),
+                            rs.getString("numero_de_telefone"),
+                            rs.getString("email"),
+                            rs.getString("genero"),
+                            rs.getString("estado_civil"),
+                            rs.getString("data_de_nascimento"),
+                            rs.getDate("criado_em"),
+                            rs.getDate("atualizado_em"),
+                            rs.getBoolean("ativo")
+                    );
+                    response.add(c);
+                }
+                ;
+
+                return response;
+            }
+            return response;
+        } catch (SQLException erro) {
+            System.out.println("error: " + erro.getMessage());
+            bd.close();
+            return response;
+        }
+    }
+
+    public Cliente findByCpf(String cpf) {
+        Cliente cliente = new Cliente();
+        sql = "select * from " + TABLE_NAME + " where cpf = ?;";
+        try {
+            if (bd.getConnection()) {
+                st = bd.c.prepareStatement(sql);
+
+                st.setString(1, cpf);
+
+                rs = st.executeQuery();
+                while (rs.next()) {
+                    cliente = new Cliente(
+                            rs.getInt("id_cliente"),
+                            rs.getString("nome"),
+                            rs.getString("email"),
+                            rs.getString("cpf"),
+                            rs.getString("endereco"),
+                            rs.getString("numero_de_telefone"),
+                            rs.getString("genero"),
+                            rs.getString("estado_civil"),
+                            rs.getString("data_de_nascimento"),
+                            rs.getDate("criado_em"),
+                            rs.getDate("atualizado_em"),
+                            rs.getBoolean("ativo")
+                    );
+                }
+                ;
+
+                return cliente;
+            }
+            return cliente;
+        } catch (SQLException erro) {
+            System.out.println("error: " + erro.getMessage());
+            bd.close();
+            return cliente;
+        }
+    }
+
+    public void execute(Cliente c, int op) {
+        try {
+            if (bd.getConnection()) {
+                if (op == INSERT) {
+                    sql = "INSERT INTO " + TABLE_NAME+ " (nome, email, cpf, endereco, numero_de_telefone, genero, estado_civil, data_de_nascimento) values (?,?,?,?,?,?,?,STR_TO_DATE(?, \"%m/%d/%Y\"))";
+                    st = bd.c.prepareStatement(sql);
+
+                    st.setString(1, c.getNome());
+                    st.setString(2, c.getEmail());
+                    st.setString(3, c.getCpf());
+                    st.setString(4, c.getEndereco());
+                    st.setString(5, c.getNumeroDeTelefone());
+                    st.setString(6, c.getGenero());
+                    st.setString(7, c.getEstadoCivil());
+                    st.setString(8, c.getDataDeNascimento());
+
+                } else if (op == UPDATE) {
+                    sql = "UPDATE " + TABLE_NAME
+                            + " set nome = ?, email = ?, cpf = ?, endereco = ?, numero_de_telefone = ?, genero = ?, estado_civil = ?, data_de_nascimento = STR_TO_DATE(?, \"%m/%d/%Y\") where id_cliente = ?";
+                    st = bd.c.prepareStatement(sql);
+
+                    st.setString(1, c.getNome());
+                    st.setString(2, c.getEmail());
+                    st.setString(3, c.getCpf());
+                    st.setString(4, c.getEndereco());
+                    st.setString(5, c.getNumeroDeTelefone());
+                    st.setString(6, c.getGenero());
+                    st.setString(7, c.getEstadoCivil());
+                    st.setString(8, c.getDataDeNascimento());
+                    st.setInt(9, c.getId());
+
+                } else if (op == DELETE) {
+                    sql = "DELETE FROM " + TABLE_NAME + " where id_cliente = ?";
+                    st = bd.c.prepareStatement(sql);
+                    st.setInt(1, c.getId());
+                }
+                if (st.executeUpdate() == 0) {
+                    System.out.println("error: operation failed");
+                }
+                System.out.println("sql done.");
+            }
+        } catch (SQLException e) {
+            System.out.println("error: " + e.getMessage());
+            bd.close();
+        }
+    }
+
+    public void close() {
+        if (bd.getConnection()) {
+            bd.close();
+        }
+    }
+}

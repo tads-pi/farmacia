@@ -4,11 +4,14 @@
  */
 package farmacia.view.classes;
 
+import java.sql.Date;
+
 /**
  *
  * @author kaua.ccalixto
  */
 public class Cliente {
+
     private int id;
     private String nome = "";
     private String cpf = "";
@@ -18,45 +21,74 @@ public class Cliente {
     private String genero = "";
     private String estadoCivil = "";
     private String dataDeNascimento = "";
+    private Date criadoEm;
+    private Date atualizadoEm;
+    private boolean ativo = false;
+
+    public static final String TABLE_NAME = "tb_cliente";
 
     public Cliente(
+            int id,
             String nome,
+            String email,
             String cpf,
             String endereco,
             String numeroDeTelefone,
+            String genero,
+            String estadoCivil,
+            String dataDeNascimento,
+            Date criadoEm,
+            Date atualizadoEm,
+            boolean ativo) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+        this.endereco = endereco;
+        this.numeroDeTelefone = numeroDeTelefone;
+        this.genero = genero;
+        this.estadoCivil = estadoCivil;
+        this.dataDeNascimento = dataDeNascimento;
+        this.criadoEm = criadoEm;
+        this.atualizadoEm = atualizadoEm;
+        this.ativo = ativo;
+    }
+
+    public Cliente(
+            String nome,
             String email,
+            String cpf,
+            String endereco,
+            String numeroDeTelefone,
             String genero,
             String estadoCivil,
             String dataDeNascimento) {
         this.nome = nome;
+        this.email = email;
         this.cpf = cpf;
         this.endereco = endereco;
         this.numeroDeTelefone = numeroDeTelefone;
-        this.email = email;
         this.genero = genero;
         this.estadoCivil = estadoCivil;
         this.dataDeNascimento = dataDeNascimento;
     }
 
-    public Cliente(
-            int id,
-            String nome,
-            String cpf,
-            String endereco,
-            String numeroDeTelefone,
-            String email,
-            String genero,
-            String estadoCivil,
-            String dataDeNascimento) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.endereco = endereco;
-        this.numeroDeTelefone = numeroDeTelefone;
-        this.email = email;
-        this.genero = genero;
-        this.estadoCivil = estadoCivil;
-        this.dataDeNascimento = dataDeNascimento;
+    public Cliente() {
+    }
+
+    public void set(Cliente c) {
+        this.id = c.id;
+        this.nome = c.nome;
+        this.email = c.email;
+        this.cpf = c.cpf;
+        this.endereco = c.endereco;
+        this.numeroDeTelefone = c.numeroDeTelefone;
+        this.genero = c.genero;
+        this.estadoCivil = c.estadoCivil;
+        this.dataDeNascimento = c.dataDeNascimento;
+        this.criadoEm = c.criadoEm;
+        this.atualizadoEm = c.atualizadoEm;
+        this.ativo = c.ativo;
     }
 
     public int getId() {
@@ -129,6 +161,42 @@ public class Cliente {
 
     public void setDataDeNascimento(String dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
+    }
+
+    public Date getCriadoEm() {
+        return criadoEm;
+    }
+
+    public void setCriadoEm(Date criadoEm) {
+        this.criadoEm = criadoEm;
+    }
+
+    public Date getAtualizadoEm() {
+        return atualizadoEm;
+    }
+
+    public void setAtualizadoEm(Date atualizadoEm) {
+        this.atualizadoEm = atualizadoEm;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public boolean isEmpty() {
+        return (this.id == 0 &&
+                this.nome.isEmpty() &&
+                this.email.isEmpty() &&
+                this.cpf.isEmpty() &&
+                this.endereco.isEmpty() &&
+                this.numeroDeTelefone.isEmpty() &&
+                this.genero.isEmpty() &&
+                this.estadoCivil.isEmpty() &&
+                this.dataDeNascimento.isEmpty());
     }
 
 }
