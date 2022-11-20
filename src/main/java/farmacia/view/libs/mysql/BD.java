@@ -3,16 +3,17 @@ package farmacia.view.libs.mysql;
 import java.sql.*;
 
 public class BD {
-
-    private Environment env = new Environment();
-
     public Connection c = null;
     private final String driver = "com.mysql.jdbc.Driver";
-    private final String dbname = env.getDatabase();
-    private final String url = "jdbc:mysql://" + env.getRoute() + "/" + dbname;
-    private final String login = env.getUser();
-    private final String senha = env.getPassword();
+    private final String url = "jdbc:mysql://" + Environment.route + "/" + Environment.databaseName;
+    private final String login = Environment.user;
+    private final String senha = Environment.password;
 
+    /**
+     * Verifica se existe conexão o com banco de dados
+     * 
+     * @return boolean
+     */
     public boolean getConnection() {
         try {
             Class.forName(driver);
@@ -30,6 +31,9 @@ public class BD {
 
     }
 
+    /**
+     * Desliga conexão com o banco de dados
+     */
     public void close() {
         try {
             if (c != null) {

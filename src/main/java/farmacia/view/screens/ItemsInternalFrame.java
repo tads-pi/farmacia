@@ -24,6 +24,15 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
 
     private ArrayList<IItemsPanel> reloadListeners = new ArrayList<IItemsPanel>();
 
+    /**
+     * Adiciona outro JInternalFrame como listener da ação de recarregar tabela
+     * 
+     * {@link farmacia.view.screens.ReportsInternalFrame#reloadTable}
+     * {@link farmacia.view.screens.sellingsPanels.SellingsPanel#reloadTable}
+     * @param IItemsPanel
+     * @return void
+     * 
+     */
     public void addReloadListener(IItemsPanel toAdd) {
         reloadListeners.add(toAdd);
     }
@@ -35,19 +44,19 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
         loadTable(loadInventario());
     }
 
+    /**
+     * @return Todos os inventarios
+     */
     public ArrayList<Inventario> loadInventario() {
-        ArrayList<Inventario> response = new ArrayList<Inventario>();
-
-        response = inventarioDAO.findAll();
-        for (int i = 0; i < response.size(); i++) {
-            Produto produto = produtosDAO.findById(response.get(i).getProduto().getId());
-            response.get(i).setProduto(produto);
-        }
+        ArrayList<Inventario> response = inventarioDAO.findAll();
         System.out.println("Loaded " + response.size() + " produtos");
-
         return response;
     }
 
+    /**
+     * Carrega a tabela com o inventario informado
+     * @param inventario
+     */
     public void loadTable(ArrayList<Inventario> inventario) {
         System.out.println("filling table inventario with "+inventario.size()+" items");
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -390,6 +399,12 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
     private javax.swing.JFormattedTextField qntcadastroTxt;
     // End of variables declaration//GEN-END:variables
     @Override
+    /**
+     * Executa processos necessários para atualizar as tabelas
+     * 
+     * @param void
+     * @return void
+     */
     public void reloadTable() {
         loadTable(loadInventario());
     }

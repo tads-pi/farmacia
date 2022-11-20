@@ -6,7 +6,6 @@
 package farmacia.view.screens;
 
 import farmacia.view.Sizes;
-import farmacia.view.constants;
 import farmacia.view.libs.validators.Validators;
 import java.util.ArrayList;
 import farmacia.view.interfaces.ILoginListener;
@@ -28,12 +27,23 @@ public class LoginPanel extends javax.swing.JPanel {
         initComponents();
     }
 
+    /**
+     * Adiciona outro JInternalFrame como listener da ação de login efetuado
+     * 
+     * {@link farmacia.view.MainFrame#login()}
+     * @param ILoginListener
+     * @return void
+     */
     public void addListener(ILoginListener toAdd) {
         listeners.add(toAdd);
     }
 
+    /**
+     * Notifica todos os listeners da ação de login efetuado que a ação foi realizada
+     * @params void
+     * @return void
+     */
     public void login() {
-
         clearFields();
         // Notify everybody that may be interested.
         for (ILoginListener ll : listeners) {
@@ -164,6 +174,9 @@ public class LoginPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_passwordInputKeyReleased
     
+    /**
+     * Limpa campos de login e senha
+     */
     private void clearFields(){
         loginInput.setText("");
         passwordInput.setText("");

@@ -6,7 +6,6 @@
 package farmacia.view.libs.buttons;
 
 import farmacia.view.libs.FarmaciaColors;
-import java.awt.event.MouseEvent;
 
 /**
  *

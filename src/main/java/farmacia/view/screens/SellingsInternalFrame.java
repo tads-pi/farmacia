@@ -35,10 +35,21 @@ public class SellingsInternalFrame extends javax.swing.JInternalFrame implements
         startCpfTrack();
     }
 
+    /**
+     * Adiciona outro JInternalFrame como listener da ação de logout
+     * 
+     * {@link farmacia.view.MainFrame#logout()}
+     * @param IItemsPanel
+     * @return void
+     * 
+     */
     public void addListener(ILoginListener toAdd) {
         listeners.add(toAdd);
     }
 
+    /**
+     * Inicia fluxo de venda para um cliente
+     */
     public void startCpfTrack() {
         // Listenning logout button
         getCPFPanel.addLoginListener(this);

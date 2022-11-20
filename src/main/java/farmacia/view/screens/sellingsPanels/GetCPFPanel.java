@@ -6,7 +6,6 @@
 package farmacia.view.screens.sellingsPanels;
 
 import farmacia.view.constants;
-import farmacia.view.classes.Cliente;
 import farmacia.view.interfaces.ILoginListener;
 import farmacia.view.interfaces.ISellingsPanel;
 import farmacia.view.libs.validators.Validators;
@@ -29,10 +28,26 @@ public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, I
         initComponents();
     }
 
+    /**
+     * Adiciona outro JInternalFrame como listener da ação de logout
+     * | Neste caso em específico somente
+     * {@link farmacia.view.screens.SellingsInternalFrame#logout()} é chamado quando
+     * o botão LOGOUT é apertado
+     * 
+     * @param toAdd
+     */
     public void addLoginListener(ILoginListener toAdd) {
         loginListeners.add(toAdd);
     }
 
+    /**
+     * Adiciona outro JInternalFrame como listener das ações de CONTINUAR e CANCELAR
+     * 
+     * {@link farmacia.view.screens.SellingsInternalFrame#confirmPressed(int)}
+     * {@link farmacia.view.screens.SellingsInternalFrame#cancelPressed(int)}
+     * 
+     * @param toAdd
+     */
     public void addSellingsListener(ISellingsPanel toAdd) {
         sellingsisteners.add(toAdd);
     }
@@ -156,15 +171,15 @@ public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, I
             return;
         }
 
-        currentUser.set(clienteDAO.findByCpf(this.cpfInput.getText().toString()));
+        clienteAtual.set(clienteDAO.findByCpf(this.cpfInput.getText().toString()));
 
-        if (!currentUser.isEmpty()) {
+        if (!clienteAtual.isEmpty()) {
             // Notify everybody that may be interested.
             for (ISellingsPanel ll : sellingsisteners) {
                 ll.confirmPressed(STEP_SHOW_CPF);
             }
         } else {
-            currentUser.setCpf(this.cpfInput.getText());
+            clienteAtual.setCpf(this.cpfInput.getText());
 
             for (ISellingsPanel ll : sellingsisteners) {
                 ll.confirmPressed(STEP_CPF_REGISTER);
@@ -188,6 +203,9 @@ public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, I
         }
     }// GEN-LAST:event_cpfInputKeyPressed
 
+    /**
+     * Limpa campos
+     */
     public void clearFields() {
         cpfInput.setText("");
     }

@@ -25,25 +25,38 @@ public class InventarioDAO implements IDao {
         inventario = new Inventario();
     }
 
+    /**
+     * Executa inner join entre as tabelas de inventario e de produto, de forma que
+     * o resultado seja um inventário com todos os dados do produto também
+     * 
+     * @return todos os inventários
+     */
     public ArrayList<Inventario> findAll() {
         ArrayList<Inventario> response = new ArrayList<>();
-        sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo AND quantidade > 0;";
+        sql = "SELECT * FROM " + TABLE_NAME + " i INNER JOIN " + ProdutosDAO.TABLE_NAME
+                + " p USING(id_produto) WHERE i.ativo AND p.ativo AND i.quantidade > 0;";
         try {
             if (bd.getConnection()) {
                 st = bd.c.prepareStatement(sql);
 
                 rs = st.executeQuery();
                 while (rs.next()) {
-                    Produto produto = new Produto();
-                    produto.setId(rs.getInt("id_produto"));
+                    Produto produto = new Produto(
+                            rs.getInt("id_produto"),
+                            rs.getString("nome"),
+                            rs.getDouble("valor_unitario"),
+                            rs.getString("tipo_de_produto"),
+                            rs.getDate("p.criado_em"),
+                            rs.getDate("p.atualizado_em"),
+                            rs.getBoolean("p.ativo"));
 
                     Inventario i = new Inventario(
                             rs.getInt("id_inventario"),
                             produto,
                             rs.getDouble("quantidade"),
-                            rs.getDate("criado_em"),
-                            rs.getDate("atualizado_em"),
-                            rs.getBoolean("ativo"));
+                            rs.getDate("i.criado_em"),
+                            rs.getDate("i.atualizado_em"),
+                            rs.getBoolean("i.ativo"));
                     response.add(i);
                 }
                 ;
@@ -58,6 +71,13 @@ public class InventarioDAO implements IDao {
         }
     }
 
+    /**
+     * Executa inner join entre as tabelas de inventario e de produto, de forma que
+     * o resultado seja um inventário com todos os dados do produto também
+     * 
+     * @param search
+     * @return inventario onde o produto.nome é semelhante ao search
+     */
     public ArrayList<Inventario> search(String search) {
         ArrayList<Inventario> response = new ArrayList<>();
         sql = "SELECT * FROM " + TABLE_NAME + " i INNER JOIN " + ProdutosDAO.TABLE_NAME
@@ -84,9 +104,9 @@ public class InventarioDAO implements IDao {
                             rs.getInt("id_inventario"),
                             produto,
                             rs.getDouble("quantidade"),
-                            rs.getDate("criado_em"),
-                            rs.getDate("atualizado_em"),
-                            rs.getBoolean("ativo"));
+                            rs.getDate("i.criado_em"),
+                            rs.getDate("i.atualizado_em"),
+                            rs.getBoolean("i.ativo"));
                     response.add(i);
                 }
                 ;
@@ -101,6 +121,10 @@ public class InventarioDAO implements IDao {
         }
     }
 
+    /**
+     * @param id
+     * @return inventario pelo id
+     */
     public Inventario findById(int id) {
         Inventario inventario = new Inventario();
         sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo AND quantidade > 0 AND id_inventario = ?;";
@@ -135,6 +159,10 @@ public class InventarioDAO implements IDao {
         }
     }
 
+    /**
+     * @param idProduto
+     * @return inventario pelo produto.id_produto
+     */
     public Inventario findByIdProduto(int idProduto) {
         Inventario inventario = new Inventario();
         sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo AND quantidade > 0 AND id_produto = ?;";
@@ -169,6 +197,13 @@ public class InventarioDAO implements IDao {
         }
     }
 
+    /**
+     * Executa venda do item, subtraindo da tabela de inventario a quantidade
+     * vendida
+     * 
+     * @param idProduto produto.id_produto
+     * @param amount    quantidade de produtos vendidos
+     */
     public void soldItem(int idProduto, double amount) {
         try {
             if (bd.getConnection()) {
@@ -189,6 +224,13 @@ public class InventarioDAO implements IDao {
         }
     }
 
+    /**
+     * Pode executar ações de INSERT, UPDATE e DELETE para o inventario informado
+     * 
+     * @param i  objeto da operação
+     * @param op número da operação que deve executar
+     * @see farmacia.view.interfaces.IDao variáveis das operações
+     */
     public void execute(Inventario i, int op) {
         try {
             if (bd.getConnection()) {
@@ -223,6 +265,9 @@ public class InventarioDAO implements IDao {
         }
     }
 
+    /**
+     * Desliga conexão com o banco de dados
+     */
     public void close() {
         if (bd.getConnection()) {
             bd.close();

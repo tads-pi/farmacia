@@ -107,16 +107,38 @@ public class Venda implements IDao {
         this.ativo = ativo;
     }
 
+    /**
+     * Trata dados retornados do resultSet
+     * 
+     * @param rs
+     * @return novo objeto de Venda com os dados tratados
+     * @throws Exception
+     */
     public Venda parseAttributes(ResultSet rs) throws Exception {
-        Venda v = new Venda();
-        v.id = rs.getInt("id_venda");
-        Cliente cliente = new Cliente();
-        cliente.setId(rs.getInt("id_cliente"));
-        v.setCliente(cliente);
-        v.total = rs.getDouble("total");
-        v.criadoEm = rs.getTimestamp("criado_em");
-        v.atualizadoEm = rs.getTimestamp("atualizado_em");
-        v.ativo = rs.getBoolean("ativo");
+        Cliente cliente = new Cliente(
+                rs.getInt("id_cliente"),
+                rs.getString("nome"),
+                rs.getString("email"),
+                rs.getString("cpf"),
+                rs.getString("endereco"),
+                rs.getString("numero_de_telefone"),
+                rs.getString("genero"),
+                rs.getString("estado_civil"),
+                rs.getString("data_de_nascimento"),
+                rs.getDate("c.criado_em"),
+                rs.getDate("c.atualizado_em"),
+                rs.getBoolean("c.ativo"));
+
+        ArrayList<ItemVenda> emptyCart = new ArrayList<ItemVenda>();
+        Venda v = new Venda(
+                rs.getInt("id_venda"),
+                cliente,
+                emptyCart,
+                rs.getDouble("total"),
+                rs.getTimestamp("v.criado_em"),
+                rs.getTimestamp("v.atualizado_em"),
+                rs.getBoolean("v.ativo"));
+
         return v;
     }
 
@@ -132,6 +154,12 @@ public class Venda implements IDao {
         return "delete from " + TABLE_NAME + " where id = ?";
     }
 
+    /**
+     * 
+     * @param operation
+     * @return query da operação informada
+     * @throws Exception
+     */
     public String getQuery(byte operation) throws Exception {
         switch (operation) {
             case INSERT:
@@ -144,6 +172,13 @@ public class Venda implements IDao {
         throw new Exception("invalid operation: " + operation);
     }
 
+    /**
+     * Informa ao preparedStatement o valor das questionMarks
+     * 
+     * @param st        preparedStatement para informar os dados de prepared
+     * @param operation
+     * @throws SQLException
+     */
     public void setStatements(PreparedStatement st, byte operation) throws SQLException {
         switch (operation) {
             case INSERT:

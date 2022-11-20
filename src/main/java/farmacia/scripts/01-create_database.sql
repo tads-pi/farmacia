@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS db_farmacia.tb_produto(
     --
     nome VARCHAR(45) NOT NULL,
     valor_unitario DECIMAL(10, 2) NOT NULL,
-    tipo_de_produto VARCHAR(10) NOT NULL,
+    tipo_de_produto VARCHAR(25) NOT NULL,
     --
     criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     atualizado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
