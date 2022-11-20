@@ -5,7 +5,6 @@
  */
 package farmacia.view.libs.validators;
 
-import farmacia.view.classes.Cliente;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
