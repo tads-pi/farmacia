@@ -36,16 +36,13 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
     }
 
     @Override
+    /**
+     * Executa processos de login efetuado
+     * 
+     * @param void
+     * @return void
+     */
     public void login() {
-        LoggedInAction();
-    }
-
-    @Override
-    public void logout() {
-        LoggedOutAction();
-    }
-
-    private void LoggedInAction() {
         // set visible
         loginPanel.setVisible(false);
         desktopFrame.setVisible(true);
@@ -64,12 +61,28 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         reportsInternalFrame.addReloadListener(sellingsInternalFrame.getSellingsPanel());
     }
 
-    private void LoggedOutAction() {
+    @Override
+    /**
+     * Executa processos de logout efetuado
+     * 
+     * @param void
+     * @return void
+     */
+    public void logout() {
         loginPanel.setVisible(true);
         desktopFrame.setVisible(false);
         menuBar.setVisible(false);
     }
 
+    /**
+     * Inicia JInternalFrame contendo o fluxo de venda
+     * 
+     * @see farmacia.view.screens.sellingsPanels.GetCPFPanel
+     * @see farmacia.view.screens.sellingsPanels.RegisterCPFPanel
+     * @see farmacia.view.screens.sellingsPanels.ShowCPFPanel
+     * @see farmacia.view.screens.sellingsPanels.SellingsPanel
+     * @see farmacia.view.screens.sellingsPanels.ConfirmSelling
+     */
     public void StartSellingsFrame() {
         try {
             desktopFrame.add(sellingsInternalFrame);
@@ -82,6 +95,11 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         }
     }
 
+    /**
+     * Inicia JInternalFrame contendo estoque/inventário dos produtos
+     * 
+     * @see farmacia.view.screens.ItemsInternalFrame
+     */
     public void StartItemsFrame() {
         try {
             desktopFrame.add(itemsInternalFrame);
@@ -93,6 +111,11 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         }
     }
 
+    /**
+     * Inicia JInternalFrame contendo histórico de vendas
+     * 
+     * @see farmacia.view.screens.ReportsInternalFrame
+     */
     public void StartHistoryFrame() {
         try {
             desktopFrame.add(reportsInternalFrame);
@@ -104,6 +127,12 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         }
     }
 
+    /**
+     * Inicia JInternalFrame contendo tela de login para Admins
+     * 
+     * @see farmacia.view.screens.LoginPanel
+     * @deprecated
+     */
     public void LoginPanel() {
         this.add(loginPanel);
         loginPanel.setVisible(true);
@@ -111,6 +140,13 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
 
         desktopFrame.setVisible(false);
         menuBar.setVisible(false);
+
+        // TODO -> Criar tabela de admins e DAO para poder utilizar a tela de login.
+        // Gambiarra para desativar a tela de login forçando login automático ao
+        // carregar o projeto.
+        if (!constants.SHOW_LOGIN_SCREEN) {
+            loginPanel.login();
+        }
     }
 
     /**

@@ -9,13 +9,10 @@ package farmacia.view.classes;
  * @author kaua.ccalixto
  */
 public class TiposDeProdutos {
+    public static final String g = "g";
+    public static final String mg = "mg";
     public static final String ml = "ml";    
-    public static final String gramas = "grama(s)";
-    public static final String comprimidos = "comprimido(s)";
-    public static final String capsulas = "capsula(s)";
-    public static final String caixas = "caixa(s)";
-    public static final String litros = "litro(s)";
-    public static final String kilos = "kg";
-    
-    // TODO adicionar mais tipos aqui
+    public static final String comprimidos = "Comprimido";
+    public static final String mgml = "mg,ml";
+    public static final String mgcomprimidos = "mg,Comprimido";
 }
