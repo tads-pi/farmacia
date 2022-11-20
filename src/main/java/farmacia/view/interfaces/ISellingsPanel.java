@@ -23,7 +23,7 @@ public interface ISellingsPanel {
 
     public static final int LAST_STEP = 9;
 
-    public Cliente currentUser = new Cliente();
+    public Cliente clienteAtual = new Cliente();
     public ClienteDAO clienteDAO = new ClienteDAO();
 
     /**

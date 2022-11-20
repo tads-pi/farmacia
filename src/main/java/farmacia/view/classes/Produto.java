@@ -12,9 +12,9 @@ import java.util.Date;
  */
 public class Produto extends TiposDeProdutos {
     private int id = 0;
-    private String nome;
-    private double valorUnitario;
-    private String tipoDeProduto;
+    private String nome = "";
+    private double valorUnitario = 0.0;
+    private String tipoDeProduto = "";
     private Date criadoEm;
     private Date atualizadoEm;
     private boolean ativo;
@@ -93,5 +93,16 @@ public class Produto extends TiposDeProdutos {
 
     public void setAtualizadoEm(Date atualizadoEm) {
         this.atualizadoEm = atualizadoEm;
+    }
+
+    /**
+     * Valida se o objeto está vazio ou não
+     * @return boolean
+     */
+    public boolean isEmpty() {
+        return (this.id == 0 &&
+                this.nome.isEmpty() &&
+                this.valorUnitario == 0.0 &&
+                this.tipoDeProduto.isEmpty());
     }
 }

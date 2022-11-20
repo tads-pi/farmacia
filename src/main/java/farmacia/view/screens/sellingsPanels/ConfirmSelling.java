@@ -115,7 +115,6 @@ public class ConfirmSelling extends javax.swing.JPanel implements ISellingsPanel
         }
     }//GEN-LAST:event_confirmButtonKeyPressed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private farmacia.view.libs.buttons.ConfirmButton confirmButton;
     private javax.swing.JLabel confirmLabel;

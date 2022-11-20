@@ -27,8 +27,11 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
         initComponents();
     }
 
+    /**
+     * Preeche campos com dados que temos no momento
+     */
     public void LoadUserInfo() {
-        this.cpfInput.setText(currentUser.getCpf());
+        this.cpfInput.setText(clienteAtual.getCpf());
     }
 
     /**
@@ -428,16 +431,16 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
                     this.maritalComboBox.getSelectedItem().toString(),
                     this.birthDateInput.getText());
 
-            currentUser.set(newCliente);
+            clienteAtual.set(newCliente);
 
-            if (!currentUser.isEmpty()) {
+            if (!clienteAtual.isEmpty()) {
                 // Notify everybody that may be interested.
                 for (ISellingsPanel ll : sellingsisteners) {
                     ll.confirmPressed(STEP_SHOW_CPF);
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Ocorreu um erro, tente novamente.");
-                System.out.println("currentUser may be empty at RegisterCPFPanel.java");
+                System.out.println("clienteAtual may be empty at RegisterCPFPanel.java");
             }
         }
 

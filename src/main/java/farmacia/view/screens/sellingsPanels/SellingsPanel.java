@@ -36,19 +36,26 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel,
         loadTable(loadInventario());
     }
 
+    /**
+     * @return ArrayList<Inventario> com todos os inventarios
+     */
     public ArrayList<Inventario> loadInventario() {
         ArrayList<Inventario> response = inventarioDAO.findAll();
         System.out.println("Loaded " + response.size() + " produtos");
         return response;
     }
 
+    /**
+     * Carrega tbProdutos com dados informados
+     * @param inventario
+     */
     public void loadTable(ArrayList<Inventario> inventario) {
         System.out.println("filling table inventario-sellings with " + inventario.size() + " items");
         DefaultTableModel model = (DefaultTableModel) tbProdutos.getModel();
         model.getDataVector().removeAllElements();
 
         for (Inventario i : inventario) {
-            model.addRow(new Object[] { i.getId(), i.getProduto().getNome() });
+            model.addRow(new Object[] { i.getProduto().getId(), i.getProduto().getNome() });
         }
         System.out.println("filled table inventario-sellings successfully");
     }
@@ -65,6 +72,15 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel,
         sellingsisteners.add(toAdd);
     }
 
+    /**
+     * Adiciona outro JInternalFrame como listener da ação de recarregar tabela
+     * 
+     * {@link farmacia.view.screens.ItemsInternalFrame#reloadTable}
+     * {@link farmacia.view.screens.ReportsInternalFrame#reloadTable}
+     * @param IItemsPanel
+     * @return void
+     * 
+     */
     public void addReloadListener(IItemsPanel toAdd) {
         reloadListeners.add(toAdd);
     }
@@ -299,6 +315,9 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel,
         loadTable(searchResult);
     }// GEN-LAST:event_searchButtonActionPerformed
 
+    /**
+     * @return id_produto do produto selecionada na tbProdutos
+     */
     private int getSelectedProdutoID() {
         int index = tbProdutos.getSelectedRow();
         DefaultTableModel md = (DefaultTableModel) tbProdutos.getModel();
@@ -311,8 +330,13 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel,
         }
     }
 
+    /**
+     * Adiciona produto na cartTable
+     * @param produto
+     * @param amount quantidade
+     */
     public void addProdutoToCart(Produto produto, int amount) {
-        if (amount <= 0)
+        if (amount <= 0 || produto.isEmpty())
             return;
         DefaultTableModel model = (DefaultTableModel) cartTable.getModel();
 
@@ -323,6 +347,10 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel,
         System.out.println("added " + produto.getNome() + " to cart successfully");
     }
 
+    /**
+     * Atualiza label de total
+     * @return total da soma dos produtos da tabela
+     */
     public double updateTotalCount() {
         DefaultTableModel model = (DefaultTableModel) cartTable.getModel();
         double total = 0.0;
@@ -336,6 +364,9 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel,
         return total;
     }
 
+    /**
+     * @return ArrayList de itemVenda dos produtos 
+     */
     public ArrayList<ItemVenda> getCart() {
         ArrayList<ItemVenda> response = new ArrayList<ItemVenda>();
         DefaultTableModel model = (DefaultTableModel) cartTable.getModel();
@@ -369,7 +400,7 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel,
         if (confirm == YES) {
             ArrayList<ItemVenda> cart = getCart();
 
-            Venda venda = new Venda(currentUser, cart, updateTotalCount());
+            Venda venda = new Venda(clienteAtual, cart, updateTotalCount());
             int id_venda = vendasDao.execute(venda, SellingsHistoryDAO.INSERT);
 
             for (ItemVenda itemVenda : cart) {
@@ -400,6 +431,9 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel,
         }
     }// GEN-LAST:event_cancelButtonActionPerformed
 
+    /**
+     * Limpa tabelas
+     */
     public void clearTable() {
         DefaultTableModel model = (DefaultTableModel) cartTable.getModel();
         model.getDataVector().removeAllElements();

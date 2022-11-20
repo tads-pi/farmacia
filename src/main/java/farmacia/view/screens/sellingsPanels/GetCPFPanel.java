@@ -171,15 +171,15 @@ public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, I
             return;
         }
 
-        currentUser.set(clienteDAO.findByCpf(this.cpfInput.getText().toString()));
+        clienteAtual.set(clienteDAO.findByCpf(this.cpfInput.getText().toString()));
 
-        if (!currentUser.isEmpty()) {
+        if (!clienteAtual.isEmpty()) {
             // Notify everybody that may be interested.
             for (ISellingsPanel ll : sellingsisteners) {
                 ll.confirmPressed(STEP_SHOW_CPF);
             }
         } else {
-            currentUser.setCpf(this.cpfInput.getText());
+            clienteAtual.setCpf(this.cpfInput.getText());
 
             for (ISellingsPanel ll : sellingsisteners) {
                 ll.confirmPressed(STEP_CPF_REGISTER);

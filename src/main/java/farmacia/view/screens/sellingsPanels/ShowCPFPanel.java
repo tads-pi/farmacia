@@ -35,15 +35,18 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
         sellingsisteners.add(toAdd);
     }
 
+    /**
+     * Preenche os campos com base nos dados do clienteAtual
+     */
     public void LoadUserInfo() {
-        this.nameField.setText(currentUser.getNome());
-        this.emailField.setText(currentUser.getEmail());
-        this.cpfField.setText(currentUser.getCpf());
-        this.birthDateField.setText(currentUser.getDataDeNascimento());
-        this.contactNumberField.setText(currentUser.getNumeroDeTelefone());
-        this.genderField.setText(currentUser.getGenero());
-        this.addressField.setText(currentUser.getEndereco());
-        this.maritalField.setText(currentUser.getEstadoCivil());
+        this.nameField.setText(clienteAtual.getNome());
+        this.emailField.setText(clienteAtual.getEmail());
+        this.cpfField.setText(clienteAtual.getCpf());
+        this.birthDateField.setText(clienteAtual.getDataDeNascimento());
+        this.contactNumberField.setText(clienteAtual.getNumeroDeTelefone());
+        this.genderField.setText(clienteAtual.getGenero());
+        this.addressField.setText(clienteAtual.getEndereco());
+        this.maritalField.setText(clienteAtual.getEstadoCivil());
     }
 
     /**
@@ -271,13 +274,13 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
     }//GEN-LAST:event_formKeyPressed
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_confirmButtonActionPerformed
-        boolean clienteNotExists = clienteDAO.findByCpf(currentUser.getCpf()).isEmpty();
+        boolean clienteNotExists = clienteDAO.findByCpf(clienteAtual.getCpf()).isEmpty();
         if(clienteNotExists) {
             System.out.println("[ShowCPFPanel] inserting new user");
-            clienteDAO.execute(currentUser, clienteDAO.INSERT);
+            clienteDAO.execute(clienteAtual, clienteDAO.INSERT);
         }
         
-        currentUser.set(clienteDAO.findByCpf(currentUser.getCpf()));
+        clienteAtual.set(clienteDAO.findByCpf(clienteAtual.getCpf()));
 
         for (ISellingsPanel ll : sellingsisteners) {
             ll.confirmPressed(STEP_SELLINGS);
