@@ -37,15 +37,8 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel,
     }
 
     public ArrayList<Inventario> loadInventario() {
-        ArrayList<Inventario> response = new ArrayList<Inventario>();
-
-        response = inventarioDAO.findAll();
-        for (int i = 0; i < response.size(); i++) {
-            Produto produto = produtosDAO.findById(response.get(i).getProduto().getId());
-            response.get(i).setProduto(produto);
-        }
+        ArrayList<Inventario> response = inventarioDAO.findAll();
         System.out.println("Loaded " + response.size() + " produtos");
-
         return response;
     }
 

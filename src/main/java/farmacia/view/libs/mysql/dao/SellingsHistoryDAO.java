@@ -38,7 +38,7 @@ public class SellingsHistoryDAO implements IDao {
      */
     public ArrayList<Venda> findAll() {
         ArrayList<Venda> response = new ArrayList<>();
-        sql = "SELECT * FROM " + Venda.TABLE_NAME + " WHERE ativo;";
+        sql = "SELECT * FROM " + Venda.TABLE_NAME + " v INNER JOIN " + ClienteDAO.TABLE_NAME + " c USING(id_cliente) WHERE v.ativo AND c.ativo;";
         try {
             if (bd.getConnection()) {
                 st = bd.c.prepareStatement(sql);
@@ -63,7 +63,8 @@ public class SellingsHistoryDAO implements IDao {
      */
     public ArrayList<Venda> findByDate(String startDate, String endDate) {
         ArrayList<Venda> response = new ArrayList<>();
-        sql = "SELECT * FROM " + Venda.TABLE_NAME + " WHERE ativo AND criado_em >= STR_TO_DATE(?, \"%d/%m/%Y\") AND criado_em <= STR_TO_DATE(?, \"%d/%m/%Y\");";
+        sql = "SELECT * FROM " + Venda.TABLE_NAME
+                + " v INNER JOIN " + ClienteDAO.TABLE_NAME + " c WHERE v.ativo AND c.ativo AND v.criado_em >= STR_TO_DATE(?, \"%d/%m/%Y\") AND v.criado_em <= STR_TO_DATE(?, \"%d/%m/%Y\");";
         try {
             if (bd.getConnection()) {
                 st = bd.c.prepareStatement(sql);
@@ -91,7 +92,7 @@ public class SellingsHistoryDAO implements IDao {
      */
     public ArrayList<Venda> findById(int id) {
         ArrayList<Venda> response = new ArrayList<>();
-        sql = "SELECT * FROM " + Venda.TABLE_NAME + " WHERE ativo AND id_venda = ?;";
+        sql = "SELECT * FROM " + Venda.TABLE_NAME + " v INNER JOIN " + ClienteDAO.TABLE_NAME + " c WHERE v.ativo AND c.ativo AND v.id_venda = ?;";
         try {
             if (bd.getConnection()) {
                 st = bd.c.prepareStatement(sql);
