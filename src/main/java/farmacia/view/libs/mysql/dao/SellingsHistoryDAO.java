@@ -55,7 +55,7 @@ public class SellingsHistoryDAO implements IDao {
 
     public ArrayList<Venda> findByDate(String startDate, String endDate) {
         ArrayList<Venda> response = new ArrayList<>();
-        sql = "SELECT * FROM " + Venda.TABLE_NAME + " WHERE ativo AND criado_em > STR_TO_DATE(?, \"%d/%m/%Y\") AND criado_em < STR_TO_DATE(?, \"%d/%m/%Y\");";
+        sql = "SELECT * FROM " + Venda.TABLE_NAME + " WHERE ativo AND criado_em >= STR_TO_DATE(?, \"%d/%m/%Y\") AND criado_em <= STR_TO_DATE(?, \"%d/%m/%Y\");";
         try {
             if (bd.getConnection()) {
                 st = bd.c.prepareStatement(sql);

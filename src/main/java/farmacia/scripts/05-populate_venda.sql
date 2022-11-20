@@ -1,21 +1,39 @@
-INSERT INTO
-    tb_item_venda(id_cliente, total)
-VALUES
-    (1, 150.90);
+INSERT INTO `db_farmacia`.`tb_venda` (`id_venda`,`id_cliente`,`total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (1,1,1147.66,'2022-11-19 22:44:38','2022-11-19 22:44:38',1);
+INSERT INTO `db_farmacia`.`tb_venda` (`id_venda`,`id_cliente`,`total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (2,2,279.16,'2022-11-19 22:45:47','2022-11-19 22:45:47',1);
+INSERT INTO `db_farmacia`.`tb_venda` (`id_venda`,`id_cliente`,`total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (3,2,2537.66,'2022-11-20 00:58:02','2022-11-20 00:58:02',1);
+INSERT INTO `db_farmacia`.`tb_venda` (`id_venda`,`id_cliente`,`total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (4,1,1509.00,'2022-11-20 01:09:03','2022-11-20 01:09:03',1);
+INSERT INTO `db_farmacia`.`tb_venda` (`id_venda`,`id_cliente`,`total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (5,3,1368.63,'2022-11-20 01:18:48','2022-11-20 01:18:48',1);
+INSERT INTO `db_farmacia`.`tb_venda` (`id_venda`,`id_cliente`,`total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (6,1,463.71,'2022-11-20 01:24:20','2022-11-20 01:24:20',1);
 
-INSERT INTO
-    tb_item_venda(
-        id_produto,
-        id_venda,
-        quantidade,
-        valor_unitario,
-        valor_total
-    )
-VALUES
-    (
-        1,
-        1,
-        1,
-        150.90,
-        150.90
-    );
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (3  ,   6   ,   1   ,2.00,241.49,482.98,'2022-11-19 22:44:38','2022-11-19 22:44:38',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (4  ,   14  ,   1   ,3.00,55.95,167.85,'2022-11-19 22:44:38','2022-11-19 22:44:38',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (5  ,   20  ,   1   ,2.00,13.99,27.98,'2022-11-19 22:44:38','2022-11-19 22:44:38',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (6  ,   26  ,   1   ,1.00,47.87,47.87,'2022-11-19 22:44:38','2022-11-19 22:44:38',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (7  ,   33  ,   1   ,1.00,157.99,157.99,'2022-11-19 22:44:38','2022-11-19 22:44:38',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (8  ,   46  ,   1   ,1.00,262.99,262.99,'2022-11-19 22:44:38','2022-11-19 22:44:38',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (9  ,   3   ,   2   ,2.00,34.99,69.98,'2022-11-19 22:45:47','2022-11-19 22:45:47',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (10 ,   7   ,   2   ,1.00,59.90,59.90,'2022-11-19 22:45:47','2022-11-19 22:45:47',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (11 ,   13  ,   2   ,1.00,58.50,58.50,'2022-11-19 22:45:47','2022-11-19 22:45:47',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (12 ,   31  ,   2   ,1.00,79.99,79.99,'2022-11-19 22:45:47','2022-11-19 22:45:47',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (13 ,   47  ,   2   ,1.00,10.79,10.79,'2022-11-19 22:45:47','2022-11-19 22:45:47',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (14 ,   46  ,   3   ,1.00,262.99,262.99,'2022-11-20 00:58:03','2022-11-20 00:58:03',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (15 ,   32  ,   3   ,3.00,118.69,356.07,'2022-11-20 00:58:03','2022-11-20 00:58:03',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (16 ,   36  ,   3   ,3.00,6.99,20.97,'2022-11-20 00:58:03','2022-11-20 00:58:03',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (17 ,   15  ,   3   ,3.00,89.89,269.67,'2022-11-20 00:58:03','2022-11-20 00:58:03',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (18 ,   4   ,   3   ,3.00,106.90,320.70,'2022-11-20 00:58:03','2022-11-20 00:58:03',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (19 ,   1   ,   3   ,3.00,150.90,452.70,'2022-11-20 00:58:03','2022-11-20 00:58:03',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (20 ,   2   ,   3   ,3.00,36.99,110.97,'2022-11-20 00:58:03','2022-11-20 00:58:03',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (21 ,   8   ,   3   ,2.00,16.39,32.78,'2022-11-20 00:58:04','2022-11-20 00:58:04',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (22 ,   18  ,   3   ,2.00,161.90,323.80,'2022-11-20 00:58:04','2022-11-20 00:58:04',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (23 ,   24  ,   3   ,1.00,59.79,59.79,'2022-11-20 00:58:04','2022-11-20 00:58:04',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (24 ,   28  ,   3   ,1.00,7.69,7.69,'2022-11-20 00:58:04','2022-11-20 00:58:04',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (25 ,   32  ,   3   ,1.00,118.69,118.69,'2022-11-20 00:58:04','2022-11-20 00:58:04',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (26 ,   36  ,   3   ,1.00,6.99,6.99,'2022-11-20 00:58:04','2022-11-20 00:58:04',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (27 ,   40  ,   3   ,1.00,18.90,18.90,'2022-11-20 00:58:04','2022-11-20 00:58:04',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (28 ,   43  ,   3   ,1.00,113.90,113.90,'2022-11-20 00:58:04','2022-11-20 00:58:04',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (29 ,   45  ,   3   ,1.00,17.89,17.89,'2022-11-20 00:58:04','2022-11-20 00:58:04',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (30 ,   47  ,   3   ,1.00,10.79,10.79,'2022-11-20 00:58:04','2022-11-20 00:58:04',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (31 ,   47  ,   3   ,3.00,10.79,32.37,'2022-11-20 00:58:04','2022-11-20 00:58:04',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (32 ,   1   ,   4   ,10.00,150.90,1509.00,'2022-11-20 01:09:03','2022-11-20 01:09:03',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (33 ,   2   ,   5   ,37.00,36.99,1368.63,'2022-11-20 01:18:48','2022-11-20 01:18:48',1);
+INSERT INTO `db_farmacia`.`tb_item_venda` (`id_item_venda`,`id_produto`,`id_venda`,`quantidade`,`valor_unitario`,`valor_total`,`criado_em`,`atualizado_em`,`ativo`) VALUES (34 ,   50  ,   6   ,29.00,9.99,463.71,'2022-11-20 01:24:20','2022-11-20 01:24:20',1);

@@ -27,7 +27,7 @@ public class InventarioDAO implements IDao {
 
     public ArrayList<Inventario> findAll() {
         ArrayList<Inventario> response = new ArrayList<>();
-        sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo;";
+        sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo AND quantidade > 0;";
         try {
             if (bd.getConnection()) {
                 st = bd.c.prepareStatement(sql);
@@ -61,7 +61,7 @@ public class InventarioDAO implements IDao {
     public ArrayList<Inventario> search(String search) {
         ArrayList<Inventario> response = new ArrayList<>();
         sql = "SELECT * FROM " + TABLE_NAME + " i INNER JOIN " + ProdutosDAO.TABLE_NAME
-                + " p USING(id_produto) WHERE i.ativo AND p.ativo AND p.nome LIKE ?;";
+                + " p USING(id_produto) WHERE i.ativo AND p.ativo AND i.quantidade > 0 AND p.nome LIKE ?;";
         System.err.println(sql);
         try {
             if (bd.getConnection()) {
@@ -103,7 +103,7 @@ public class InventarioDAO implements IDao {
 
     public Inventario findById(int id) {
         Inventario inventario = new Inventario();
-        sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo AND id_inventario = ?;";
+        sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo AND quantidade > 0 AND id_inventario = ?;";
         try {
             if (bd.getConnection()) {
                 st = bd.c.prepareStatement(sql);
@@ -137,7 +137,7 @@ public class InventarioDAO implements IDao {
 
     public Inventario findByIdProduto(int idProduto) {
         Inventario inventario = new Inventario();
-        sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo AND id_produto = ?;";
+        sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo AND quantidade > 0 AND id_produto = ?;";
         try {
             if (bd.getConnection()) {
                 st = bd.c.prepareStatement(sql);
@@ -166,6 +166,26 @@ public class InventarioDAO implements IDao {
             System.out.println("error: " + erro.getMessage());
             bd.close();
             return inventario;
+        }
+    }
+
+    public void soldItem(int idProduto, double amount) {
+        try {
+            if (bd.getConnection()) {
+                sql = "UPDATE " + TABLE_NAME + " set quantidade = (quantidade - ?) where id_produto = ?";
+                st = bd.c.prepareStatement(sql);
+
+                st.setDouble(1, amount);
+                st.setDouble(2, idProduto);
+
+                if (st.executeUpdate() == 0) {
+                    System.out.println("error: operation failed");
+                }
+                System.out.println("sql done.");
+            }
+        } catch (SQLException e) {
+            System.out.println("error: " + e.getMessage());
+            bd.close();
         }
     }
 

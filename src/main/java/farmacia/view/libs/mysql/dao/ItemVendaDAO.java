@@ -113,13 +113,13 @@ public class ItemVendaDAO implements IDao {
                 rs = st.executeQuery();
                 while (rs.next()) {
                     Produto produto = new Produto(
-                        rs.getInt("id_produto"),
-                        rs.getString("nome"),
-                        rs.getDouble("valor_unitario"),
-                        rs.getString("tipo_de_produto"),
-                        rs.getDate("p.criado_em"),
-                        rs.getDate("p.atualizado_em"),
-                        rs.getBoolean("p.ativo"));
+                            rs.getInt("id_produto"),
+                            rs.getString("nome"),
+                            rs.getDouble("valor_unitario"),
+                            rs.getString("tipo_de_produto"),
+                            rs.getDate("p.criado_em"),
+                            rs.getDate("p.atualizado_em"),
+                            rs.getBoolean("p.ativo"));
 
                     ItemVenda c = new ItemVenda(
                             rs.getInt("id_item_venda"),

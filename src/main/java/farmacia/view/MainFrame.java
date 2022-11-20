@@ -27,12 +27,12 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
      * Creates new form MainFrame
      */
     public MainFrame() {
-       initComponents();
-       setLocationRelativeTo(null);
-       StartSellingsFrame();
-       StartItemsFrame();
-       StartHistoryFrame();
-       LoginPanel();
+        initComponents();
+        setLocationRelativeTo(null);
+        StartSellingsFrame();
+        StartItemsFrame();
+        StartHistoryFrame();
+        LoginPanel();
     }
 
     @Override
@@ -46,11 +46,22 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
     }
 
     private void LoggedInAction() {
+        // set visible
         loginPanel.setVisible(false);
         desktopFrame.setVisible(true);
         menuBar.setVisible(true);
         sellingsInternalFrame.setVisible(true);
-        //set visible
+
+        // Reload Listeners trigger whenever there's an action that needs to reload all
+        // tables
+        itemsInternalFrame.addReloadListener(sellingsInternalFrame.getSellingsPanel());
+        itemsInternalFrame.addReloadListener(reportsInternalFrame);
+
+        sellingsInternalFrame.getSellingsPanel().addReloadListener(itemsInternalFrame);
+        sellingsInternalFrame.getSellingsPanel().addReloadListener(reportsInternalFrame);
+
+        reportsInternalFrame.addReloadListener(itemsInternalFrame);
+        reportsInternalFrame.addReloadListener(sellingsInternalFrame.getSellingsPanel());
     }
 
     private void LoggedOutAction() {
@@ -66,8 +77,6 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
             sellingsInternalFrame.addListener(this);
             sellingsInternalFrame.setVisible(false);
             sellingsInternalFrame.setMaximum(true);
-            
-            itemsInternalFrame.addReloadListener(sellingsInternalFrame.getSellingsPanel());
         } catch (Exception e) {
             System.out.println("error: " + e);
         }
@@ -111,7 +120,8 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         desktopFrame = new javax.swing.JDesktopPane();
@@ -144,6 +154,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sellingsMenuItemMouseClicked(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 sellingsMenuItemMouseExited(evt);
             }
@@ -155,6 +166,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 itemsMenuItemMouseClicked(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 itemsMenuItemMouseExited(evt);
             }
@@ -174,39 +186,39 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(desktopFrame, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(desktopFrame, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sellingsMenuItemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sellingsMenuItemMouseExited
+    private void sellingsMenuItemMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_sellingsMenuItemMouseExited
         sellingsMenuItem.setSelected(false);
-    }//GEN-LAST:event_sellingsMenuItemMouseExited
+    }// GEN-LAST:event_sellingsMenuItemMouseExited
 
-    private void itemsMenuItemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemsMenuItemMouseExited
+    private void itemsMenuItemMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_itemsMenuItemMouseExited
         itemsMenuItem.setSelected(false);
-    }//GEN-LAST:event_itemsMenuItemMouseExited
+    }// GEN-LAST:event_itemsMenuItemMouseExited
 
-    private void sellingsMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sellingsMenuItemMouseClicked
+    private void sellingsMenuItemMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_sellingsMenuItemMouseClicked
         clearScreen();
         sellingsInternalFrame.setVisible(true);
-    }//GEN-LAST:event_sellingsMenuItemMouseClicked
+    }// GEN-LAST:event_sellingsMenuItemMouseClicked
 
-    private void itemsMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemsMenuItemMouseClicked
+    private void itemsMenuItemMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_itemsMenuItemMouseClicked
         clearScreen();
         itemsInternalFrame.setVisible(true);
-    }//GEN-LAST:event_itemsMenuItemMouseClicked
+    }// GEN-LAST:event_itemsMenuItemMouseClicked
 
-    private void historyMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historyMenuItemMouseClicked
+    private void historyMenuItemMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_historyMenuItemMouseClicked
         clearScreen();
         reportsInternalFrame.setVisible(true);
-    }//GEN-LAST:event_historyMenuItemMouseClicked
+    }// GEN-LAST:event_historyMenuItemMouseClicked
 
     private void clearScreen() {
         reportsInternalFrame.setVisible(false);
