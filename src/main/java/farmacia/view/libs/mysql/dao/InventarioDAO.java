@@ -81,7 +81,7 @@ public class InventarioDAO implements IDao {
     public ArrayList<Inventario> search(String search) {
         ArrayList<Inventario> response = new ArrayList<>();
         sql = "SELECT * FROM " + TABLE_NAME + " i INNER JOIN " + ProdutosDAO.TABLE_NAME
-                + " p USING(id_produto) WHERE i.ativo AND p.ativo AND i.quantidade > 0 AND p.nome LIKE ?;";
+                + " p USING(id_produto) WHERE i.ativo AND p.ativo AND i.quantidade > 0 AND p.nome LIKE ? ORDER BY p.nome;";
         System.err.println(sql);
         try {
             if (bd.getConnection()) {
@@ -140,44 +140,6 @@ public class InventarioDAO implements IDao {
                     produto.setId(rs.getInt("id_produto"));
 
                     inventario = new Inventario(
-                            rs.getInt("id_inventario"),
-                            produto,
-                            rs.getDouble("quantidade"),
-                            rs.getDate("criado_em"),
-                            rs.getDate("atualizado_em"),
-                            rs.getBoolean("ativo"));
-                }
-                ;
-
-                return inventario;
-            }
-            return inventario;
-        } catch (SQLException erro) {
-            System.out.println("error: " + erro.getMessage());
-            bd.close();
-            return inventario;
-        }
-    }
-
-    /**
-     * @param idProduto
-     * @return inventario pelo produto.id_produto
-     */
-    public Inventario findByIdProduto(int idProduto) {
-        Inventario inventario = new Inventario();
-        sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo AND quantidade > 0 AND id_produto = ?;";
-        try {
-            if (bd.getConnection()) {
-                st = bd.c.prepareStatement(sql);
-
-                st.setInt(1, idProduto);
-
-                rs = st.executeQuery();
-                while (rs.next()) {
-                    Produto produto = new Produto();
-                    produto.setId(rs.getInt("id_produto"));
-
-                    Inventario i = new Inventario(
                             rs.getInt("id_inventario"),
                             produto,
                             rs.getDouble("quantidade"),
