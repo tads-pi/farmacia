@@ -6,7 +6,6 @@
 package farmacia.view.screens.sellingsPanels;
 
 import farmacia.view.interfaces.ISellingsPanel;
-import farmacia.view.libs.validators.Validators;
 import java.util.ArrayList;
 
 /**
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
 
     private ArrayList<ISellingsPanel> sellingsisteners = new ArrayList<ISellingsPanel>();
-    private Validators v = new Validators();
 
     /**
      * Creates new form GetCPFPanel
@@ -25,6 +23,14 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
         initComponents();
     }
 
+    /**
+     * Adiciona outro JInternalFrame como listener das ações de CONTINUAR e CANCELAR
+     * 
+     * {@link farmacia.view.screens.SellingsInternalFrame#confirmPressed(int)}
+     * {@link farmacia.view.screens.SellingsInternalFrame#cancelPressed(int)}
+     * 
+     * @param toAdd
+     */
     public void addSellingsListener(ISellingsPanel toAdd) {
         sellingsisteners.add(toAdd);
     }

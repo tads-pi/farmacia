@@ -18,13 +18,28 @@ import java.text.SimpleDateFormat;
 /**
  *
  * @author kcalixto
+ * @see ISellingsPanel
+ * @see IItemsPanel
+ * @see IReportsPanel
+ *      Tela de Histórico de Vendas
  */
 public class ReportsInternalFrame extends javax.swing.JInternalFrame implements ISellingsPanel, IItemsPanel, IReportsPanel {
 
     private ArrayList<IItemsPanel> reloadListeners = new ArrayList<IItemsPanel>();
+
+    /**
+     * Adiciona outro JInternalFrame como listener da ação de recarregar tabela
+     * 
+     * {@link farmacia.view.screens.ItemsInternalFrame#reloadTable}
+     * {@link farmacia.view.screens.sellingsPanels.SellingsPanel#reloadTable}
+     * @param IItemsPanel
+     * @return void
+     * 
+     */
     public void addReloadListener(IItemsPanel toAdd) {
         reloadListeners.add(toAdd);
     }
+
     /**
      * Creates new form ReportsInternalFrame
      */
@@ -34,6 +49,10 @@ public class ReportsInternalFrame extends javax.swing.JInternalFrame implements 
         loadTabelaVendas(getVendas());
     }
 
+    /**
+     * Define valor do startDateInput para ontem, e do endDateInput para amanhã
+     * | Adiciona mouseMotionListener para tabelaItemVendas para mostrar toolTip quando o mouse passar por cima
+     */
     public void startComponents() {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         int oneDay = (60 * 1000 * 60 * 24);
@@ -86,6 +105,10 @@ public class ReportsInternalFrame extends javax.swing.JInternalFrame implements 
         });
     }
 
+    /**
+     * Carrega tabelaVendas com dados informados
+     * @param vendas
+     */
     public void loadTabelaVendas(ArrayList<Venda> vendas) {
         System.out.println("filling table vendas with " + vendas.size() + " items");
         DefaultTableModel model = (DefaultTableModel) tabelaVendas.getModel();
@@ -102,6 +125,10 @@ public class ReportsInternalFrame extends javax.swing.JInternalFrame implements 
         System.out.println("filled table vendas successfully");
     }
 
+    /**
+     * Carrega tabelaItemVendas com dados informados
+     * @param cart
+     */
     public void loadTabelaItemVendas(ArrayList<ItemVenda> cart) {
         System.out.println("filling table item_vendas with " + cart.size() + " items");
         DefaultTableModel model = (DefaultTableModel) tabelaItemVendas.getModel();
@@ -116,6 +143,9 @@ public class ReportsInternalFrame extends javax.swing.JInternalFrame implements 
         System.out.println("filled table item_vendas successfully");
     }
 
+    /**
+     * Limpa tabelas
+     */
     public void clearTables() {
         DefaultTableModel model;
 
@@ -128,22 +158,28 @@ public class ReportsInternalFrame extends javax.swing.JInternalFrame implements 
         model.setRowCount(0);
     }
 
+    /**
+     * @return ArrayList<Venda> com todas as vendas
+     */
     public ArrayList<Venda> getVendas() {
         ArrayList<Venda> response = vendasDao.findAll();
-        for (int i = 0; i < response.size(); i++) {
-            response.get(i).setCliente(clienteDAO.findById(response.get(i).getCliente().getId()));
-        }
         return response;
     }
 
+    /**
+     * @param startDate
+     * @param endDate
+     * @return ArrayList<Venda> com todas as vendas em determinado período
+     */
     public ArrayList<Venda> getVendasByDate(String startDate, String endDate) {
         ArrayList<Venda> response = vendasDao.findByDate(startDate, endDate);
-        for (int i = 0; i < response.size(); i++) {
-            response.get(i).setCliente(clienteDAO.findById(response.get(i).getCliente().getId()));
-        }
         return response;
     }
 
+    /**
+     * @param selectedVendaID
+     * @return ArrayList<ItemVenda> com todos os items da vendas
+     */
     public ArrayList<ItemVenda> getItemVendas(int selectedVendaID) {
         ArrayList<ItemVenda> response = itemVendaDAO.loadReport(selectedVendaID);
         return response;
@@ -410,6 +446,9 @@ public class ReportsInternalFrame extends javax.swing.JInternalFrame implements 
         loadTabelaItemVendas(getItemVendas(selectedVendaID));
     }// GEN-LAST:event_searchClientButtonActionPerformed
 
+    /**
+     * @return id_venda da venda selecionada na tabelaVendas
+     */
     public int getSelectedVendaId() {
         DefaultTableModel model = (DefaultTableModel) tabelaVendas.getModel();
         int index = tabelaVendas.getSelectedRow();
@@ -450,6 +489,12 @@ public class ReportsInternalFrame extends javax.swing.JInternalFrame implements 
     }
 
     @Override
+    /**
+     * Executa processos necessários para atualizar as tabelas
+     * 
+     * @param void
+     * @return void
+     */
     public void reloadTable() {
         clearTables();
         loadTabelaVendas(getVendas());

@@ -14,7 +14,6 @@ import farmacia.view.interfaces.IReportsPanel;
 import farmacia.view.interfaces.ISellingsPanel;
 import farmacia.view.libs.mysql.dao.ItemVendaDAO;
 import farmacia.view.libs.mysql.dao.SellingsHistoryDAO;
-import farmacia.view.libs.validators.Validators;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -28,7 +27,6 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel,
 
     private ArrayList<ISellingsPanel> sellingsisteners = new ArrayList<ISellingsPanel>();
     private ArrayList<IItemsPanel> reloadListeners = new ArrayList<IItemsPanel>();
-    private Validators v = new Validators();
 
     /**
      * Creates new form GetCPFPanel
@@ -62,6 +60,14 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel,
         System.out.println("filled table inventario-sellings successfully");
     }
 
+    /**
+     * Adiciona outro JInternalFrame como listener das ações de CONTINUAR e CANCELAR
+     * 
+     * {@link farmacia.view.screens.SellingsInternalFrame#confirmPressed(int)}
+     * {@link farmacia.view.screens.SellingsInternalFrame#cancelPressed(int)}
+     * 
+     * @param toAdd
+     */
     public void addSellingsListener(ISellingsPanel toAdd) {
         sellingsisteners.add(toAdd);
     }
@@ -435,6 +441,12 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel,
     }
 
     @Override
+    /**
+     * Executa processos necessários para atualizar as tabelas
+     * 
+     * @param void
+     * @return void
+     */
     public void reloadTable() {
         loadTable(loadInventario());
     }

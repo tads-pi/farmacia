@@ -9,7 +9,20 @@ package farmacia.view.interfaces;
  *
  * @author kcalixto
  */
-public interface ILoginListener{
+public interface ILoginListener {
+    /**
+     * Executa processos de login efetuado
+     * 
+     * @param void
+     * @return void
+     */
     void login();
+
+    /**
+     * Executa processos de logout efetuado
+     * 
+     * @param void
+     * @return void
+     */
     void logout();
 }

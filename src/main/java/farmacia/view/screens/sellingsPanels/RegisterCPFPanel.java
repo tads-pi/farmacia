@@ -7,7 +7,6 @@ package farmacia.view.screens.sellingsPanels;
 
 import farmacia.view.classes.Cliente;
 import farmacia.view.interfaces.ISellingsPanel;
-import farmacia.view.libs.mysql.dao.ClienteDAO;
 import farmacia.view.libs.validators.Validators;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -32,6 +31,14 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
         this.cpfInput.setText(currentUser.getCpf());
     }
 
+    /**
+     * Adiciona outro JInternalFrame como listener das ações de CONTINUAR e CANCELAR
+     * 
+     * {@link farmacia.view.screens.SellingsInternalFrame#confirmPressed(int)}
+     * {@link farmacia.view.screens.SellingsInternalFrame#cancelPressed(int)}
+     * 
+     * @param toAdd
+     */
     public void addSellingsListener(ISellingsPanel toAdd) {
         sellingsisteners.add(toAdd);
     }

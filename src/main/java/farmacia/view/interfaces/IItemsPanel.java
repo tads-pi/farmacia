@@ -16,5 +16,11 @@ public interface IItemsPanel {
     public ProdutosDAO produtosDAO = new ProdutosDAO();
     public InventarioDAO inventarioDAO = new InventarioDAO();
 
+    /**
+     * Executa processos necessários para atualizar as tabelas
+     * 
+     * @param void
+     * @return void
+     */
     void reloadTable();
 }

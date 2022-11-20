@@ -7,7 +7,9 @@ package farmacia.view.interfaces;
 
 import farmacia.view.classes.Cliente;
 import farmacia.view.libs.mysql.dao.ClienteDAO;
+
 /**
+ * Interface do fluxo de venda contendo o número dos passos e DAO de cliente {@link farmacia.view.libs.mysql.dao.ClienteDAO}
  *
  * @author kcalixto
  */
@@ -18,12 +20,25 @@ public interface ISellingsPanel {
     public static final int STEP_SELLINGS = 3;
     public static final int STEP_CONFIRM_SELLING = 4;
     public static final int STEP_CANCEL_SELLING = 5;
-    
+
     public static final int LAST_STEP = 9;
-    
+
     public Cliente currentUser = new Cliente();
     public ClienteDAO clienteDAO = new ClienteDAO();
 
+    /**
+     * Executa processos de ir para próximo passo
+     * 
+     * @param void
+     * @return void
+     */
     void confirmPressed(int newStep);
+
+    /**
+     * Executa processos de ir para passo anterior
+     * 
+     * @param void
+     * @return void
+     */
     void cancelPressed(int newStep);
 }

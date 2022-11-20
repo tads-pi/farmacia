@@ -76,6 +76,10 @@ public class Cliente {
     public Cliente() {
     }
 
+    /**
+     * Atualiza cliente
+     * @param c
+     */
     public void set(Cliente c) {
         this.id = c.id;
         this.nome = c.nome;
@@ -187,6 +191,10 @@ public class Cliente {
         this.ativo = ativo;
     }
 
+    /**
+     * Verifica se o objeto tem informações ou não
+     * @return boolean
+     */
     public boolean isEmpty() {
         return (this.id == 0 &&
                 this.nome.isEmpty() &&
