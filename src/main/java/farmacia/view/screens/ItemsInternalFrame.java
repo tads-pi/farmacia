@@ -49,7 +49,7 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
     }
 
     public void loadTable(ArrayList<Inventario> inventario) {
-        System.out.println("filling table");
+        System.out.println("filling table inventario with "+inventario.size()+" items");
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.getDataVector().removeAllElements();
 
@@ -57,7 +57,7 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
             model.addRow(
                     new Object[] { i.getId(), i.getProduto().getNome(), i.getProduto().getValorUnitario(), i.getQuantidade() });
         }
-        System.out.println("filled table successfully");
+        System.out.println("filled table inventario successfully");
     }
 
     /**

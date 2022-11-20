@@ -126,12 +126,12 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMinimumSize(Sizes.FRAME_SIZE);
         setName("DrugStore"); // NOI18N
-        setPreferredSize(Sizes.FRAME_SIZE);
         setSize(new java.awt.Dimension(650, 1000));
 
         desktopFrame.setBackground(new java.awt.Color(255, 255, 255));
         desktopFrame.setMinimumSize(Sizes.INTERNAL_FRAME_SIZE);
         desktopFrame.setPreferredSize(Sizes.INTERNAL_FRAME_SIZE);
+        desktopFrame.setLayout(null);
 
         menuBar.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
         menuBar.setMargin(new java.awt.Insets(0, 15, 0, 0));
@@ -139,7 +139,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         menuBar.setMinimumSize(new java.awt.Dimension(640, 25));
         menuBar.setPreferredSize(new java.awt.Dimension(640, 25));
 
-        sellingsMenuItem.setText("Tela de Vendas");
+        sellingsMenuItem.setText("Tela de Vendas      ");
         sellingsMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sellingsMenuItemMouseClicked(evt);
@@ -150,7 +150,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         });
         menuBar.add(sellingsMenuItem);
 
-        itemsMenuItem.setText("Tela de Cadastro/Consulta de Items");
+        itemsMenuItem.setText("Tela de Cadastro/Consulta de Items      ");
         itemsMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 itemsMenuItemMouseClicked(evt);

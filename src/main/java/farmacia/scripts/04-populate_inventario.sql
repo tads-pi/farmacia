@@ -1,11 +1,6 @@
 INSERT INTO
     tb_inventario(id_produto, quantidade)
 VALUES
-    (0, 97);
-
-INSERT INTO
-    tb_inventario(id_produto, quantidade)
-VALUES
     (1, 61);
 
 INSERT INTO

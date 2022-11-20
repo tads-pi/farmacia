@@ -7,8 +7,8 @@ package farmacia.view.classes;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 
 import farmacia.view.interfaces.IDao;
 
@@ -21,16 +21,14 @@ public class Venda implements IDao {
     private Cliente cliente;
     private ArrayList<ItemVenda> carrinho;
     private double total;
-    private Date criadoEm;
-    private Date atualizadoEm;
+    private Timestamp criadoEm;
+    private Timestamp atualizadoEm;
     private boolean ativo;
 
     public static final String TABLE_NAME = "tb_venda";
 
-    public Venda() {
-    }
-
-    public Venda(int id, Cliente cliente, ArrayList<ItemVenda> carrinho, double total, Date criadoEm, Date atualizadoEm,
+    public Venda(int id, Cliente cliente, ArrayList<ItemVenda> carrinho, double total, Timestamp criadoEm,
+            Timestamp atualizadoEm,
             boolean ativo) {
         this.id = id;
         this.cliente = cliente;
@@ -42,18 +40,15 @@ public class Venda implements IDao {
     }
 
     public Venda(
-            int id,
-            int id_cliente,
-            double total,
-            Date criadoEm,
-            Date atualizadoEm,
-            boolean ativo) {
-        this.id = id;
-        this.cliente.setId(id_cliente);
+            Cliente cliente,
+            ArrayList<ItemVenda> carrinho,
+            double total) {
+        this.cliente = cliente;
+        this.carrinho = carrinho;
         this.total = total;
-        this.criadoEm = criadoEm;
-        this.atualizadoEm = atualizadoEm;
-        this.ativo = ativo;
+    }
+
+    public Venda() {
     }
 
     public int getId() {
@@ -88,19 +83,19 @@ public class Venda implements IDao {
         this.total = total;
     }
 
-    public Date getCriadoEm() {
+    public Timestamp getCriadoEm() {
         return this.criadoEm;
     }
 
-    public void setCriadoEm(Date criadoEm) {
+    public void setCriadoEm(Timestamp criadoEm) {
         this.criadoEm = criadoEm;
     }
 
-    public Date getAtualizadoEm() {
+    public Timestamp getAtualizadoEm() {
         return this.atualizadoEm;
     }
 
-    public void setAtualizadoEm(Date atualizadoEm) {
+    public void setAtualizadoEm(Timestamp atualizadoEm) {
         this.atualizadoEm = atualizadoEm;
     }
 
@@ -114,13 +109,13 @@ public class Venda implements IDao {
 
     public Venda parseAttributes(ResultSet rs) throws Exception {
         Venda v = new Venda();
-        v.id = rs.getInt("id");
+        v.id = rs.getInt("id_venda");
         Cliente cliente = new Cliente();
         cliente.setId(rs.getInt("id_cliente"));
         v.setCliente(cliente);
         v.total = rs.getDouble("total");
-        v.criadoEm = rs.getDate("criado_em");
-        v.atualizadoEm = rs.getDate("atualizado_em");
+        v.criadoEm = rs.getTimestamp("criado_em");
+        v.atualizadoEm = rs.getTimestamp("atualizado_em");
         v.ativo = rs.getBoolean("ativo");
         return v;
     }

@@ -61,6 +61,44 @@ public class ClienteDAO implements IDao{
         }
     }
 
+    public Cliente findById(int id) {
+        Cliente cliente = new Cliente();
+        sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo AND id_cliente = ?;";
+        try {
+            if (bd.getConnection()) {
+                st = bd.c.prepareStatement(sql);
+
+                st.setInt(1, id);
+
+                rs = st.executeQuery();
+                while (rs.next()) {
+                    cliente = new Cliente(
+                            rs.getInt("id_cliente"),
+                            rs.getString("nome"),
+                            rs.getString("email"),
+                            rs.getString("cpf"),
+                            rs.getString("endereco"),
+                            rs.getString("numero_de_telefone"),
+                            rs.getString("genero"),
+                            rs.getString("estado_civil"),
+                            rs.getString("data_de_nascimento"),
+                            rs.getDate("criado_em"),
+                            rs.getDate("atualizado_em"),
+                            rs.getBoolean("ativo")
+                    );
+                }
+                ;
+
+                return cliente;
+            }
+            return cliente;
+        } catch (SQLException erro) {
+            System.out.println("error: " + erro.getMessage());
+            bd.close();
+            return cliente;
+        }
+    }
+
     public Cliente findByCpf(String cpf) {
         Cliente cliente = new Cliente();
         sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo AND cpf = ?;";

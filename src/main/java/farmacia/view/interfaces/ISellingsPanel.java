@@ -6,7 +6,6 @@
 package farmacia.view.interfaces;
 
 import farmacia.view.classes.Cliente;
-import farmacia.view.libs.mysql.BD;
 import farmacia.view.libs.mysql.dao.ClienteDAO;
 /**
  *
@@ -24,8 +23,6 @@ public interface ISellingsPanel {
     
     public Cliente currentUser = new Cliente();
     public ClienteDAO clienteDAO = new ClienteDAO();
-    
-    public BD bd = new BD();
 
     void confirmPressed(int newStep);
     void cancelPressed(int newStep);

@@ -12,19 +12,38 @@ import java.util.Date;
  */
 public class ItemVenda {
     private int id;
+    private int id_venda;
     private Produto produto;
     private double quantidade;
     private double valorUnitario;
     private double valorTotal;
-    private Date data;
+    private Date criadoEm;
+    private Date atualizadoEm;
+    private boolean ativo;
 
-    public ItemVenda(int id, Produto produto, double quantidade, double valorUnitario, double valorTotal, Date data) {
+    public ItemVenda(int id, int id_venda, Produto produto, double quantidade, double valorUnitario, double valorTotal,
+            Date criadoEm,
+            Date atualizadoEm,
+            boolean ativo) {
         this.id = id;
+        this.id_venda = id_venda;
         this.produto = produto;
         this.quantidade = quantidade;
         this.valorUnitario = valorUnitario;
         this.valorTotal = valorTotal;
-        this.data = data;
+        this.criadoEm = criadoEm;
+        this.atualizadoEm = atualizadoEm;
+        this.ativo = ativo;
+    }
+
+    public ItemVenda(Produto produto, double quantidade, double valorUnitario, double valorTotal) {
+        this.produto = produto;
+        this.quantidade = quantidade;
+        this.valorUnitario = valorUnitario;
+        this.valorTotal = valorTotal;
+    }
+
+    public ItemVenda() {
     }
 
     public int getId() {
@@ -33,6 +52,14 @@ public class ItemVenda {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIdVenda() {
+        return id_venda;
+    }
+
+    public void setIdVenda(int id_venda) {
+        this.id_venda = id_venda;
     }
 
     public Produto getProduto() {
@@ -67,12 +94,27 @@ public class ItemVenda {
         this.valorTotal = valorTotal;
     }
 
-    public Date getData() {
-        return data;
+    public Date getCriadoEm() {
+        return this.criadoEm;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setCriadoEm(Date criadoEm) {
+        this.criadoEm = criadoEm;
     }
-    
+
+    public Date getAtualizadoEm() {
+        return this.atualizadoEm;
+    }
+
+    public void setAtualizadoEm(Date atualizadoEm) {
+        this.atualizadoEm = atualizadoEm;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
 }
