@@ -17,13 +17,16 @@ public class ClienteDAO implements IDao{
     private ResultSet rs;
     private String sql;
 
-    private static final String TABLE_NAME = "tb_cliente";
+    public static final String TABLE_NAME = "tb_cliente";
 
     public ClienteDAO() {
         bd = new BD();
         cliente = new Cliente();
     }
 
+    /**
+     * @return todos os clientes
+     */
     public ArrayList<Cliente> findAll() {
         ArrayList<Cliente> response = new ArrayList<>();
         sql = "select * from " + TABLE_NAME + ";";
@@ -61,6 +64,10 @@ public class ClienteDAO implements IDao{
         }
     }
 
+    /**
+     * @param id
+     * @return cliente pelo id
+     */
     public Cliente findById(int id) {
         Cliente cliente = new Cliente();
         sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo AND id_cliente = ?;";
@@ -98,7 +105,11 @@ public class ClienteDAO implements IDao{
             return cliente;
         }
     }
-
+    
+    /**
+     * @param cpf
+     * @return cliente pelo cpf
+     */
     public Cliente findByCpf(String cpf) {
         Cliente cliente = new Cliente();
         sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo AND cpf = ?;";
@@ -137,6 +148,12 @@ public class ClienteDAO implements IDao{
         }
     }
 
+    /**
+     * Pode executar ações de INSERT, UPDATE e DELETE para o cliente informado
+     * @param c objeto da operação
+     * @param op número da operação que deve executar 
+     * @see farmacia.view.interfaces.IDao variáveis das operações
+     */
     public void execute(Cliente c, int op) {
         try {
             if (bd.getConnection()) {
@@ -184,6 +201,9 @@ public class ClienteDAO implements IDao{
         }
     }
 
+    /**
+     * Desliga conexão com o banco de dados
+     */
     public void close() {
         if (bd.getConnection()) {
             bd.close();

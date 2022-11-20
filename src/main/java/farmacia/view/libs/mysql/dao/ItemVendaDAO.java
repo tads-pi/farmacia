@@ -26,6 +26,9 @@ public class ItemVendaDAO implements IDao {
         itemVenda = new ItemVenda();
     }
 
+    /**
+     * @return todos os ItemVenda
+     */
     public ArrayList<ItemVenda> findAll() {
         ArrayList<ItemVenda> response = new ArrayList<>();
         sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo;";
@@ -62,6 +65,10 @@ public class ItemVendaDAO implements IDao {
         }
     }
 
+    /**
+     * @param idVenda
+     * @return itemVenda pelo id
+     */
     public ArrayList<ItemVenda> findByIdVenda(int idVenda) {
         ArrayList<ItemVenda> response = new ArrayList<>();
         sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo AND id_venda = ?;";
@@ -100,6 +107,13 @@ public class ItemVendaDAO implements IDao {
         }
     }
 
+    /**
+     * Executa inner join entre as tabelas de itemVenda e produto, de forma que o
+     * retorno seja um relatório completo do itemVenda
+     * 
+     * @param idVenda
+     * @return itemVenda preenchido com dados de Produto
+     */
     public ArrayList<ItemVenda> loadReport(int idVenda) {
         ArrayList<ItemVenda> response = new ArrayList<>();
         sql = "SELECT * FROM " + TABLE_NAME + " iv INNER JOIN " + ProdutosDAO.TABLE_NAME
@@ -128,9 +142,9 @@ public class ItemVendaDAO implements IDao {
                             rs.getDouble("quantidade"),
                             rs.getDouble("valor_unitario"),
                             rs.getDouble("valor_total"),
-                            rs.getDate("criado_em"),
-                            rs.getDate("atualizado_em"),
-                            rs.getBoolean("ativo"));
+                            rs.getDate("iv.criado_em"),
+                            rs.getDate("iv.atualizado_em"),
+                            rs.getBoolean("iv.ativo"));
                     response.add(c);
                 }
                 ;
@@ -145,6 +159,13 @@ public class ItemVendaDAO implements IDao {
         }
     }
 
+    /**
+     * Pode executar ações de INSERT, UPDATE e DELETE para o itemVenda informado
+     * @param iv objeto da operação
+     * @param op número da operação que deve executar 
+     * @see farmacia.view.interfaces.IDao variáveis das operações
+     * @return id do itemVenda em caso de INSERT
+     */
     public int execute(ItemVenda iv, int op) {
         try {
             if (bd.getConnection()) {
@@ -198,6 +219,9 @@ public class ItemVendaDAO implements IDao {
         return iv.getId();
     }
 
+    /**
+     * Desliga conexão com o banco de dados
+     */
     public void close() {
         if (bd.getConnection()) {
             bd.close();

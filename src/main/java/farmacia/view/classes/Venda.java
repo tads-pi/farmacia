@@ -107,6 +107,13 @@ public class Venda implements IDao {
         this.ativo = ativo;
     }
 
+    /**
+     * Trata dados retornados do resultSet
+     * 
+     * @param rs
+     * @return novo objeto de Venda com os dados tratados
+     * @throws Exception
+     */
     public Venda parseAttributes(ResultSet rs) throws Exception {
         Venda v = new Venda();
         v.id = rs.getInt("id_venda");
@@ -132,6 +139,12 @@ public class Venda implements IDao {
         return "delete from " + TABLE_NAME + " where id = ?";
     }
 
+    /**
+     * 
+     * @param operation
+     * @return query da operação informada
+     * @throws Exception
+     */
     public String getQuery(byte operation) throws Exception {
         switch (operation) {
             case INSERT:
@@ -144,6 +157,13 @@ public class Venda implements IDao {
         throw new Exception("invalid operation: " + operation);
     }
 
+    /**
+     * Informa ao preparedStatement o valor das questionMarks
+     * 
+     * @param st        preparedStatement para informar os dados de prepared
+     * @param operation
+     * @throws SQLException
+     */
     public void setStatements(PreparedStatement st, byte operation) throws SQLException {
         switch (operation) {
             case INSERT:

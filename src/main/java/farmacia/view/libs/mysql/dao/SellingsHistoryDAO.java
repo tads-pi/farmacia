@@ -33,6 +33,9 @@ public class SellingsHistoryDAO implements IDao {
         this.bd = bd;
     }
 
+    /**
+     * @return todas as vendas
+     */
     public ArrayList<Venda> findAll() {
         ArrayList<Venda> response = new ArrayList<>();
         sql = "SELECT * FROM " + Venda.TABLE_NAME + " WHERE ativo;";
@@ -53,6 +56,11 @@ public class SellingsHistoryDAO implements IDao {
         return response;
     }
 
+    /**
+     * @param startDate
+     * @param endDate
+     * @return todas as vendas no determinado período de tempo
+     */
     public ArrayList<Venda> findByDate(String startDate, String endDate) {
         ArrayList<Venda> response = new ArrayList<>();
         sql = "SELECT * FROM " + Venda.TABLE_NAME + " WHERE ativo AND criado_em >= STR_TO_DATE(?, \"%d/%m/%Y\") AND criado_em <= STR_TO_DATE(?, \"%d/%m/%Y\");";
@@ -77,6 +85,10 @@ public class SellingsHistoryDAO implements IDao {
         return response;
     }
 
+    /**
+     * @param id
+     * @return venda pelo id
+     */
     public ArrayList<Venda> findById(int id) {
         ArrayList<Venda> response = new ArrayList<>();
         sql = "SELECT * FROM " + Venda.TABLE_NAME + " WHERE ativo AND id_venda = ?;";
@@ -100,11 +112,19 @@ public class SellingsHistoryDAO implements IDao {
         return response;
     }
 
-    public int execute(Venda object, byte operation) {
+    /**
+     * pode executar ações de INSERT, UPDATE e DELETE para a venda informada
+     * 
+     * @param v  objeto da operação
+     * @param op número da operação que deve executar
+     * @see farmacia.view.interfaces.IDao variáveis das operações
+     * @return id da venda em caso de INSERT
+     */
+    public int execute(Venda v, byte op) {
         try {
             if (bd.getConnection()) {
-                st = bd.c.prepareStatement(object.getQuery(operation), Statement.RETURN_GENERATED_KEYS);
-                object.setStatements(st, operation);
+                st = bd.c.prepareStatement(v.getQuery(op), Statement.RETURN_GENERATED_KEYS);
+                v.setStatements(st, op);
             }
             if (st.executeUpdate() == 0) {
                 System.out.println("error: operation failed");
@@ -113,7 +133,7 @@ public class SellingsHistoryDAO implements IDao {
             try (ResultSet generatedKeys = st.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     Long longId = generatedKeys.getLong(1);
-                    object.setId(longId.intValue());
+                    v.setId(longId.intValue());
                 } else {
                     throw new SQLException("Creating user failed, no ID obtained.");
                 }
@@ -129,9 +149,12 @@ public class SellingsHistoryDAO implements IDao {
             e.printStackTrace();
             System.out.println("error: " + e);
         }
-        return object.getId();
+        return v.getId();
     }
 
+    /**
+     * Desliga conexão com o banco de dados
+     */
     public void close() {
         if (bd.getConnection()) {
             bd.close();

@@ -33,6 +33,9 @@ public class ProdutosDAO implements IDao {
         produto = new Produto();
     }
 
+    /**
+     * @return todos os produtos
+     */
     public ArrayList<Produto> findAll() {
         ArrayList<Produto> response = new ArrayList<>();
         sql = "select * from " + TABLE_NAME + " WHERE ativo;";
@@ -64,6 +67,10 @@ public class ProdutosDAO implements IDao {
         }
     }
 
+    /**
+     * @param nome
+     * @return todos os produtos com nome parecido com o param informado
+     */
     public Produto findByNome(String nome) {
         Produto produto = new Produto();
         sql = "select * from " + TABLE_NAME + " WHERE ativo AND nome LIKE %?%;";
@@ -96,6 +103,10 @@ public class ProdutosDAO implements IDao {
         }
     }
 
+    /**
+     * @param id
+     * @return produto pelo id
+     */
     public Produto findById(int id) {
         Produto produto = new Produto();
         sql = "select * from " + TABLE_NAME + " WHERE ativo AND id_produto = ?;";
@@ -128,6 +139,13 @@ public class ProdutosDAO implements IDao {
         }
     }
 
+    /**
+     * Pode executar ações de INSERT, UPDATE e DELETE para o Produto informado
+     * @param p objeto da operação
+     * @param op número da operação que deve executar
+     * @see farmacia.view.interfaces.IDao variáveis das operações
+     * @return id do Produto em caso de INSERT
+     */
     public int execute(Produto p, int op) {
         try {
             if (bd.getConnection()) {
@@ -176,6 +194,9 @@ public class ProdutosDAO implements IDao {
         return p.getId();
     }
 
+    /**
+     * Desliga conexão com o banco de dados
+     */
     public void close() {
         if (bd.getConnection()) {
             bd.close();

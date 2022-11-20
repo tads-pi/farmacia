@@ -11,14 +11,16 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- *
+ * Objeto que armazena fluxo de passos do usuário, permitindo navegar entre
+ * steps que já passou
+ * 
  * @author kcalixto
  */
-public class StepsTrace implements ISellingsPanel{
+public class StepsTrace implements ISellingsPanel {
     private static ArrayList<Integer> arr = new ArrayList<Integer>();
-    
+
     private static final Map<Integer, String> STEPS = new LinkedHashMap<>();
-    static{
+    static {
         STEPS.put(STEP_GET_CPF, "getCpf");
         STEPS.put(STEP_SHOW_CPF, "showCpf");
         STEPS.put(STEP_CPF_REGISTER, "registerCpf");
@@ -27,27 +29,42 @@ public class StepsTrace implements ISellingsPanel{
         STEPS.put(STEP_CANCEL_SELLING, "cancelSelling");
         STEPS.put(LAST_STEP, "last_step");
     };
-            
-    public void add(int STEP){
-        this.arr.add(STEP);
+
+    /**
+     * Adicionar step
+     * 
+     * @param STEP
+     */
+    public void add(int STEP) {
+        StepsTrace.arr.add(STEP);
     }
-    
-    public int size(){
-        return this.arr.size();
+
+    /**
+     * @param STEP
+     * @return tamanho da array de steps
+     */
+    public int size() {
+        return StepsTrace.arr.size();
     }
-    
-    public int getLastStep(){
-        for(int s:this.arr){
+
+    /**
+     * 
+     * @return step anterior
+     */
+    public int getLastStep() {
+        System.out.println("todos os steps até o momento: \n");
+        for (int s : StepsTrace.arr) {
             System.out.print(STEPS.get(s) + ", ");
         }
-        System.out.println("");
-        System.out.println("last_step: " + this.arr.get(this.arr.size() - 2));
-        System.out.println("last_step: " + STEPS.get(this.arr.get(this.arr.size() - 2)));
-        return this.arr.get(this.arr.size() - 2);
+        System.out.println("last_step: " + STEPS.get(StepsTrace.arr.get(StepsTrace.arr.size() - 2)));
+        return StepsTrace.arr.get(StepsTrace.arr.size() - 2);
     }
 
     @Override
-    public void confirmPressed(int newStep) {}
+    public void confirmPressed(int newStep) {
+    }
+
     @Override
-    public void cancelPressed(int newStep) {}
+    public void cancelPressed(int newStep) {
+    }
 }

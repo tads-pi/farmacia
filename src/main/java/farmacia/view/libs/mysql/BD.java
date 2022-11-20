@@ -13,6 +13,11 @@ public class BD {
     private final String login = env.getUser();
     private final String senha = env.getPassword();
 
+    /**
+     * Verifica se existe conexão o com banco de dados
+     * 
+     * @return boolean
+     */
     public boolean getConnection() {
         try {
             Class.forName(driver);
@@ -30,6 +35,9 @@ public class BD {
 
     }
 
+    /**
+     * Desliga conexão com o banco de dados
+     */
     public void close() {
         try {
             if (c != null) {
