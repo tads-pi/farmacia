@@ -38,7 +38,7 @@ public class ProdutosDAO implements IDao {
      */
     public ArrayList<Produto> findAll() {
         ArrayList<Produto> response = new ArrayList<>();
-        sql = "select * from " + TABLE_NAME + " WHERE ativo;";
+        sql = "select * from " + TABLE_NAME + " WHERE ativo ORDER BY nome;";
         try {
             if (bd.getConnection()) {
                 st = bd.c.prepareStatement(sql);
@@ -73,7 +73,7 @@ public class ProdutosDAO implements IDao {
      */
     public Produto findByNome(String nome) {
         Produto produto = new Produto();
-        sql = "select * from " + TABLE_NAME + " WHERE ativo AND nome LIKE %?%;";
+        sql = "select * from " + TABLE_NAME + " WHERE ativo AND nome LIKE %?% ORDER BY nome;";
         try {
             if (bd.getConnection()) {
                 st = bd.c.prepareStatement(sql);

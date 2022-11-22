@@ -6,6 +6,7 @@
 package farmacia.view.screens.sellingsPanels;
 
 import farmacia.view.classes.Cliente;
+import farmacia.view.interfaces.IItemsPanel;
 import farmacia.view.interfaces.ISellingsPanel;
 import farmacia.view.libs.validators.Validators;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
  *
  * @author kcalixto
  */
-public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
+public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPanel, IItemsPanel {
 
     private ArrayList<ISellingsPanel> sellingsisteners = new ArrayList<ISellingsPanel>();
     private Validators v = new Validators();
@@ -538,5 +539,11 @@ public class RegisterCPFPanel extends javax.swing.JPanel implements ISellingsPan
 
     @Override
     public void cancelPressed(int newStep) {
+    }
+
+    @Override
+    public void reloadTable() {
+        // TODO Auto-generated method stub
+        
     }
 }
