@@ -12,6 +12,7 @@ import farmacia.view.classes.Venda;
 import farmacia.view.interfaces.IItemsPanel;
 import farmacia.view.interfaces.IReportsPanel;
 import farmacia.view.interfaces.ISellingsPanel;
+import farmacia.view.libs.TableUtils;
 import farmacia.view.libs.mysql.dao.ItemVendaDAO;
 import farmacia.view.libs.mysql.dao.SellingsHistoryDAO;
 import java.util.ArrayList;
@@ -33,6 +34,8 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel,
      */
     public SellingsPanel() {
         initComponents();
+        TableUtils.addToolTip(cartTable);
+        TableUtils.addToolTip(tbProdutos);
         loadTable(loadInventario());
     }
 

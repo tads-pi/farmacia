@@ -9,6 +9,7 @@ import farmacia.view.Sizes;
 import farmacia.view.classes.Inventario;
 import farmacia.view.classes.Produto;
 import farmacia.view.interfaces.IItemsPanel;
+import farmacia.view.libs.TableUtils;
 import farmacia.view.libs.mysql.dao.InventarioDAO;
 import farmacia.view.libs.mysql.dao.ProdutosDAO;
 
@@ -41,6 +42,7 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
      */
     public ItemsInternalFrame() {
         initComponents();
+        TableUtils.addToolTip(jTable1);
         loadTable(loadInventario());
     }
 
