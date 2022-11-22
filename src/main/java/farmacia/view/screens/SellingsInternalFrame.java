@@ -128,7 +128,7 @@ public class SellingsInternalFrame extends javax.swing.JInternalFrame implements
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void login() {
+    public void login(boolean isGerente) {
         this.setVisible(true);
     }
 

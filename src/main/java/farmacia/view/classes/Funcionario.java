@@ -19,6 +19,8 @@ public class Funcionario {
     private String email = "";
     private String cpf = "";
     private String cargo = "";
+    private String login = "";
+    private String senha = "";
     private Date criadoEm;
     private Date atualizadoEm;
     private boolean ativo = false;
@@ -31,6 +33,8 @@ public class Funcionario {
             String email,
             String cpf,
             String cargo,
+            String login,
+            String senha,
             Date criadoEm,
             Date atualizadoEm,
             boolean ativo) {
@@ -39,36 +43,29 @@ public class Funcionario {
         this.email = email;
         this.cpf = cpf;
         this.cargo = cargo;
+        this.login = login;
+        this.senha = senha;
         this.criadoEm = criadoEm;
         this.atualizadoEm = atualizadoEm;
         this.ativo = ativo;
     }
 
     public Funcionario(
-            String nome,
-            String email,
-            String cpf,
-            String cargo,
-            String dataDeNascimento) {
-        this.nome = nome;
-        this.email = email;
-        this.cpf = cpf;
-        this.cargo = cargo;
-    }
-
-
-    public Funcionario(
             int id,
             String nome,
             String email,
             String cpf,
             String cargo,
+            String login,
+            String senha,
             boolean ativo) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.cargo = cargo;
+        this.login = login;
+        this.senha = senha;
         this.ativo = ativo;
     }
 
@@ -77,12 +74,16 @@ public class Funcionario {
             String nome,
             String email,
             String cpf,
-            String cargo) {
+            String cargo,
+            String login,
+            String senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.cargo = cargo;
+        this.login = login;
+        this.senha = senha;
     }
 
     public Funcionario() {
@@ -128,15 +129,32 @@ public class Funcionario {
         this.cargo = cargo;
     }
 
-    public int getCargoIndex(){
+    public int getCargoIndex() {
         for (int i = 0; i < constants.cargosArr.length; i++) {
-            if(this.getCargo().equals(constants.cargosArr[i])) return i;
+            if (this.getCargo().equals(constants.cargosArr[i]))
+                return i;
         }
         return -1;
     }
 
     public Date getCriadoEm() {
         return criadoEm;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public void setCriadoEm(Date criadoEm) {
@@ -158,6 +176,25 @@ public class Funcionario {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-    
-    
+
+    public boolean isGerente() {
+        if (getCargo().equals(constants.gerente)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Verifica se o objeto tem informações ou não
+     * 
+     * @return boolean
+     */
+    public boolean isEmpty() {
+        return (this.id == 0 &&
+                this.nome.isEmpty() &&
+                this.email.isEmpty() &&
+                this.cpf.isEmpty() &&
+                this.login.isEmpty() &&
+                this.senha.isEmpty());
+    }
 }

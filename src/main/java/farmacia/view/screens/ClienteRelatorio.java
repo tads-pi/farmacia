@@ -9,6 +9,7 @@ import farmacia.view.constants;
 import farmacia.view.classes.Cliente;
 import farmacia.view.interfaces.IItemsPanel;
 import farmacia.view.interfaces.ISellingsPanel;
+import farmacia.view.libs.TableUtils;
 import farmacia.view.libs.mysql.dao.ClienteDAO;
 import farmacia.view.libs.validators.Validators;
 
@@ -29,6 +30,7 @@ public class ClienteRelatorio extends javax.swing.JInternalFrame implements ISel
      */
     public ClienteRelatorio() {
         initComponents();
+        TableUtils.addToolTip(tabelaCliente);
         loadTable(loadClintes());
     }
 
@@ -46,7 +48,7 @@ public class ClienteRelatorio extends javax.swing.JInternalFrame implements ISel
         for (Cliente c : cliente) {
             model.addRow(
                     new Object[] { c.getId(), c.getNome(), c.getEmail(), c.getCpf(), c.getEndereco(),
-                            c.getNumeroDeTelefone(), c.getGenero(), c.getEstadoCivil(), c.getDataDeNascimento(),
+                            c.getNumeroDeTelefone(), c.getGenero(), c.getEstadoCivil(), c.getParsedDataDeNascimento(),
                             c.getCriadoEm(), c.getAtualizadoEm(), c.isAtivo() });
         }
         System.out.println("filled table cliente successfully");

@@ -18,7 +18,7 @@ VALUES
         "(11)91234-5678",
         "-",
         "Solteiro (a)",
-        CURRENT_TIMESTAMP
+        "2000/01/01"
     );
 
 INSERT INTO
@@ -41,7 +41,7 @@ VALUES
         "(11)90000-0000",
         "M",
         "Solteiro (a)",
-        "02/05/1992"
+        "1992/02/05"
     );
 
 INSERT INTO
@@ -64,7 +64,7 @@ VALUES
         "(11)91234-5678",
         "M",
         "Casado (a)",
-        "05/02/1950"
+        "1950/05/02"
     );
 
 INSERT INTO
@@ -72,12 +72,35 @@ INSERT INTO
         nome,
         email,
         cpf,
-        cargo
+        cargo,
+        login,
+        senha
     )
 VALUES
     (
         "Kaua Calixto",
         "emaildocalixto@gmail.com",
         "123.123.123-01",
-        "Vendedor(a)"
+        "Gerente",
+        "calixto",
+        "123"
+    );
+
+INSERT INTO
+    tb_funcionario (
+        nome,
+        email,
+        cpf,
+        cargo,
+        login,
+        senha
+    )
+VALUES
+    (
+        "Kaua Calixto",
+        "emaildocalixto@gmail.com",
+        "123.123.123-01",
+        "Vendedor(a)",
+        "vendedor",
+        "123"
     );

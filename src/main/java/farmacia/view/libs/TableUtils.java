@@ -51,11 +51,27 @@ public class TableUtils {
                             break;
                         case "class java.sql.Timestamp cannot be cast to class java.lang.String (java.sql.Timestamp is in module java.sql of loader 'platform'; java.lang.String is in module java.base of loader 'bootstrap')":
                             // Get the table cell value where the mouse is located
-                            Timestamp TimestampValue = (Timestamp) table.getValueAt(
+                            Timestamp timestampValue = (Timestamp) table.getValueAt(
                                     table.rowAtPoint(e.getPoint()),
                                     table.columnAtPoint(e.getPoint()));
                             // If the length of the value is greater than some number...
-                            table.setToolTipText(TimestampValue + "");
+                            table.setToolTipText(timestampValue + "");
+                            break;
+                        case "class java.sql.Date cannot be cast to class java.lang.String (java.sql.Date is in module java.sql of loader 'platform'; java.lang.String is in module java.base of loader 'bootstrap')":
+                            // Get the table cell value where the mouse is located
+                            java.sql.Date dateValue = (java.sql.Date) table.getValueAt(
+                                    table.rowAtPoint(e.getPoint()),
+                                    table.columnAtPoint(e.getPoint()));
+                            // If the length of the value is greater than some number...
+                            table.setToolTipText(dateValue + "");
+                            break;
+                        case "class java.lang.Boolean cannot be cast to class java.lang.String (java.lang.Boolean and java.lang.String are in module java.base of loader 'bootstrap')":
+                            // Get the table cell value where the mouse is located
+                            boolean boolValue = (boolean) table.getValueAt(
+                                    table.rowAtPoint(e.getPoint()),
+                                    table.columnAtPoint(e.getPoint()));
+                            // If the length of the value is greater than some number...
+                            table.setToolTipText(boolValue + "");
                             break;
                         default:
                             System.out.println("new parse error: " + parseError.getLocalizedMessage());

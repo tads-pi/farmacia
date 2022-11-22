@@ -20,9 +20,10 @@ public class constants {
     public static final DefaultComboBoxModel<String> estadosCivisModel = new DefaultComboBoxModel<>(estadosCivisArr);
     public static final String[] generosArr = new String[] { "-", "M", "F", "NB" };
     public static final DefaultComboBoxModel<String> generosModel = new DefaultComboBoxModel<>(generosArr);
-    public static final String[] cargosArr = new String[] { "Vendedor(a)", "Auxiliar de Limpeza" };
+    public static final String gerente = "Gerente";
+    public static final String[] cargosArr = new String[] { "Vendedor(a)", "Auxiliar de Limpeza", gerente };
     public static final DefaultComboBoxModel<String> cargosModel = new DefaultComboBoxModel<>(cargosArr);
     public static final DefaultComboBoxModel<String> cargosModel2 = new DefaultComboBoxModel<>(cargosArr);
 
-    public static final boolean SHOW_LOGIN_SCREEN = false;
+    public static final boolean SHOW_LOGIN_SCREEN = true;
 }

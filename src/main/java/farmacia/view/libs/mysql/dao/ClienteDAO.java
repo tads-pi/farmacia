@@ -158,7 +158,7 @@ public class ClienteDAO implements IDao{
         try {
             if (bd.getConnection()) {
                 if (op == INSERT) {
-                    sql = "INSERT INTO " + TABLE_NAME+ " (nome, email, cpf, endereco, numero_de_telefone, genero, estado_civil, data_de_nascimento) values (?,?,?,?,?,?,?,STR_TO_DATE(?, \"%m/%d/%Y\"))";
+                    sql = "INSERT INTO " + TABLE_NAME+ " (nome, email, cpf, endereco, numero_de_telefone, genero, estado_civil, data_de_nascimento) values (?,?,?,?,?,?,?,STR_TO_DATE(?, \"%d/%m/%Y\"))";
                     st = bd.c.prepareStatement(sql);
 
                     st.setString(1, c.getNome());
@@ -172,7 +172,7 @@ public class ClienteDAO implements IDao{
 
                 } else if (op == UPDATE) {
                     sql = "UPDATE " + TABLE_NAME
-                            + " set nome = ?, email = ?, cpf = ?, endereco = ?, numero_de_telefone = ?, genero = ?, estado_civil = ?, data_de_nascimento = STR_TO_DATE(?, \"%m/%d/%Y\"), ativo = ? where id_cliente = ?";
+                            + " set nome = ?, email = ?, cpf = ?, endereco = ?, numero_de_telefone = ?, genero = ?, estado_civil = ?, data_de_nascimento = STR_TO_DATE(?, \"%d/%m/%Y\"), ativo = ? where id_cliente = ?";
                     st = bd.c.prepareStatement(sql);
 
                     st.setString(1, c.getNome());

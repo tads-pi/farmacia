@@ -25,13 +25,13 @@ public class Validators {
      * 
      * @return InvalidResponseBody
      */
-    public InvalidResponseBody isValidLogin(String login, char[] password) {
+    public InvalidResponseBody isValidLogin(String login, String password) {
         InvalidResponseBody response = new InvalidResponseBody();
 
         if (login.isEmpty()) {
             response.addErrorField("login");
         }
-        if (password.length == 0) {
+        if (password.length() == 0) {
             response.addErrorField("senha");
         }
 
@@ -139,7 +139,9 @@ public class Validators {
             String nameInput,
             String emailInput,
             String cpfInput,
-            String cargo) {
+            String cargo,
+            String loginInput,
+            String senhaInput) {
         ArrayList<String> invalidFields = new ArrayList<String>();
 
         if (nameInput.isEmpty()) {
@@ -147,6 +149,18 @@ public class Validators {
         }
         if (nameInput.length() > 45) {
             invalidFields.add("Nome deve ser menor que 45 caracteres");
+        }
+        if (loginInput.isEmpty()) {
+            invalidFields.add("Login");
+        }
+        if (loginInput.length() > 45) {
+            invalidFields.add("Login deve ser menor que 45 caracteres");
+        }
+        if (senhaInput.isEmpty()) {
+            invalidFields.add("Senha");
+        }
+        if (senhaInput.length() > 45) {
+            invalidFields.add("Senha deve ser menor que 45 caracteres");
         }
         if (emailInput.isEmpty() || emailInput.contains(" ") || !emailInput.contains("@")
                 || !emailInput.contains(".")) {

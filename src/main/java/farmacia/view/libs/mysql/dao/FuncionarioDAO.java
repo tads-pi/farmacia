@@ -41,6 +41,8 @@ public class FuncionarioDAO implements IDao {
                             rs.getString("email"),
                             rs.getString("cpf"),
                             rs.getString("cargo"),
+                            rs.getString("login"),
+                            rs.getString("senha"),
                             rs.getDate("criado_em"),
                             rs.getDate("atualizado_em"),
                             rs.getBoolean("ativo")
@@ -80,6 +82,50 @@ public class FuncionarioDAO implements IDao {
                             rs.getString("email"),
                             rs.getString("cpf"),
                             rs.getString("cargo"),
+                            rs.getString("login"),
+                            rs.getString("senha"),
+                            rs.getDate("criado_em"),
+                            rs.getDate("atualizado_em"),
+                            rs.getBoolean("ativo")
+                    );
+                }
+                ;
+
+                return funcionario;
+            }
+            return funcionario;
+        } catch (SQLException erro) {
+            System.out.println("error: " + erro.getMessage());
+            bd.close();
+            return funcionario;
+        }
+    }
+    
+    /**
+     * @param login
+     * @param senha
+     * @return funcionario pelo login
+     */
+    public Funcionario login(String login, String senha) {
+        Funcionario funcionario = new Funcionario();
+        sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo AND login = ? AND senha = ?;";
+        try {
+            if (bd.getConnection()) {
+                st = bd.c.prepareStatement(sql);
+
+                st.setString(1, login);
+                st.setString(2, senha);
+
+                rs = st.executeQuery();
+                while (rs.next()) {
+                    funcionario = new Funcionario(
+                            rs.getInt("id_funcionario"),
+                            rs.getString("nome"),
+                            rs.getString("email"),
+                            rs.getString("cpf"),
+                            rs.getString("cargo"),
+                            rs.getString("login"),
+                            rs.getString("senha"),
                             rs.getDate("criado_em"),
                             rs.getDate("atualizado_em"),
                             rs.getBoolean("ativo")
@@ -118,6 +164,8 @@ public class FuncionarioDAO implements IDao {
                             rs.getString("email"),
                             rs.getString("cpf"),
                             rs.getString("cargo"),
+                            rs.getString("login"),
+                            rs.getString("senha"),
                             rs.getDate("criado_em"),
                             rs.getDate("atualizado_em"),
                             rs.getBoolean("ativo")
@@ -145,27 +193,31 @@ public class FuncionarioDAO implements IDao {
         try {
             if (bd.getConnection()) {
                 if (op == INSERT) {
-                    sql = "INSERT INTO " + TABLE_NAME+ " (nome, email, cpf, cargo) values (?,?,?,?)";
+                    sql = "INSERT INTO " + TABLE_NAME+ " (nome, email, cpf, cargo, login, senha) values (?,?,?,?,?,?)";
                     st = bd.c.prepareStatement(sql);
 
                     st.setString(1, c.getNome());
                     st.setString(2, c.getEmail());
                     st.setString(3, c.getCpf());
                     st.setString(4, c.getCargo());
+                    st.setString(5, c.getLogin());
+                    st.setString(6, c.getSenha());
 
                 } else if (op == UPDATE) {
                     sql = "UPDATE " + TABLE_NAME
-                            + " set nome = ?, email = ?, cpf = ?, cargo = ?, ativo = ? where id_funcionario = ?";
+                            + " set nome = ?, email = ?, cpf = ?, cargo = ?, login = ?, senha = ?, ativo = ? where id_funcionario = ?";
                     st = bd.c.prepareStatement(sql);
 
                     st.setString(1, c.getNome());
                     st.setString(2, c.getEmail());
                     st.setString(3, c.getCpf());
                     st.setString(4, c.getCargo());
+                    st.setString(5, c.getLogin());
+                    st.setString(6, c.getSenha());
                     int ativo = 0;
                     if(c.isAtivo()) ativo = 1;
-                    st.setInt(5, ativo);
-                    st.setInt(6, c.getId());
+                    st.setInt(7, ativo);
+                    st.setInt(8, c.getId());
 
                 } else if (op == DELETE) {
                     sql = "UPDATE " + TABLE_NAME + " SET ativo = 0 WHERE id_funcionario = ?";

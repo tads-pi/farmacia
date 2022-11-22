@@ -10,10 +10,10 @@ import farmacia.view.classes.Funcionario;
 import farmacia.view.interfaces.IItemsPanel;
 import farmacia.view.interfaces.ISellingsPanel;
 import farmacia.view.libs.FarmaciaColors;
+import farmacia.view.libs.TableUtils;
 import farmacia.view.libs.mysql.dao.FuncionarioDAO;
 import farmacia.view.libs.validators.Validators;
 
-import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -32,6 +32,7 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
      */
     public FuncionariosInternalFrame() {
         initComponents();
+        TableUtils.addToolTip(tabelaFuncionario);
         loadTable(loadFuncionarios());
     }
 
@@ -48,8 +49,7 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
 
         for (Funcionario f : funcionario) {
             model.addRow(
-                    new Object[]{f.getId(), f.getNome(), f.getEmail(), f.getCpf(), f.getCargo(),
-                        f.getCriadoEm(), f.isAtivo()});
+                    new Object[]{f.getId(), f.getNome(), f.getEmail(), f.getCpf(), f.getCargo(), f.getLogin(), f.getSenha(), f.getCriadoEm(), f.isAtivo()});
         }
         System.out.println("filled table funcionarios successfully");
     }
@@ -80,6 +80,9 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
         jLabel5 = new javax.swing.JLabel();
         cargoLabel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        inputSenha = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        inputLogin = new javax.swing.JTextField();
         panelCadastrar = new javax.swing.JPanel();
         cadastrarButton = new javax.swing.JButton();
         inputCpfCadastro = new javax.swing.JFormattedTextField();
@@ -91,6 +94,9 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
         cargoLabel3 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         comboBoxCargoCadastro = new javax.swing.JComboBox<>();
+        jLabel21 = new javax.swing.JLabel();
+        inputLoginCadastro = new javax.swing.JTextField();
+        inputSenhaCadastro = new javax.swing.JTextField();
 
         setMaximumSize(Sizes.INTERNAL_FRAME_SIZE);
         setMinimumSize(Sizes.INTERNAL_FRAME_SIZE);
@@ -98,20 +104,20 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
 
         tabelaFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "E-mail", "CPF", "Cargo", "Criado em", "Ativo"
+                "ID", "Nome", "E-mail", "CPF", "Cargo", "Login", "Senha", "Criado em", "Ativo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -179,6 +185,14 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setText("Editar");
 
+        inputSenha.setMaximumSize(new java.awt.Dimension(120, 24));
+        inputSenha.setMinimumSize(new java.awt.Dimension(120, 24));
+
+        jLabel22.setText("Login e Senha");
+
+        inputLogin.setMaximumSize(new java.awt.Dimension(120, 24));
+        inputLogin.setMinimumSize(new java.awt.Dimension(120, 24));
+
         javax.swing.GroupLayout panelEditarLayout = new javax.swing.GroupLayout(panelEditar);
         panelEditar.setLayout(panelEditarLayout);
         panelEditarLayout.setHorizontalGroup(
@@ -186,12 +200,6 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
             .addGroup(panelEditarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelEditarLayout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ativoLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sliderAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelEditarLayout.createSequentialGroup()
                         .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(inputNome, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,19 +209,29 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
                             .addComponent(jLabel6)
                             .addComponent(inputEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(panelEditarLayout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 12, Short.MAX_VALUE))
-                    .addGroup(panelEditarLayout.createSequentialGroup()
-                        .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
+                        .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(comboBoxCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelEditarLayout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ativoLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sliderAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelEditarLayout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(134, 134, 134)
+                        .addComponent(cargoLabel)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarLayout.createSequentialGroup()
                         .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelEditarLayout.createSequentialGroup()
-                                .addComponent(cargoLabel)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(comboBoxCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jLabel22)
+                                .addGap(81, 81, 81))
+                            .addComponent(inputSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(inputLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         panelEditarLayout.setVerticalGroup(
@@ -222,16 +240,15 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
                 .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelEditarLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarLayout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelEditarLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ativoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelEditarLayout.createSequentialGroup()
                                 .addGap(3, 3, 3)
-                                .addComponent(sliderAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)))
+                                .addComponent(sliderAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(0, 0, 0)
                 .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel5))
@@ -239,20 +256,30 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
                 .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inputNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(cargoLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(6, 6, 6)
                 .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboBoxCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4))
+                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelEditarLayout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelEditarLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel22)
+                        .addGap(4, 4, 4)
+                        .addComponent(inputLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         panelCadastrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        panelCadastrar.setMaximumSize(new java.awt.Dimension(302, 256));
 
         cadastrarButton.setText("Cadastrar");
         cadastrarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -291,6 +318,14 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
 
         comboBoxCargoCadastro.setModel(constants.cargosModel);
 
+        jLabel21.setText("Login e Senha");
+
+        inputLoginCadastro.setMaximumSize(new java.awt.Dimension(120, 24));
+        inputLoginCadastro.setMinimumSize(new java.awt.Dimension(120, 24));
+
+        inputSenhaCadastro.setMaximumSize(new java.awt.Dimension(120, 24));
+        inputSenhaCadastro.setMinimumSize(new java.awt.Dimension(120, 24));
+
         javax.swing.GroupLayout panelCadastrarLayout = new javax.swing.GroupLayout(panelCadastrar);
         panelCadastrar.setLayout(panelCadastrarLayout);
         panelCadastrarLayout.setHorizontalGroup(
@@ -299,41 +334,49 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
                 .addContainerGap()
                 .addGroup(panelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelCadastrarLayout.createSequentialGroup()
-                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(panelCadastrarLayout.createSequentialGroup()
                         .addGroup(panelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(inputNomeCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel19))
                         .addGap(18, 18, 18)
                         .addGroup(panelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel18)
-                            .addComponent(inputEmailCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(panelCadastrarLayout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addGap(0, 88, Short.MAX_VALUE))
+                            .addComponent(inputEmailCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(panelCadastrarLayout.createSequentialGroup()
                         .addGroup(panelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(inputCpfCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel17))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelCadastrarLayout.createSequentialGroup()
-                                .addGroup(panelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelCadastrarLayout.createSequentialGroup()
-                                        .addGap(30, 30, 30)
-                                        .addComponent(cadastrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelCadastrarLayout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cargoLabel3)))
-                                .addGap(0, 16, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastrarLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBoxCargoCadastro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap())
+                                .addComponent(cargoLabel3)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(panelCadastrarLayout.createSequentialGroup()
+                                .addComponent(comboBoxCargoCadastro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastrarLayout.createSequentialGroup()
+                        .addGroup(panelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelCadastrarLayout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(panelCadastrarLayout.createSequentialGroup()
+                                .addComponent(inputSenhaCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(24, 24, 24)))
+                        .addComponent(cadastrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelCadastrarLayout.createSequentialGroup()
+                        .addGroup(panelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inputLoginCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         panelCadastrarLayout.setVerticalGroup(
             panelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastrarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(0, 0, 0)
                 .addGroup(panelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(jLabel19))
@@ -341,17 +384,27 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
                 .addGroup(panelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputEmailCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inputNomeCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(cargoLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cargoLabel3)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputCpfCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboBoxCargoCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(cadastrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelCadastrarLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cadastrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(panelCadastrarLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel21)
+                        .addGap(4, 4, 4)
+                        .addComponent(inputLoginCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputSenhaCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -370,7 +423,7 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(panelCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addComponent(panelEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -385,7 +438,7 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -461,15 +514,17 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
         }
     }
 
-    private void fillFields(Funcionario c) {
-        setCurrentEditingId(c.getId());
-        inputNome.setText(c.getNome());
-        inputEmail.setText(c.getEmail());
-        inputCpf.setText(c.getCpf());
-        comboBoxCargo.setSelectedIndex(c.getCargoIndex());
+    private void fillFields(Funcionario f) {
+        setCurrentEditingId(f.getId());
+        inputNome.setText(f.getNome());
+        inputEmail.setText(f.getEmail());
+        inputCpf.setText(f.getCpf());
+        comboBoxCargo.setSelectedIndex(f.getCargoIndex());
+        inputLogin.setText(f.getLogin());
+        inputSenha.setText(f.getSenha());
 
         int value = 0;
-        if (c.isAtivo()) {
+        if (f.isAtivo()) {
             value = 1;
         }
         sliderAtivo.setValue(value);
@@ -485,7 +540,9 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
                 inputNome.getText().toString(),
                 inputEmail.getText().toString(),
                 inputCpf.getText().toString(),
-                comboBoxCargo.getSelectedItem().toString()
+                comboBoxCargo.getSelectedItem().toString(),
+                inputLogin.getText().toString(),
+                inputSenha.getText().toString()
         );
         String invalidFieldsMessage = "Verifique os campos de\n";
 
@@ -502,6 +559,8 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
                 inputEmail.getText(),
                 inputCpf.getText(),
                 comboBoxCargo.getSelectedItem().toString(),
+                inputLogin.getText(),
+                inputSenha.getText(),
                 ativo
         );
     }
@@ -511,7 +570,9 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
                 inputNomeCadastro.getText().toString(),
                 inputEmailCadastro.getText().toString(),
                 inputCpfCadastro.getText().toString(),
-                comboBoxCargoCadastro.getSelectedItem().toString()
+                comboBoxCargoCadastro.getSelectedItem().toString(),
+                inputLoginCadastro.getText().toString(),
+                inputSenhaCadastro.getText().toString()
         );
         String invalidFieldsMessage = "Verifique os campos de\n";
 
@@ -527,7 +588,9 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
                 inputNomeCadastro.getText(),
                 inputEmailCadastro.getText(),
                 inputCpfCadastro.getText(),
-                comboBoxCargoCadastro.getSelectedItem().toString()
+                comboBoxCargoCadastro.getSelectedItem().toString(),
+                inputLoginCadastro.getText(),
+                inputSenhaCadastro.getText()
         );
     }
 
@@ -548,34 +611,28 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ativoLabel;
-    private javax.swing.JLabel ativoLabel2;
     private javax.swing.JButton buttonEditar;
     private javax.swing.JButton cadastrarButton;
     private javax.swing.JLabel cargoLabel;
-    private javax.swing.JLabel cargoLabel2;
     private javax.swing.JLabel cargoLabel3;
     private javax.swing.JComboBox<String> comboBoxCargo;
-    private javax.swing.JComboBox<String> comboBoxCargo2;
     private javax.swing.JComboBox<String> comboBoxCargoCadastro;
     private javax.swing.JFormattedTextField inputCpf;
-    private javax.swing.JFormattedTextField inputCpf2;
     private javax.swing.JFormattedTextField inputCpfCadastro;
     private javax.swing.JTextField inputEmail;
-    private javax.swing.JTextField inputEmail2;
     private javax.swing.JTextField inputEmailCadastro;
+    private javax.swing.JTextField inputLogin;
+    private javax.swing.JTextField inputLoginCadastro;
     private javax.swing.JTextField inputNome;
-    private javax.swing.JTextField inputNome2;
     private javax.swing.JTextField inputNomeCadastro;
-    private javax.swing.JTextField inputTelefone2;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
+    private javax.swing.JTextField inputSenha;
+    private javax.swing.JTextField inputSenhaCadastro;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -583,11 +640,8 @@ public class FuncionariosInternalFrame extends javax.swing.JInternalFrame implem
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelCadastrar;
     private javax.swing.JPanel panelEditar;
-    private javax.swing.JPanel panelEditar1;
     private javax.swing.JButton saveButton;
-    private javax.swing.JButton saveButton2;
     private javax.swing.JSlider sliderAtivo;
-    private javax.swing.JSlider sliderAtivo2;
     private javax.swing.JTable tabelaFuncionario;
     // End of variables declaration//GEN-END:variables
 

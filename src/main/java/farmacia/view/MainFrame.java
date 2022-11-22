@@ -46,12 +46,17 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
      * @param void
      * @return void
      */
-    public void login() {
+    public void login(boolean isGerente) {
         StartSellingsFrame();
         StartItemsFrame();
         StartHistoryFrame();
         StartUsersInternalFrame();
-        StartFuncionariosFrame();
+        if(isGerente){
+            StartFuncionariosFrame();
+            jMenu2.setText("|  Funcionários");
+        }else{
+            jMenu2.setText("");
+        }
         
         // set visible
         loginPanel.setVisible(false);
@@ -82,6 +87,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
      */
     public void logout() {
         loginPanel.setVisible(true);
+        desktopFrame.removeAll();
         desktopFrame.setVisible(false);
         menuBar.setVisible(false);
     }
@@ -183,7 +189,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         // Gambiarra para desativar a tela de login forçando login automático ao
         // carregar o projeto.
         if (!constants.SHOW_LOGIN_SCREEN) {
-            loginPanel.login();
+            loginPanel.login(true);
         }
     }
 
@@ -247,7 +253,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         });
         menuBar.add(itemsMenuItem);
 
-        historyMenuItem.setText("Histórico de Vendas|");
+        historyMenuItem.setText("Histórico de Vendas| ");
         historyMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 historyMenuItemMouseClicked(evt);
@@ -255,7 +261,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         });
         menuBar.add(historyMenuItem);
 
-        jMenu1.setText("Clientes|");
+        jMenu1.setText("Clientes");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu1MouseClicked(evt);
@@ -266,7 +272,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         });
         menuBar.add(jMenu1);
 
-        jMenu2.setText("Funcionários");
+        jMenu2.setText("|  Funcionários");
         jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu2MouseClicked(evt);

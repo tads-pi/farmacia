@@ -6,16 +6,18 @@
 package farmacia.view.screens;
 
 import farmacia.view.Sizes;
+import farmacia.view.classes.Funcionario;
 import farmacia.view.libs.validators.Validators;
 import java.util.ArrayList;
 import farmacia.view.interfaces.ILoginListener;
+import farmacia.view.interfaces.ISellingsPanel;
 import farmacia.view.libs.validators.InvalidResponseBody;
 
 /**
  *
  * @author kcalixto
  */
-public class LoginPanel extends javax.swing.JPanel {
+public class LoginPanel extends javax.swing.JPanel implements ISellingsPanel {
 
     private ArrayList<ILoginListener> listeners = new ArrayList<ILoginListener>();
     private Validators v = new Validators();
@@ -43,11 +45,11 @@ public class LoginPanel extends javax.swing.JPanel {
      * @params void
      * @return void
      */
-    public void login() {
+    public void login(boolean isGerente) {
         clearFields();
         // Notify everybody that may be interested.
         for (ILoginListener ll : listeners) {
-            ll.login();
+            ll.login(isGerente);
         }
     }
 
@@ -151,10 +153,17 @@ public class LoginPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-        InvalidResponseBody loginResponse = v.isValidLogin(loginInput.getText(), passwordInput.getPassword());
+        String unprotectedPassword = new String(passwordInput.getPassword());
+        InvalidResponseBody loginResponse = v.isValidLogin(loginInput.getText(), unprotectedPassword);
         
         if (!loginResponse.haveErrors()) {
-            login();
+            Funcionario funcionario = funcionarioDAO.login(loginInput.getText().toString(), unprotectedPassword);
+
+            if(!funcionario.isEmpty()){
+                login(funcionario.isGerente());
+            }else{
+                errorLabel.setText("Login ou senha incorretos");
+            }
         }else{
             errorLabel.setText(loginResponse.getLabeledErrorFields());
         }
@@ -191,5 +200,17 @@ public class LoginPanel extends javax.swing.JPanel {
     private javax.swing.JPasswordField passwordInput;
     private javax.swing.JLabel passwordLabel;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void confirmPressed(int newStep) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void cancelPressed(int newStep) {
+        // TODO Auto-generated method stub
+        
+    }
 
 }

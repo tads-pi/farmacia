@@ -41,7 +41,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="historyMenuItem">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Hist&#xf3;rico de Vendas|"/>
+            <Property name="text" type="java.lang.String" value="Hist&#xf3;rico de Vendas| "/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="historyMenuItemMouseClicked"/>
@@ -49,7 +49,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Clientes|"/>
+            <Property name="text" type="java.lang.String" value="Clientes"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu1MouseClicked"/>
@@ -58,7 +58,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Funcion&#xe1;rios"/>
+            <Property name="text" type="java.lang.String" value="|  Funcion&#xe1;rios"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu2MouseClicked"/>

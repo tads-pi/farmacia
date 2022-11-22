@@ -16,7 +16,7 @@ public interface ILoginListener {
      * @param void
      * @return void
      */
-    void login();
+    void login(boolean isGerente);
 
     /**
      * Executa processos de logout efetuado

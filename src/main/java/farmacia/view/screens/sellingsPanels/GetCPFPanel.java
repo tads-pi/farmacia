@@ -228,7 +228,7 @@ public class GetCPFPanel extends javax.swing.JPanel implements ILoginListener, I
     }
 
     @Override
-    public void login() {
+    public void login(boolean isGerente) {
     }
 
     @Override
