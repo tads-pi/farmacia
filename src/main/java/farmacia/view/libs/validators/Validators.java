@@ -118,6 +118,45 @@ public class Validators {
     }
 
     /**
+     * Valida se os dados para cadastrar um funcionario são válidos
+     * 
+     * @param nameInput
+     * @param emailInput
+     * @param cpfInput
+     * @param cargoInput
+     * @return ArrayList<String> contendo todos os campos inválidos
+     */
+    public ArrayList<String> isValidRegisterFuncionario(
+            String nameInput,
+            String emailInput,
+            String cpfInput,
+            String cargo) {
+        ArrayList<String> invalidFields = new ArrayList<String>();
+
+        if (nameInput.isEmpty()) {
+            invalidFields.add("Nome Completo");
+        }
+        if (nameInput.length() > 45) {
+            invalidFields.add("Nome deve ser menor que 45 caracteres");
+        }
+        if (emailInput.isEmpty() || emailInput.contains(" ") || !emailInput.contains("@")
+                || !emailInput.contains(".")) {
+            invalidFields.add("Melhor Email");
+        }
+        if (emailInput.length() > 45) {
+            invalidFields.add("Email deve ser menor que 45 caracteres");
+        }
+        if (!isValidCpf(cpfInput)) {
+            invalidFields.add("CPF");
+        }
+        if (cargo.isEmpty() || cargo.equals(" ") || cargo.charAt(0) == ' ') {
+            invalidFields.add("cargo");
+        }
+
+        return invalidFields;
+    }
+
+    /**
      * Verifica se um cpf é válido
      * 
      * @param cpfInput

@@ -22,6 +22,19 @@ CREATE TABLE IF NOT EXISTS db_farmacia.tb_cliente(
     ativo BOOLEAN NOT NULL DEFAULT TRUE
 );
 
+CREATE TABLE IF NOT EXISTS db_farmacia.tb_funcionario(
+    id_funcionario INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    --
+    nome VARCHAR(45) NOT NULL,
+    email VARCHAR(45) NOT NULL,
+    cpf VARCHAR(20) NOT NULL,
+    cargo VARCHAR(45) NOT NULL,
+    --
+    criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    atualizado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    ativo BOOLEAN NOT NULL DEFAULT TRUE
+);
+
 DROP TABLE IF EXISTS db_farmacia.tb_produto;
 
 CREATE TABLE IF NOT EXISTS db_farmacia.tb_produto(

@@ -5,6 +5,10 @@
 package farmacia.view.classes;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import farmacia.view.constants;
 
 /**
  *
@@ -71,6 +75,30 @@ public class Cliente {
         this.genero = genero;
         this.estadoCivil = estadoCivil;
         this.dataDeNascimento = dataDeNascimento;
+    }
+
+
+    public Cliente(
+            int id,
+            String nome,
+            String email,
+            String cpf,
+            String endereco,
+            String numeroDeTelefone,
+            String genero,
+            String estadoCivil,
+            String dataDeNascimento,
+            boolean ativo) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+        this.endereco = endereco;
+        this.numeroDeTelefone = numeroDeTelefone;
+        this.genero = genero;
+        this.estadoCivil = estadoCivil;
+        this.dataDeNascimento = dataDeNascimento;
+        this.ativo = ativo;
     }
 
     public Cliente() {
@@ -151,8 +179,22 @@ public class Cliente {
         this.genero = genero;
     }
 
+    public int getGeneroIndex(){
+        for (int i = 0; i < constants.generosArr.length; i++) {
+            if(this.getGenero().equals(constants.generosArr[i])) return i;
+        }
+        return -1;
+    }
+
     public String getEstadoCivil() {
         return estadoCivil;
+    }
+
+    public int getEstadoCivilIndex(){
+        for (int i = 0; i < constants.estadosCivisArr.length; i++) {
+            if(this.getEstadoCivil().equals(constants.estadosCivisArr[i])) return i;
+        }
+        return -1;
     }
 
     public void setEstadoCivil(String estadoCivil) {
@@ -161,6 +203,20 @@ public class Cliente {
 
     public String getDataDeNascimento() {
         return dataDeNascimento;
+    }
+
+    public String getParsedDataDeNascimento() {
+        String parsedDate = "00/00/0000";
+        try {
+            java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dataDeNascimento);
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            parsedDate = formatter.format(date).replaceAll("-", "/");
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return parsedDate;
     }
 
     public void setDataDeNascimento(String dataDeNascimento) {

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import farmacia.view.interfaces.ISellingsPanel;
 import farmacia.view.libs.StepsTrace;
 import farmacia.view.screens.sellingsPanels.SellingsPanel;
+import farmacia.view.screens.sellingsPanels.ShowCPFPanel;
 
 import javax.swing.JOptionPane;
 
@@ -224,5 +225,8 @@ public class SellingsInternalFrame extends javax.swing.JInternalFrame implements
 
     public SellingsPanel getSellingsPanel() {
         return this.sellingsPanel;
+    }
+    public ShowCPFPanel getShowCPFPanel() {
+        return this.showCPFPanel;
     }
 }

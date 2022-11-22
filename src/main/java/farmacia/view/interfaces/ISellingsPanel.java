@@ -7,6 +7,7 @@ package farmacia.view.interfaces;
 
 import farmacia.view.classes.Cliente;
 import farmacia.view.libs.mysql.dao.ClienteDAO;
+import farmacia.view.libs.mysql.dao.FuncionarioDAO;
 
 /**
  * Interface do fluxo de venda contendo o número dos passos e DAO de cliente {@link farmacia.view.libs.mysql.dao.ClienteDAO}
@@ -25,6 +26,7 @@ public interface ISellingsPanel {
 
     public Cliente clienteAtual = new Cliente();
     public ClienteDAO clienteDAO = new ClienteDAO();
+    public FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 
     /**
      * Executa processos de ir para próximo passo
