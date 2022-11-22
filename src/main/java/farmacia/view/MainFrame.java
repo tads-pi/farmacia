@@ -10,6 +10,10 @@ import farmacia.view.screens.LoginPanel;
 import farmacia.view.screens.SellingsInternalFrame;
 import farmacia.view.interfaces.ILoginListener;
 import farmacia.view.screens.ReportsInternalFrame;
+import farmacia.view.screens.ClienteRelatorio;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,7 +26,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
     private SellingsInternalFrame sellingsInternalFrame = new SellingsInternalFrame();
     private ItemsInternalFrame itemsInternalFrame = new ItemsInternalFrame();
     private ReportsInternalFrame reportsInternalFrame = new ReportsInternalFrame();
-
+    private ClienteRelatorio usersInternalFrame = new ClienteRelatorio();
     /**
      * Creates new form MainFrame
      */
@@ -32,6 +36,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         StartSellingsFrame();
         StartItemsFrame();
         StartHistoryFrame();
+        StartUsersInternalFrame();
         LoginPanel();
     }
 
@@ -127,6 +132,16 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         }
     }
 
+    public void StartUsersInternalFrame() {
+        try {
+            desktopFrame.add(usersInternalFrame);
+            usersInternalFrame.show();
+            usersInternalFrame.setVisible(false);
+            usersInternalFrame.setMaximum(true);
+        } catch (Exception e) {
+            System.out.println("error: " + e);
+        }
+    }
     /**
      * Inicia JInternalFrame contendo tela de login para Admins
      * 
@@ -157,7 +172,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         desktopFrame = new javax.swing.JDesktopPane();
@@ -165,6 +180,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         sellingsMenuItem = new javax.swing.JMenu();
         itemsMenuItem = new javax.swing.JMenu();
         historyMenuItem = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -177,7 +193,6 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         desktopFrame.setBackground(new java.awt.Color(255, 255, 255));
         desktopFrame.setMinimumSize(Sizes.INTERNAL_FRAME_SIZE);
         desktopFrame.setPreferredSize(Sizes.INTERNAL_FRAME_SIZE);
-        desktopFrame.setLayout(null);
 
         menuBar.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
         menuBar.setMargin(new java.awt.Insets(0, 15, 0, 0));
@@ -190,7 +205,6 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sellingsMenuItemMouseClicked(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 sellingsMenuItemMouseExited(evt);
             }
@@ -202,7 +216,6 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 itemsMenuItemMouseClicked(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 itemsMenuItemMouseExited(evt);
             }
@@ -217,21 +230,45 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         });
         menuBar.add(historyMenuItem);
 
+        jMenu1.setText("    Relatorio de usuarios");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jMenu1MouseExited(evt);
+            }
+        });
+        menuBar.add(jMenu1);
+
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(desktopFrame, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(desktopFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(desktopFrame, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(desktopFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        clearScreen();
+        usersInternalFrame.setVisible(true);
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenu1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseExited
+        try {
+            usersInternalFrame.setSelected(false);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenu1MouseExited
 
     private void sellingsMenuItemMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_sellingsMenuItemMouseExited
         sellingsMenuItem.setSelected(false);
@@ -306,6 +343,7 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
     private javax.swing.JDesktopPane desktopFrame;
     private javax.swing.JMenu historyMenuItem;
     private javax.swing.JMenu itemsMenuItem;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu sellingsMenuItem;
     // End of variables declaration//GEN-END:variables
