@@ -12,6 +12,7 @@ import farmacia.view.interfaces.IItemsPanel;
 import farmacia.view.libs.mysql.dao.InventarioDAO;
 import farmacia.view.libs.mysql.dao.ProdutosDAO;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
@@ -42,6 +43,19 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
     public ItemsInternalFrame() {
         initComponents();
         loadTable(loadInventario());
+        removeScrollBars();
+    }
+
+    /**
+     * Remove all scrollBars design
+     */
+    private void removeScrollBars(){
+        jScrollPane2.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane2.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane3.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane3.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane4.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane4.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 0));
     }
 
     /**
