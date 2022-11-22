@@ -44,6 +44,7 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
     public ItemsInternalFrame() {
         initComponents();
         TableUtils.addToolTip(jTable1);
+        nomeCadastroTxt.setLineWrap(true);
         loadTable(loadInventario());
         removeScrollBars();
     }
@@ -56,8 +57,6 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
         jScrollPane2.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 0));
         jScrollPane3.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
         jScrollPane3.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 0));
-        jScrollPane4.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
-        jScrollPane4.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 0));
     }
 
     /**
@@ -105,17 +104,9 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
         buttonCadastrar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        editNome = new javax.swing.JTextArea();
+        editButton = new javax.swing.JButton();
         qntcadastroTxt = new javax.swing.JFormattedTextField();
-        PrecoTxt = new javax.swing.JFormattedTextField();
-        editQntd = new javax.swing.JFormattedTextField();
-        Editpreco = new javax.swing.JFormattedTextField();
-        jLabel11 = new javax.swing.JLabel();
+        precoTxt = new javax.swing.JFormattedTextField();
         buttonDelete = new javax.swing.JButton();
         logo1 = new farmacia.view.libs.Logo();
 
@@ -125,7 +116,6 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
         setMinimumSize(Sizes.INTERNAL_FRAME_SIZE);
         setNormalBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setPreferredSize(Sizes.INTERNAL_FRAME_SIZE);
-        setSize(Sizes.INTERNAL_FRAME_SIZE);
 
         RegistersPanelParent.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -155,7 +145,7 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
         jScrollPane2.setViewportView(jTable1);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel4.setText("Cadastro item");
+        jLabel4.setText("Cadastrar/Editar item");
 
         jLabel5.setText("Nome");
 
@@ -174,48 +164,16 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
 
         jLabel7.setText("QNTD");
 
-        jButton2.setText("editar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        editButton.setText("editar");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                editButtonActionPerformed(evt);
             }
         });
-
-        jLabel8.setText("Preço");
-
-        jLabel9.setText("QNTD");
-
-        jLabel10.setText("Nome");
-
-        editNome.setColumns(20);
-        editNome.setRows(5);
-        jScrollPane4.setViewportView(editNome);
 
         qntcadastroTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        qntcadastroTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                qntcadastroTxtActionPerformed(evt);
-            }
-        });
 
-        PrecoTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        PrecoTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrecoTxtActionPerformed(evt);
-            }
-        });
-
-        editQntd.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        editQntd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editQntdActionPerformed(evt);
-            }
-        });
-
-        Editpreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel11.setText("Editar item");
+        precoTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
         buttonDelete.setText("Excluir");
         buttonDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -234,42 +192,28 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
                     .addGroup(RegistersPanelParentLayout.createSequentialGroup()
                         .addGroup(RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(RegistersPanelParentLayout.createSequentialGroup()
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addGroup(RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel6)
                                     .addComponent(buttonCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel7)
-                                    .addComponent(qntcadastroTxt)
-                                    .addComponent(PrecoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistersPanelParentLayout.createSequentialGroup()
-                                .addGroup(RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel9)
-                                    .addComponent(editQntd)
-                                    .addComponent(Editpreco, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(64, 64, 64))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistersPanelParentLayout.createSequentialGroup()
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(135, 135, 135))))
+                                    .addComponent(qntcadastroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(precoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel5))
+                        .addGap(158, 239, Short.MAX_VALUE))
                     .addGroup(RegistersPanelParentLayout.createSequentialGroup()
                         .addGroup(RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistersPanelParentLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(buttonDelete))
                             .addGroup(RegistersPanelParentLayout.createSequentialGroup()
                                 .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(RegistersPanelParentLayout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22)
+                                .addComponent(buttonDelete)))
                         .addContainerGap())))
         );
         RegistersPanelParentLayout.setVerticalGroup(
@@ -277,47 +221,28 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
             .addGroup(RegistersPanelParentLayout.createSequentialGroup()
                 .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(RegistersPanelParentLayout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel5)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(editButton)
+                        .addComponent(buttonDelete)))
+                .addGap(4, 4, 4)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, RegistersPanelParentLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, RegistersPanelParentLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(PrecoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(7, 7, 7)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(qntcadastroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(RegistersPanelParentLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(RegistersPanelParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(RegistersPanelParentLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(7, 7, 7)
-                                .addComponent(Editpreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editQntd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(RegistersPanelParentLayout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(precoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(qntcadastroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -328,50 +253,80 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
             .addGroup(layout.createSequentialGroup()
                 .addGap(2, 2, 2)
                 .addComponent(RegistersPanelParent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addComponent(RegistersPanelParent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private int currentEditingInventarioId = 0;
+    /**
+     * Define o id de cliente que está sendo editado no momento
+     * @param id
+     */
+    private void setCurrentEditingInventarioId(int id){
+        this.currentEditingInventarioId = id;
+    }
+    private int getCurrentEditingInventarioId(){
+        return currentEditingInventarioId;
+    }
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        Inventario inventario = inventarioDAO.findById(getSelectedInventarioId());
+        fillFields(inventario);
+    }//GEN-LAST:event_editButtonActionPerformed
+
+    private void fillFields(Inventario i){
+        nomeCadastroTxt.setText(i.getProduto().getNome());
+        precoTxt.setText(i.getProduto().getValorUnitario() + "");
+        qntcadastroTxt.setText(i.getQuantidade() + "");
+        setCurrentEditingInventarioId(getSelectedInventarioId());
+
+        buttonCadastrar.setText("salvar");
+    }
+    private void clearFields(){
+        nomeCadastroTxt.setText("");
+        precoTxt.setText("");
+        qntcadastroTxt.setText("");
+
+        setCurrentEditingInventarioId(0);
+        buttonCadastrar.setText("cadastrar");
+    }
+
     private void buttonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonCadastrarActionPerformed
         // TODO arrumar tipo de produto aqui
-        Produto newProduto = new Produto(nomeCadastroTxt.getText(), Double.parseDouble(PrecoTxt.getText()), "mg");
-        newProduto.setId(produtosDAO.execute(newProduto, ProdutosDAO.INSERT));
+        boolean editInProgress = getCurrentEditingInventarioId() != 0;
+        if(editInProgress){
+            Inventario inventario = inventarioDAO.findById(getCurrentEditingInventarioId());
+            inventario.setQuantidade(Double.parseDouble(qntcadastroTxt.getText()));
+            inventarioDAO.execute(inventario, InventarioDAO.UPDATE);
 
-        Inventario inventario = new Inventario(newProduto, Double.parseDouble(qntcadastroTxt.getText()));
-        inventarioDAO.execute(inventario, InventarioDAO.INSERT);
+            Produto produto = inventario.getProduto();
+            produto.setNome(nomeCadastroTxt.getText());
+            produto.setValorUnitario(Double.parseDouble(precoTxt.getText()));
+            produtosDAO.execute(produto, InventarioDAO.UPDATE);
 
+            clearFields();
+        }else{
+            Produto newProduto = new Produto(nomeCadastroTxt.getText(), Double.parseDouble(precoTxt.getText()), "mg");
+            newProduto.setId(produtosDAO.execute(newProduto, ProdutosDAO.INSERT));
+    
+            Inventario inventario = new Inventario(newProduto, Double.parseDouble(qntcadastroTxt.getText()));
+            inventarioDAO.execute(inventario, InventarioDAO.INSERT);
+        }
         loadTable(loadInventario());
-
+    
         for (IItemsPanel ll : reloadListeners) {
             ll.reloadTable();
         }
     }// GEN-LAST:event_buttonCadastrarActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-        int indiceLinha = jTable1.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    }// GEN-LAST:event_jButton2ActionPerformed
-
-    private void qntcadastroTxtActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_qntcadastroTxtActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_qntcadastroTxtActionPerformed
-
-    private void PrecoTxtActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_PrecoTxtActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_PrecoTxtActionPerformed
-
-    private void editQntdActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_editQntdActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_editQntdActionPerformed
 
     private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
         Inventario inventario = inventarioDAO.findById(getSelectedInventarioId());
@@ -397,28 +352,20 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField Editpreco;
-    private javax.swing.JFormattedTextField PrecoTxt;
     private javax.swing.JPanel RegistersPanelParent;
     private javax.swing.JButton buttonCadastrar;
     private javax.swing.JButton buttonDelete;
-    private javax.swing.JTextArea editNome;
-    private javax.swing.JFormattedTextField editQntd;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
+    private javax.swing.JButton editButton;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private farmacia.view.libs.Logo logo1;
     private javax.swing.JTextArea nomeCadastroTxt;
+    private javax.swing.JFormattedTextField precoTxt;
     private javax.swing.JFormattedTextField qntcadastroTxt;
     // End of variables declaration//GEN-END:variables
     @Override

@@ -127,7 +127,7 @@ public class InventarioDAO implements IDao {
      */
     public Inventario findById(int id) {
         Inventario inventario = new Inventario();
-        sql = "SELECT * FROM " + TABLE_NAME + " WHERE ativo AND quantidade > 0 AND id_inventario = ?;";
+        sql = "SELECT * FROM " + TABLE_NAME + " i INNER JOIN " + ProdutosDAO.TABLE_NAME + " p USING(id_produto) WHERE i.ativo AND p.ativo AND i.quantidade > 0 AND i.id_inventario = ?;";
         try {
             if (bd.getConnection()) {
                 st = bd.c.prepareStatement(sql);
@@ -136,8 +136,14 @@ public class InventarioDAO implements IDao {
 
                 rs = st.executeQuery();
                 while (rs.next()) {
-                    Produto produto = new Produto();
-                    produto.setId(rs.getInt("id_produto"));
+                    Produto produto = new Produto(
+                            rs.getInt("id_produto"),
+                            rs.getString("nome"),
+                            rs.getDouble("valor_unitario"),
+                            rs.getString("tipo_de_produto"),
+                            rs.getDate("p.criado_em"),
+                            rs.getDate("p.atualizado_em"),
+                            rs.getBoolean("p.ativo"));
 
                     inventario = new Inventario(
                             rs.getInt("id_inventario"),
