@@ -173,7 +173,12 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
 
         qntcadastroTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
-        precoTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        precoTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
+        precoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                precoTxtActionPerformed(evt);
+            }
+        });
 
         buttonDelete.setText("Excluir");
         buttonDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -282,6 +287,10 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
         Inventario inventario = inventarioDAO.findById(getSelectedInventarioId());
         fillFields(inventario);
     }//GEN-LAST:event_editButtonActionPerformed
+
+    private void precoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_precoTxtActionPerformed
 
     private void fillFields(Inventario i){
         nomeCadastroTxt.setText(i.getProduto().getNome());
