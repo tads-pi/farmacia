@@ -23,7 +23,7 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="sellingsMenuItem">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Tela de Vendas      "/>
+            <Property name="text" type="java.lang.String" value="Tela de Vendas|"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sellingsMenuItemMouseClicked"/>
@@ -32,7 +32,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="itemsMenuItem">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Tela de Cadastro/Consulta de Items      "/>
+            <Property name="text" type="java.lang.String" value="Tela de Cadastro/Consulta de Items|"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="itemsMenuItemMouseClicked"/>
@@ -41,10 +41,27 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="historyMenuItem">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Hist&#xf3;rico de Vendas"/>
+            <Property name="text" type="java.lang.String" value="Hist&#xf3;rico de Vendas|"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="historyMenuItemMouseClicked"/>
+          </Events>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Clientes|"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu1MouseClicked"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu1MouseExited"/>
+          </Events>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Funcion&#xe1;rios"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu2MouseClicked"/>
           </Events>
         </Menu>
       </SubComponents>

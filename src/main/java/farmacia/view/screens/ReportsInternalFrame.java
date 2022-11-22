@@ -12,7 +12,7 @@ import farmacia.view.interfaces.IItemsPanel;
 import farmacia.view.interfaces.IReportsPanel;
 import farmacia.view.interfaces.ISellingsPanel;
 import farmacia.view.libs.TableUtils;
-
+import java.awt.Dimension;
 import java.text.SimpleDateFormat;
 
 /**
@@ -49,6 +49,17 @@ public class ReportsInternalFrame extends javax.swing.JInternalFrame implements 
         TableUtils.addToolTip(tabelaItemVendas);
         TableUtils.addToolTip(tabelaVendas);
         loadTabelaVendas(getVendas());
+        removeScrollBars();
+    }
+
+    /**
+     * Remove all scrollBars design
+     */
+    private void removeScrollBars(){
+        jScrollPane2.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane2.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane1.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane1.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 0));
     }
 
     /**
@@ -181,18 +192,26 @@ public class ReportsInternalFrame extends javax.swing.JInternalFrame implements 
 
         tabelaVendas.setBackground(new java.awt.Color(255, 255, 255));
         tabelaVendas.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
+            new Object [][] {
 
-                },
-                new String[] {
-                        "id", "CPF DE CLIENTE", "DATA E HORA", "CAIXA"
-                }) {
-            Class[] types = new Class[] {
-                    java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            },
+            new String [] {
+                "id", "CPF DE CLIENTE", "DATA E HORA", "CAIXA"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tabelaVendas.setMaximumSize(new java.awt.Dimension(660, 600));
@@ -207,19 +226,26 @@ public class ReportsInternalFrame extends javax.swing.JInternalFrame implements 
         tabelaItemVendas.setBackground(new java.awt.Color(255, 255, 255));
         tabelaItemVendas.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
         tabelaItemVendas.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
+            new Object [][] {
 
-                },
-                new String[] {
-                        "id", "Nome Do Produto", "QNTD.", "VL UN.", "VL T."
-                }) {
-            Class[] types = new Class[] {
-                    java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class,
-                    java.lang.Double.class
+            },
+            new String [] {
+                "id", "Nome Do Produto", "QNTD.", "VL UN.", "VL T."
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tabelaItemVendas.setBounds(new java.awt.Rectangle(0, 0, 350, 64));
@@ -435,7 +461,6 @@ public class ReportsInternalFrame extends javax.swing.JInternalFrame implements 
     private javax.swing.JTable tabelaItemVendas;
     private javax.swing.JTable tabelaVendas;
     private javax.swing.JLabel totalLabel;
-
     // End of variables declaration//GEN-END:variables
     @Override
     // ignore

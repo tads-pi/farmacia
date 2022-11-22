@@ -13,6 +13,7 @@ import farmacia.view.libs.TableUtils;
 import farmacia.view.libs.mysql.dao.InventarioDAO;
 import farmacia.view.libs.mysql.dao.ProdutosDAO;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
@@ -44,6 +45,19 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
         initComponents();
         TableUtils.addToolTip(jTable1);
         loadTable(loadInventario());
+        removeScrollBars();
+    }
+
+    /**
+     * Remove all scrollBars design
+     */
+    private void removeScrollBars(){
+        jScrollPane2.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane2.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane3.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane3.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane4.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane4.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 0));
     }
 
     /**
@@ -126,9 +140,16 @@ public class ItemsInternalFrame extends javax.swing.JInternalFrame implements II
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane2.setViewportView(jTable1);

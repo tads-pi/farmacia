@@ -5,6 +5,7 @@
  */
 package farmacia.view.screens.sellingsPanels;
 
+import farmacia.view.interfaces.IItemsPanel;
 import farmacia.view.interfaces.ISellingsPanel;
 import java.util.ArrayList;
 
@@ -12,10 +13,10 @@ import java.util.ArrayList;
  *
  * @author kcalixto
  */
-public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
+public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel, IItemsPanel {
 
     private ArrayList<ISellingsPanel> sellingsisteners = new ArrayList<ISellingsPanel>();
-
+    private ArrayList<IItemsPanel> reloadListeners = new ArrayList<IItemsPanel>();
     /**
      * Creates new form GetCPFPanel
      */
@@ -33,6 +34,18 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
      */
     public void addSellingsListener(ISellingsPanel toAdd) {
         sellingsisteners.add(toAdd);
+    }
+
+    /**
+     * Adiciona outro JInternalFrame como listener da ação de recarregar tabela
+     * 
+     * {@link farmacia.view.screens.ClienteRelatorio#reloadTable}
+     * @param IItemsPanel
+     * @return void
+     * 
+     */
+    public void addReloadListener(IItemsPanel toAdd) {
+        reloadListeners.add(toAdd);
     }
 
     /**
@@ -282,6 +295,9 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
         
         clienteAtual.set(clienteDAO.findByCpf(clienteAtual.getCpf()));
 
+        for (IItemsPanel ll : reloadListeners) {
+            ll.reloadTable();
+        }    
         for (ISellingsPanel ll : sellingsisteners) {
             ll.confirmPressed(STEP_SELLINGS);
         }
@@ -330,5 +346,11 @@ public class ShowCPFPanel extends javax.swing.JPanel implements ISellingsPanel {
 
     @Override
     public void cancelPressed(int newStep) {
+    }
+
+    @Override
+    public void reloadTable() {
+        // TODO Auto-generated method stub
+        
     }
 }

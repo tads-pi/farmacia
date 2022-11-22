@@ -66,3 +66,18 @@ VALUES
         "Casado (a)",
         "05/02/1950"
     );
+
+INSERT INTO
+    tb_funcionario (
+        nome,
+        email,
+        cpf,
+        cargo
+    )
+VALUES
+    (
+        "Kaua Calixto",
+        "emaildocalixto@gmail.com",
+        "123.123.123-01",
+        "Vendedor(a)"
+    );
