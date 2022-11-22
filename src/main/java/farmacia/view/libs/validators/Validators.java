@@ -90,9 +90,6 @@ public class Validators {
         if (nameInput.isEmpty()) {
             invalidFields.add("Nome Completo");
         }
-        if(!nameInput.matches("^[a-zA-Z]+$")){
-            invalidFields.add("Nome deve ser composto apenas por letras");
-        }
         if (nameInput.length() > 45) {
             invalidFields.add("Nome deve ser menor que 45 caracteres");
         }
