@@ -11,10 +11,8 @@ import farmacia.view.classes.Venda;
 import farmacia.view.interfaces.IItemsPanel;
 import farmacia.view.interfaces.IReportsPanel;
 import farmacia.view.interfaces.ISellingsPanel;
-
+import farmacia.view.libs.TableUtils;
 import java.awt.Dimension;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
 import java.text.SimpleDateFormat;
 
 /**
@@ -48,6 +46,8 @@ public class ReportsInternalFrame extends javax.swing.JInternalFrame implements 
     public ReportsInternalFrame() {
         initComponents();
         startComponents();
+        TableUtils.addToolTip(tabelaItemVendas);
+        TableUtils.addToolTip(tabelaVendas);
         loadTabelaVendas(getVendas());
         removeScrollBars();
     }
@@ -72,50 +72,7 @@ public class ReportsInternalFrame extends javax.swing.JInternalFrame implements 
         startDateInput.setText(formatter.format(new Date(System.currentTimeMillis() - oneDay)));
         endDateInput.setText(formatter.format(new Date(System.currentTimeMillis() + oneDay)));
 
-        tabelaItemVendas.addMouseMotionListener(new MouseMotionListener() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                // do nothing
-            }
 
-            @Override
-            public void mouseMoved(MouseEvent e) {
-
-                // Set the tooltip to an empty string
-                tabelaItemVendas.setToolTipText("");
-
-                try {
-                    // Get the table cell value where the mouse is located
-                    String value = (String) tabelaItemVendas.getValueAt(tabelaItemVendas.rowAtPoint(e.getPoint()),
-                            tabelaItemVendas.columnAtPoint(e.getPoint()));
-                    // If the length of the value is greater than some number...
-                    if (value.length() > 20) {
-                        tabelaItemVendas.setToolTipText(value);
-                    }
-                } catch (java.lang.ClassCastException parseError) {
-                    switch (parseError.getLocalizedMessage()) {
-                        case "class java.lang.Integer cannot be cast to class java.lang.String (java.lang.Integer and java.lang.String are in module java.base of loader 'bootstrap')":
-                            // Get the table cell value where the mouse is located
-                            int intValue = (Integer) tabelaItemVendas.getValueAt(
-                                    tabelaItemVendas.rowAtPoint(e.getPoint()),
-                                    tabelaItemVendas.columnAtPoint(e.getPoint()));
-                            // If the length of the value is greater than some number...
-                            tabelaItemVendas.setToolTipText(intValue + "");
-                            break;
-                        case "class java.lang.Double cannot be cast to class java.lang.String (java.lang.Double and java.lang.String are in module java.base of loader 'bootstrap')":
-                            // Get the table cell value where the mouse is located
-                            Double doubleValue = (Double) tabelaItemVendas.getValueAt(
-                                    tabelaItemVendas.rowAtPoint(e.getPoint()),
-                                    tabelaItemVendas.columnAtPoint(e.getPoint()));
-                            // If the length of the value is greater than some number...
-                            tabelaItemVendas.setToolTipText(doubleValue + "");
-                            break;
-                    }
-                } catch (Exception error) {
-                    System.out.println("error: " + error);
-                }
-            }
-        });
     }
 
     /**
