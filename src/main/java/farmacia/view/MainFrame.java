@@ -256,6 +256,9 @@ public class MainFrame extends javax.swing.JFrame implements ILoginListener {
         reportsInternalFrame.setVisible(true);
     }// GEN-LAST:event_historyMenuItemMouseClicked
 
+    /**
+     * Coloca todos os JInternalFrames como invisiveis
+     */
     private void clearScreen() {
         reportsInternalFrame.setVisible(false);
         itemsInternalFrame.setVisible(false);
