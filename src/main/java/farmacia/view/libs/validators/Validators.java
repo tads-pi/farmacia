@@ -40,7 +40,7 @@ public class Validators {
 
     /**
      * Valida se uma data de nascimento é válida
-     * para ser válido a data deve antes de agora, e depois de 100 anos atrás
+     * para ser válido a idade deve ser > 18 e < 150
      * 
      * @param stringDate
      * @return boolean
@@ -48,11 +48,12 @@ public class Validators {
     private boolean isValidDate(String stringDate) {
         try {
             Date date = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate);
-            Date now = new Date();
-            Date centuryAgo = new SimpleDateFormat("dd/MM/yyyy").parse("01/01/1900");
+            long oneYearInMillis = 31556926000L;
+            Date minorAge = new Date(System.currentTimeMillis() - (18 * oneYearInMillis));
+            Date centuryAgo = new SimpleDateFormat("dd/MM/yyyy").parse("01/01/1870");
 
-            if (date.after(now)
-                    || date.before(centuryAgo)) {
+            if (date.before(centuryAgo)
+                    || date.after(minorAge)) {
                 return false;
             }
         } catch (ParseException ex) {
@@ -89,16 +90,24 @@ public class Validators {
         if (nameInput.isEmpty()) {
             invalidFields.add("Nome Completo");
         }
+        if (nameInput.length() > 45) {
+            invalidFields.add("Nome deve ser menor que 45 caracteres");
+        }
         if (emailInput.isEmpty() || emailInput.contains(" ") || !emailInput.contains("@")
                 || !emailInput.contains(".")) {
             invalidFields.add("Melhor Email");
         }
+        if (emailInput.length() > 45) {
+            invalidFields.add("Email deve ser menor que 45 caracteres");
+        }
         if (!isValidCpf(cpfInput)) {
             invalidFields.add("CPF");
         }
-        if (birthDateInput.isEmpty() || birthDateInput.equals("  /  /    ") || birthDateInput.charAt(0) == ' '
-                || !isValidDate(birthDateInput)) {
+        if (birthDateInput.isEmpty() || birthDateInput.equals("  /  /    ") || birthDateInput.charAt(0) == ' ') {
             invalidFields.add("Data de Nascimento");
+        }
+        if (!isValidDate(birthDateInput)) {
+            invalidFields.add("Data de Nascimento deve ser maior que 18 anos e menor que 150 anos");
         }
         if (contactNumberInput.isEmpty() || contactNumberInput.equals("(  )     -    ")
                 || contactNumberInput.charAt(0) == ' ') {
