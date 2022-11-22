@@ -11,6 +11,8 @@ import farmacia.view.classes.Venda;
 import farmacia.view.interfaces.IItemsPanel;
 import farmacia.view.interfaces.IReportsPanel;
 import farmacia.view.interfaces.ISellingsPanel;
+
+import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.text.SimpleDateFormat;
@@ -47,6 +49,17 @@ public class ReportsInternalFrame extends javax.swing.JInternalFrame implements 
         initComponents();
         startComponents();
         loadTabelaVendas(getVendas());
+        removeScrollBars();
+    }
+
+    /**
+     * Remove all scrollBars design
+     */
+    private void removeScrollBars(){
+        jScrollPane2.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane2.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane1.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane1.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 0));
     }
 
     /**

@@ -14,6 +14,8 @@ import farmacia.view.interfaces.IReportsPanel;
 import farmacia.view.interfaces.ISellingsPanel;
 import farmacia.view.libs.mysql.dao.ItemVendaDAO;
 import farmacia.view.libs.mysql.dao.SellingsHistoryDAO;
+
+import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -34,6 +36,17 @@ public class SellingsPanel extends javax.swing.JPanel implements ISellingsPanel,
     public SellingsPanel() {
         initComponents();
         loadTable(loadInventario());
+        removeScrollBars();
+    }
+
+    /**
+     * Remove all scrollBars design
+     */
+    private void removeScrollBars(){
+        jScrollPane2.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane2.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane1.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane1.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 0));
     }
 
     /**
